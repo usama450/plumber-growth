@@ -433,8 +433,8 @@
 <section class="hero">
 
   <!-- background video -->
-  <div class="hero-bg">
-    <video autoplay muted loop playsinline>
+  <div class="hero-bg" id="heroBg">
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline x5-playsinline preload="auto" style="pointer-events:none">
       <source src="hero.mp4" type="video/mp4" />
     </video>
   </div>
@@ -594,6 +594,34 @@
 <a href="https://calendly.com/malikusama2525/best-plumbing-growth-call" target="_blank" class="floating-btn" id="floatingBtn">Book a Call</a>
 
 <script>
+  // Force-play hero video on mobile
+  const heroVideo = document.getElementById('heroVideo');
+  const heroBg    = document.getElementById('heroBg');
+
+  const FALLBACK = 'linear-gradient(135deg, #0b1628 0%, #0f1e3a 60%, #0b1628 100%)';
+
+  function tryPlay() {
+    if (!heroVideo) return;
+    heroVideo.muted = true;
+    heroVideo.play().catch(() => {
+      // Autoplay blocked — hide video and show gradient
+      heroVideo.style.display = 'none';
+      heroBg.style.background = FALLBACK;
+    });
+  }
+
+  // Try immediately
+  tryPlay();
+
+  // Also try on first user interaction (tap/scroll) for strict browsers
+  ['touchstart', 'touchend', 'click', 'scroll'].forEach(evt => {
+    document.addEventListener(evt, function handler() {
+      heroVideo.play().catch(() => {});
+      document.removeEventListener(evt, handler);
+    }, { once: true });
+  });
+
+  // Hide floating btn when CTA section is visible
   new IntersectionObserver(entries => {
     document.getElementById('floatingBtn').style.display =
       entries[0].isIntersecting ? 'none' : 'block';
