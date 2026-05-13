@@ -421,8 +421,18 @@
       /* ── Nav ── */
       nav { padding: 1rem 1.25rem; }
 
-      /* ── Floating btn ── */
-      .floating-btn { bottom: 1rem; right: 1rem; font-size: .8rem; padding: .6rem 1.1rem; }
+      /* ── Floating btn — move to bottom center so it never overlaps text ── */
+      .floating-btn {
+        bottom: 1rem;
+        right: 50%;
+        transform: translateX(50%);
+        font-size: .82rem;
+        padding: .65rem 1.4rem;
+        width: auto;
+      }
+
+      /* ── Section video — cap height on mobile ── */
+      .who-img video { max-height: 240px; }
 
       /* ── Footer ── */
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
