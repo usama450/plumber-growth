@@ -98,6 +98,7 @@
       position: absolute;
       inset: 0;
       z-index: 0;
+      background: url('hero-bg.png') center/cover no-repeat;
     }
     .hero-bg video {
       width: 100%;
@@ -168,7 +169,14 @@
 
     /* ── WHO WE HELP ── */
     .who { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .who-img {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .who-img img { width: 100%; display: block; object-fit: cover; }
     .who-right .sub { margin-top: 0; margin-bottom: 1.5rem; }
     .tag-list { display: flex; flex-direction: column; gap: .7rem; }
     .tag {
@@ -435,7 +443,7 @@
 
   <!-- background video -->
   <div class="hero-bg" id="heroBg">
-    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline x5-playsinline preload="auto" style="pointer-events:none">
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline x5-playsinline preload="auto" poster="hero-bg.png" style="pointer-events:none">
       <source src="hero.mp4" type="video/mp4" />
     </video>
   </div>
@@ -472,11 +480,12 @@
 <section class="who">
   <div class="inner">
     <div class="who-grid">
+      <div class="who-img">
+        <img src="plumber.png" alt="Professional plumber with service van" />
+      </div>
       <div>
         <span class="label">Who This Is For</span>
         <h2>Residential Plumbing Companies with 3–10 Employees</h2>
-      </div>
-      <div>
         <p class="sub">You have solid technicians and a good reputation. But your pipeline is unpredictable — and one quiet month puts real pressure on payroll.</p>
         <div class="tag-list">
           <div class="tag">Tired of relying on referrals with no backup plan</div>
