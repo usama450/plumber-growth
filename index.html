@@ -367,6 +367,33 @@
     }
     .cta-note { font-size: .78rem; color: #444444; margin-top: 1rem; }
 
+    /* URGENCY BAR */
+    .urgency-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: rgba(57,255,20,.07);
+      border: 1px solid rgba(57,255,20,.25);
+      border-radius: 100px;
+      padding: .45rem 1.1rem;
+      margin-bottom: 1.8rem;
+      font-size: .78rem;
+      font-weight: 600;
+      color: #8aff6a;
+      letter-spacing: .3px;
+    }
+    .urgency-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #39ff14;
+      flex-shrink: 0;
+      animation: pulse-dot 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .4; transform: scale(.7); }
+    }
+
     .nav-btn, .hero-cta, .floating-btn {
       transition: background .2s, color .2s, transform .18s, box-shadow .18s !important;
     }
@@ -495,7 +522,7 @@
     <h1>Get 10 to 15 Booked Plumbing Jobs in Your First 30 Days. <em>Guaranteed.</em></h1>
     <p class="hero-sub">We handle everything between the ad and the appointment so your team just shows up and works.</p>
     <a href="https://calendly.com/malikusama2525/best-plumbing-growth-call" target="_blank" class="hero-cta">Book a Free Call</a>
-    <p class="hero-note">No pitch. No pressure.</p>
+    <p class="hero-note">Only 2 spots available this month &nbsp;·&nbsp; No pitch. No pressure.</p>
 
     <div class="stats-bar">
       <div class="stat">
@@ -617,6 +644,10 @@
     <span class="label">Get Started</span>
     <h2>Book a Free Plumbing Growth Call</h2>
     <p class="sub" style="max-width:460px; margin: .9rem auto 0">We will look at your current setup and show you exactly where leads are slipping through. No pitch. No obligation.</p>
+    <div class="urgency-bar">
+      <span class="urgency-dot"></span>
+      Only 2 spots left this month
+    </div>
     <div class="cta-box">
       <h3>Ready to Fill Your Pipeline?</h3>
       <p>Pick a time that works for you. The call is 30 minutes and completely free. We will come prepared with a real audit of your current setup.</p>
