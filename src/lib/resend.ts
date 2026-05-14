@@ -18,5 +18,6 @@ export const resend = {
   },
 };
 
-export const FROM_EMAIL = "Khwab <orders@khwab.ca>";
+// Use onboarding@resend.dev until khwab.ca domain is verified in Resend dashboard
+export const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? "Khwab <onboarding@resend.dev>";
 export const SUPPORT_EMAIL = "support@khwab.ca";
