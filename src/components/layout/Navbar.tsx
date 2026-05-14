@@ -71,24 +71,24 @@ export function Navbar() {
   const transparent = !isScrolled;
 
   const iconColor = transparent
-    ? "text-[#E7D3A8]/80 hover:text-[#E7D3A8]"
-    : "text-[#1A1A1A]/60 hover:text-[#1A1A1A]";
+    ? "text-white/80 hover:text-white"
+    : "text-white/60 hover:text-white";
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-[#F8F4EE]/96 backdrop-blur-lg shadow-[0_1px_0_rgba(26,26,26,0.08)]"
+            ? "bg-[#0D0415]/95 backdrop-blur-xl shadow-[0_1px_0_rgba(58,26,92,0.5)]"
             : "bg-transparent"
         }`}
       >
         {/* Announcement bar */}
         <div
-          className="text-center py-2 text-[11px] tracking-[0.2em] uppercase bg-[#1A0826] text-[#E7D3A8]/70"
-          style={{ fontFamily: "var(--font-inter)" }}
+          className="text-center py-2 text-[11px] tracking-[0.2em] uppercase bg-[#1A0826] text-white/80"
+          style={{ fontFamily: "var(--font-inter)", fontWeight: 400 }}
         >
-          Free shipping on orders over $125 across Canada
+          ✦ Free shipping on orders over $125 across Canada ✦
         </div>
 
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -97,18 +97,18 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex flex-col leading-none group shrink-0">
               <span
-                className={`text-2xl font-light tracking-wide transition-colors duration-300 ${
-                  transparent ? "text-[#E7D3A8]" : "text-[#5A189A]"
+                className={`text-2xl tracking-wide transition-colors duration-300 ${
+                  transparent ? "text-white" : "text-[#E7D3A8]"
                 }`}
-                style={{ fontFamily: "var(--font-playfair)" }}
+                style={{ fontFamily: "var(--font-playfair)", fontWeight: 700 }}
               >
                 Khwab
               </span>
               <span
-                className={`text-[9px] tracking-widest uppercase transition-colors duration-300 ${
-                  transparent ? "text-[#E7D3A8]/60" : "text-[#C9A961]"
+                className={`text-[9px] tracking-[0.25em] uppercase transition-colors duration-300 ${
+                  transparent ? "text-[#D4AF37]" : "text-[#C9A961]"
                 }`}
-                style={{ fontFamily: "var(--font-inter)" }}
+                style={{ fontFamily: "var(--font-inter)", fontWeight: 500 }}
               >
                 Home Textiles
               </span>
@@ -127,8 +127,8 @@ export function Navbar() {
                     href={link.href}
                     className={`flex items-center gap-1 px-3.5 py-2 text-[13px] tracking-wide transition-colors duration-200 ${
                       transparent
-                        ? "text-[#F8F4EE]/70 hover:text-[#F8F4EE]"
-                        : "text-[#1A1A1A]/70 hover:text-[#1A1A1A]"
+                        ? "text-white/70 hover:text-white"
+                        : "text-white/65 hover:text-white"
                     }`}
                     style={{ fontFamily: "var(--font-inter)", fontWeight: 400 }}
                   >
@@ -145,14 +145,14 @@ export function Navbar() {
 
                   {link.sub && activeDropdown === link.label && (
                     <div
-                      className="absolute top-full left-0 mt-0 w-52 bg-[#F8F4EE] shadow-[0_8px_40px_rgba(90,24,154,0.12)] border-t-2 border-[#5A189A] py-3"
+                      className="absolute top-full left-0 mt-0 w-52 bg-[#150820] shadow-[0_8px_40px_rgba(5,0,7,0.6)] border border-[#3A1A5C] border-t-2 border-t-[#9D4EDD] py-3 rounded-b-xl"
                       style={{ animation: "floatDown 0.18s ease forwards" }}
                     >
                       {link.sub.map((sub) => (
                         <Link
                           key={sub.label}
                           href={sub.href}
-                          className="block px-5 py-2.5 text-[13px] text-[#1A1A1A]/60 hover:text-[#5A189A] hover:bg-[#E8DFF5]/40 transition-colors"
+                          className="block px-5 py-2.5 text-[13px] text-white/60 hover:text-[#E7D3A8] hover:bg-[#2A0F3D]/60 transition-colors"
                           style={{ fontFamily: "var(--font-inter)" }}
                         >
                           {sub.label}
@@ -189,7 +189,7 @@ export function Navbar() {
 
                 {isUserMenuOpen && (
                   <div
-                    className="absolute top-full right-0 mt-2 w-48 bg-[#F8F4EE] border border-[#E8DFF5] shadow-[0_8px_32px_rgba(90,24,154,0.12)] rounded-lg py-2 z-50"
+                    className="absolute top-full right-0 mt-2 w-48 bg-[#150820] border border-[#3A1A5C] shadow-[0_8px_32px_rgba(5,0,7,0.6)] rounded-xl py-2 z-50"
                     role="menu"
                     style={{ animation: "floatDown 0.18s ease forwards" }}
                   >
@@ -198,7 +198,7 @@ export function Navbar() {
                         <Link
                           href="/account"
                           onClick={() => setIsUserMenuOpen(false)}
-                          className="block px-4 py-2.5 text-[13px] text-[#1A1A1A]/80 hover:text-[#5A189A] hover:bg-[#E8DFF5]/60 transition-colors"
+                          className="block px-4 py-2.5 text-[13px] text-white/70 hover:text-[#E7D3A8] hover:bg-[#2A0F3D]/60 transition-colors"
                           style={{ fontFamily: "var(--font-inter)" }}
                           role="menuitem"
                         >
@@ -206,7 +206,7 @@ export function Navbar() {
                         </Link>
                         <button
                           onClick={() => { signOut(); setIsUserMenuOpen(false); }}
-                          className="block w-full text-left px-4 py-2.5 text-[13px] text-[#1A1A1A]/80 hover:text-[#5A189A] hover:bg-[#E8DFF5]/60 transition-colors"
+                          className="block w-full text-left px-4 py-2.5 text-[13px] text-white/70 hover:text-[#E7D3A8] hover:bg-[#2A0F3D]/60 transition-colors"
                           style={{ fontFamily: "var(--font-inter)" }}
                           role="menuitem"
                         >
@@ -218,7 +218,7 @@ export function Navbar() {
                         <Link
                           href="/login"
                           onClick={() => setIsUserMenuOpen(false)}
-                          className="block px-4 py-2.5 text-[13px] text-[#1A1A1A]/80 hover:text-[#5A189A] hover:bg-[#E8DFF5]/60 transition-colors"
+                          className="block px-4 py-2.5 text-[13px] text-white/70 hover:text-[#E7D3A8] hover:bg-[#2A0F3D]/60 transition-colors"
                           style={{ fontFamily: "var(--font-inter)" }}
                           role="menuitem"
                         >
@@ -227,7 +227,7 @@ export function Navbar() {
                         <Link
                           href="/register"
                           onClick={() => setIsUserMenuOpen(false)}
-                          className="block px-4 py-2.5 text-[13px] text-[#1A1A1A]/80 hover:text-[#5A189A] hover:bg-[#E8DFF5]/60 transition-colors"
+                          className="block px-4 py-2.5 text-[13px] text-white/70 hover:text-[#E7D3A8] hover:bg-[#2A0F3D]/60 transition-colors"
                           style={{ fontFamily: "var(--font-inter)" }}
                           role="menuitem"
                         >

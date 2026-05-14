@@ -122,15 +122,15 @@ export function HeroSection() {
           {/* Eyebrow */}
           <motion.p
             {...fadeUp(0.1)}
-            className="mb-8 text-[10px] tracking-[0.4em] uppercase text-[#E7D3A8]/60"
-            style={{ fontFamily: "var(--font-inter)" }}
+            className="mb-8 text-[11px] tracking-[0.45em] uppercase"
+            style={{ fontFamily: "var(--font-inter)", color: "#D4AF37", fontWeight: 500 }}
           >
             Est. 2024 · Canadian Made
           </motion.p>
 
           {/* Headline — word-by-word Framer Motion */}
           <motion.div
-            className="mb-6 flex flex-col"
+            className="mb-7 flex flex-col"
             variants={headlineContainer}
             initial="hidden"
             animate="visible"
@@ -141,10 +141,11 @@ export function HeroSection() {
                 variants={wordVariant}
                 style={{
                   fontFamily: "var(--font-playfair)",
-                  fontSize: "clamp(2.5rem, 6vw, 5rem)",
+                  fontSize: "clamp(3rem, 7vw, 5.5rem)",
                   fontWeight: 700,
-                  color: "#E7D3A8",
-                  lineHeight: 1.1,
+                  color: "#FFFFFF",
+                  lineHeight: 1.05,
+                  textShadow: "0 2px 40px rgba(90,24,154,0.35)",
                 }}
               >
                 {word}
@@ -155,12 +156,14 @@ export function HeroSection() {
           {/* Subheading */}
           <motion.p
             {...fadeUp(0.5)}
-            className="max-w-md mb-10"
+            className="max-w-lg mb-10"
             style={{
               fontFamily: "var(--font-inter)",
-              fontSize: "18px",
+              fontSize: "19px",
               fontWeight: 300,
-              color: "rgba(248,244,238,0.75)",
+              color: "rgba(220,212,236,0.85)",
+              lineHeight: 1.7,
+              letterSpacing: "0.01em",
             }}
           >
             Premium home textiles crafted for the modern Canadian home.

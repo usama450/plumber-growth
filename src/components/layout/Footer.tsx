@@ -33,22 +33,22 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-5">
               <span
-                className="text-2xl font-light text-[#E7D3A8] tracking-wide block"
-                style={{ fontFamily: "var(--font-playfair)" }}
+                className="text-2xl text-white tracking-wide block"
+                style={{ fontFamily: "var(--font-playfair)", fontWeight: 700 }}
               >
                 Khwab
               </span>
               <div
-                className="text-[9px] tracking-[0.3em] uppercase text-[#E7D3A8]/50 mt-0.5"
-                style={{ fontFamily: "var(--font-inter)" }}
+                className="text-[9px] tracking-[0.28em] uppercase mt-0.5"
+                style={{ fontFamily: "var(--font-inter)", color: "#D4AF37", fontWeight: 500 }}
               >
                 Home Textiles
               </div>
             </Link>
 
             <p
-              className="text-[13px] leading-relaxed mb-6 max-w-[200px] text-[#F8F4EE]/40"
-              style={{ fontFamily: "var(--font-inter)" }}
+              className="text-[13px] leading-relaxed mb-6 max-w-[200px]"
+              style={{ fontFamily: "var(--font-inter)", color: "rgba(220,212,236,0.6)", fontWeight: 300 }}
             >
               Premium Pakistani-inspired home textiles for the modern Canadian home.
             </p>
@@ -88,7 +88,8 @@ export function Footer() {
           {/* Shop Column */}
           <div>
             <h3
-              className="text-[10px] tracking-[0.3em] uppercase text-[#E7D3A8] mb-5"
+              className="text-[10px] tracking-[0.32em] uppercase mb-5"
+              style={{ color: "#D4AF37", fontWeight: 600 }}
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Shop
@@ -98,7 +99,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] text-[#F8F4EE]/50 hover:text-[#F8F4EE] transition-colors duration-200"
+                    className="text-[13px] hover:text-white transition-colors duration-200" style={{ color: "rgba(220,212,236,0.65)", fontWeight: 300 }}
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {link.label}
@@ -111,7 +112,8 @@ export function Footer() {
           {/* Support Column */}
           <div>
             <h3
-              className="text-[10px] tracking-[0.3em] uppercase text-[#E7D3A8] mb-5"
+              className="text-[10px] tracking-[0.32em] uppercase mb-5"
+              style={{ color: "#D4AF37", fontWeight: 600 }}
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Support
@@ -121,7 +123,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] text-[#F8F4EE]/50 hover:text-[#F8F4EE] transition-colors duration-200"
+                    className="text-[13px] hover:text-white transition-colors duration-200" style={{ color: "rgba(220,212,236,0.65)", fontWeight: 300 }}
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {link.label}
@@ -134,13 +136,14 @@ export function Footer() {
           {/* Newsletter Column */}
           <div>
             <h3
-              className="text-[10px] tracking-[0.3em] uppercase text-[#E7D3A8] mb-5"
+              className="text-[10px] tracking-[0.32em] uppercase mb-5"
+              style={{ color: "#D4AF37", fontWeight: 600 }}
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Newsletter
             </h3>
             <p
-              className="text-[13px] text-[#F8F4EE]/40 mb-4 leading-relaxed"
+              className="text-[13px] mb-4 leading-relaxed" style={{ color: "rgba(220,212,236,0.6)", fontWeight: 300 }}
               style={{ fontFamily: "var(--font-inter)" }}
             >
               New arrivals and exclusive offers — right to your inbox.

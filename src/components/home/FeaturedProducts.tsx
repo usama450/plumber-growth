@@ -83,15 +83,15 @@ export async function FeaturedProducts() {
               </span>
             </div>
             <h2
-              className="text-[#E7D3A8]"
-              style={{ fontFamily: "var(--font-playfair)" }}
+              className="text-white"
+              style={{ fontFamily: "var(--font-playfair)", fontWeight: 600 }}
             >
               Our Collection
             </h2>
           </div>
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 text-[13px] text-[#A8A4B0] hover:text-[#E7D3A8] transition-colors border-b border-[#3A1A5C] hover:border-[#E7D3A8] pb-0.5 self-start sm:self-auto"
+            className="inline-flex items-center gap-2 text-[13px] text-[#D4AF37] hover:text-white transition-colors border-b border-[#D4AF37]/40 hover:border-white pb-0.5 self-start sm:self-auto"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             View all

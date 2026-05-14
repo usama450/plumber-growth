@@ -56,9 +56,15 @@ export async function CategoryGrid() {
           type="fade-up"
           className="text-center mb-14 lg:mb-18"
         >
+          <p
+            className="text-[11px] tracking-[0.45em] uppercase mb-4"
+            style={{ fontFamily: "var(--font-inter)", color: "#D4AF37", fontWeight: 500 }}
+          >
+            Collections
+          </p>
           <h2
-            className="text-[#E7D3A8]"
-            style={{ fontFamily: "var(--font-playfair)" }}
+            className="text-white"
+            style={{ fontFamily: "var(--font-playfair)", fontWeight: 600 }}
           >
             Shop by Category
           </h2>
@@ -91,16 +97,16 @@ export async function CategoryGrid() {
                 {/* Bottom content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h3
-                    className="text-2xl text-[#E7D3A8] mb-1"
-                    style={{ fontFamily: "var(--font-playfair)" }}
+                    className="text-2xl text-white mb-1 group-hover:text-[#E7D3A8] transition-colors duration-300"
+                    style={{ fontFamily: "var(--font-playfair)", fontWeight: 600, textShadow: "0 2px 16px rgba(5,0,7,0.6)" }}
                   >
                     {meta.label}
                   </h3>
 
                   {count > 0 && (
                     <p
-                      className="text-[11px] text-[#E7D3A8]/50 mb-3"
-                      style={{ fontFamily: "var(--font-inter)" }}
+                      className="text-[11px] mb-3"
+                      style={{ fontFamily: "var(--font-inter)", color: "rgba(212,175,55,0.7)" }}
                     >
                       {count} {cat.slug === "towels" ? "colours" : "styles"}
                     </p>
@@ -108,12 +114,12 @@ export async function CategoryGrid() {
 
                   {/* Explore link with underline */}
                   <span
-                    className="inline-flex items-center gap-1.5 text-[#E7D3A8] text-[12px] tracking-[0.15em] uppercase group/link"
-                    style={{ fontFamily: "var(--font-inter)" }}
+                    className="inline-flex items-center gap-1.5 text-[12px] tracking-[0.18em] uppercase font-medium"
+                    style={{ fontFamily: "var(--font-inter)", color: "#D4AF37" }}
                   >
                     <span className="relative">
                       Explore →
-                      <span className="absolute bottom-0 left-0 h-px w-0 bg-[#E7D3A8] group-hover:w-full transition-all duration-300" />
+                      <span className="absolute bottom-0 left-0 h-px w-0 bg-[#D4AF37] group-hover:w-full transition-all duration-300" />
                     </span>
                   </span>
                 </div>

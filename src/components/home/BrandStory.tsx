@@ -92,18 +92,19 @@ export function BrandStory() {
           <ScrollReveal type="fade-left" className="order-1 lg:order-2">
             {/* Eyebrow */}
             <p
-              className="text-[10px] tracking-[0.4em] uppercase text-[#E7D3A8]/60 mb-5"
-              style={{ fontFamily: "var(--font-inter)" }}
+              className="text-[11px] tracking-[0.45em] uppercase mb-5"
+              style={{ fontFamily: "var(--font-inter)", color: "#D4AF37", fontWeight: 500 }}
             >
               Our Story
             </p>
 
             {/* Heading */}
             <h2
-              className="text-[#E7D3A8] mb-7 leading-tight"
+              className="text-white mb-7 leading-tight"
               style={{
                 fontFamily: "var(--font-playfair)",
-                fontSize: "clamp(1.6rem, 3vw, 2.5rem)",
+                fontSize: "clamp(1.7rem, 3vw, 2.6rem)",
+                fontWeight: 600,
               }}
             >
               A Family Legacy Woven Into Every Thread
@@ -114,10 +115,10 @@ export function BrandStory() {
               className="space-y-5 mb-10"
               style={{
                 fontFamily: "var(--font-inter)",
-                fontSize: "15px",
+                fontSize: "16px",
                 fontWeight: 300,
-                lineHeight: 1.8,
-                color: "rgba(248,244,238,0.65)",
+                lineHeight: 1.85,
+                color: "rgba(220,212,236,0.8)",
               }}
             >
               <p>
@@ -137,14 +138,14 @@ export function BrandStory() {
             <div className="border-t border-[#E7D3A8]/15 pt-8 mb-10">
               <div className="flex items-baseline gap-3">
                 <span
-                  className="text-3xl text-[#E7D3A8]"
-                  style={{ fontFamily: "var(--font-playfair)" }}
+                  className="text-3xl text-white"
+                  style={{ fontFamily: "var(--font-playfair)", fontWeight: 700 }}
                 >
                   25+
                 </span>
                 <span
-                  className="text-[12px] text-[#F8F4EE]/60 tracking-wide"
-                  style={{ fontFamily: "var(--font-inter)" }}
+                  className="text-[13px] tracking-wide"
+                  style={{ fontFamily: "var(--font-inter)", color: "rgba(212,175,55,0.8)", fontWeight: 400 }}
                 >
                   Years of Manufacturing Expertise
                 </span>
