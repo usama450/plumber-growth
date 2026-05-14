@@ -484,7 +484,7 @@
 <section class="hero">
   <div class="hero-bg" id="heroBg">
     <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline x5-playsinline preload="auto" poster="hero-bg.png" style="pointer-events:none">
-      <source src="hero.mp4" type="video/mp4" />
+      <source src="hero.mp4?v=2" type="video/mp4" />
     </video>
   </div>
   <div class="hero-overlay"></div>
@@ -520,8 +520,8 @@
   <div class="inner">
     <div class="who-grid">
       <div class="who-img">
-        <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="plumber.png" style="pointer-events:none" aria-label="Plumber fixing pipes under sink">
-          <source src="section.mp4" type="video/mp4" />
+        <video id="sectionVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="plumber.png" style="pointer-events:none" aria-label="Plumber fixing pipes under sink">
+          <source src="section.mp4?v=2" type="video/mp4" />
           <img src="plumber.png" alt="Professional plumber with service van ready for a job" />
         </video>
       </div>
@@ -646,28 +646,46 @@
 <a href="https://calendly.com/malikusama2525/best-plumbing-growth-call" target="_blank" class="floating-btn" id="floatingBtn">Book a Call</a>
 
 <script>
-  const heroVideo = document.getElementById('heroVideo');
-  const heroBg    = document.getElementById('heroBg');
+  const heroVideo    = document.getElementById('heroVideo');
+  const sectionVideo = document.getElementById('sectionVideo');
+  const heroBg       = document.getElementById('heroBg');
 
   const FALLBACK = 'linear-gradient(135deg, #0b1628 0%, #0f1e3a 60%, #0b1628 100%)';
 
   function tryPlay() {
-    if (!heroVideo) return;
-    heroVideo.muted = true;
-    heroVideo.play().catch(() => {
-      heroVideo.style.display = 'none';
-      heroBg.style.background = FALLBACK;
-    });
+    if (heroVideo) {
+      heroVideo.muted = true;
+      heroVideo.play().catch(() => {
+        heroVideo.style.display = 'none';
+        heroBg.style.background = FALLBACK;
+      });
+    }
+    if (sectionVideo) {
+      sectionVideo.muted = true;
+      sectionVideo.play().catch(() => {});
+    }
   }
 
   tryPlay();
 
+  // Re-try both videos on first user interaction (mobile autoplay restriction)
   ['touchstart', 'touchend', 'click', 'scroll'].forEach(evt => {
     document.addEventListener(evt, function handler() {
-      heroVideo.play().catch(() => {});
+      if (heroVideo)    heroVideo.play().catch(() => {});
+      if (sectionVideo) sectionVideo.play().catch(() => {});
       document.removeEventListener(evt, handler);
     }, { once: true });
   });
+
+  // Also trigger section video when it scrolls into view
+  if (sectionVideo) {
+    new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        sectionVideo.muted = true;
+        sectionVideo.play().catch(() => {});
+      }
+    }, { threshold: 0.1 }).observe(sectionVideo);
+  }
 
   new IntersectionObserver(entries => {
     document.getElementById('floatingBtn').style.display =
