@@ -34,17 +34,17 @@ export async function POST(req: NextRequest) {
       subject: "Reset your Khwab password",
       html: `
         <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#2A2A2A">
-          <div style="background:#4A2C5A;padding:32px;text-align:center">
+          <div style="background:#1A1410;padding:32px;text-align:center">
             <h1 style="color:white;font-family:Georgia,serif;margin:0;font-size:28px">Khwab</h1>
-            <p style="color:#E8DFF5;margin:8px 0 0;font-size:12px;letter-spacing:0.2em;text-transform:uppercase">Home Textiles</p>
+            <p style="color:#F7F3EE;margin:8px 0 0;font-size:12px;letter-spacing:0.2em;text-transform:uppercase">Home Textiles</p>
           </div>
           <div style="padding:32px">
-            <h2 style="color:#4A2C5A;font-family:Georgia,serif">Reset your password</h2>
+            <h2 style="color:#1A1410;font-family:Georgia,serif">Reset your password</h2>
             <p>Hi ${user.name ?? "there"},</p>
             <p>We received a request to reset your password. Click the button below to create a new one.</p>
             <p style="text-align:center;margin:32px 0">
               <a href="${resetUrl}"
-                style="display:inline-block;padding:14px 32px;background:#4A2C5A;color:white;border-radius:8px;text-decoration:none;font-size:14px">
+                style="display:inline-block;padding:14px 32px;background:#1A1410;color:white;border-radius:8px;text-decoration:none;font-size:14px">
                 Reset Password
               </a>
             </p>

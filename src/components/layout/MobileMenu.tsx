@@ -24,28 +24,22 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const { data: session } = useSession();
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
   return (
     <>
-      {/* Overlay */}
       <div
-        className={`fixed inset-0 z-50 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 z-50 bg-[#1A1410]/60 backdrop-blur-sm transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-50 w-[85vw] max-w-[360px] bg-[#FAF7F2] shadow-2xl transition-transform duration-300 ease-out ${
+        className={`fixed top-0 right-0 bottom-0 z-50 w-[85vw] max-w-[340px] bg-[#F7F3EE] shadow-2xl transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         role="dialog"
@@ -54,69 +48,61 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-[#E8DFF5]">
-            <span
-              className="font-playfair text-xl font-semibold text-[#4A2C5A]"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              Khwab
-            </span>
-            <button
-              onClick={onClose}
-              className="p-2 text-[#2A2A2A] hover:text-[#4A2C5A] hover:bg-[#E8DFF5]/50 rounded-full transition-colors"
-              aria-label="Close menu"
-            >
-              <X size={22} />
+          <div className="flex items-center justify-between px-6 py-5 border-b border-[#DDD5C9]">
+            <div>
+              <span className="text-xl font-light text-[#1A1410] tracking-wide"
+                style={{ fontFamily: "var(--font-cormorant)" }}>
+                Khwab
+              </span>
+              <div className="text-[9px] tracking-[0.3em] uppercase text-[#C4992E]"
+                style={{ fontFamily: "var(--font-dm)" }}>
+                Home Textiles
+              </div>
+            </div>
+            <button onClick={onClose}
+              className="p-2 text-[#1A1410]/50 hover:text-[#1A1410] transition-colors"
+              aria-label="Close menu">
+              <X size={20} />
             </button>
           </div>
 
-          {/* Navigation links */}
+          {/* Nav links */}
           <nav className="flex-1 overflow-y-auto py-4">
             {menuLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={onClose}
-                className="flex items-center justify-between px-6 py-3.5 text-[#2A2A2A] hover:text-[#4A2C5A] hover:bg-[#E8DFF5]/40 transition-colors font-inter font-light text-[15px]"
-              >
+              <Link key={link.href} href={link.href} onClick={onClose}
+                className="flex items-center justify-between px-6 py-4 text-[15px] text-[#1A1410]/70 hover:text-[#1A1410] hover:bg-[#EDE8DF]/50 transition-colors border-b border-[#DDD5C9]/30"
+                style={{ fontFamily: "var(--font-dm)" }}>
                 {link.label}
-                <ChevronRight size={16} className="text-[#8B8B8B]" />
+                <ChevronRight size={14} className="text-[#9A9088]" />
               </Link>
             ))}
           </nav>
 
-          {/* Account section */}
-          <div className="border-t border-[#E8DFF5] p-6 space-y-3">
+          {/* Account */}
+          <div className="border-t border-[#DDD5C9] p-6 space-y-3">
             {session ? (
               <>
-                <Link
-                  href="/account"
-                  onClick={onClose}
-                  className="block w-full text-center py-2.5 px-4 rounded-lg border border-[#4A2C5A] text-[#4A2C5A] font-inter font-light text-sm hover:bg-[#E8DFF5]/50 transition-colors"
-                >
+                <Link href="/account" onClick={onClose}
+                  className="block w-full text-center py-3 px-4 border border-[#1A1410] text-[#1A1410] text-[13px] tracking-wide hover:bg-[#1A1410] hover:text-[#F7F3EE] transition-colors duration-300"
+                  style={{ fontFamily: "var(--font-dm)" }}>
                   My Account
                 </Link>
-                <button
-                  onClick={() => { signOut(); onClose(); }}
-                  className="block w-full text-center py-2.5 px-4 rounded-lg text-[#8B8B8B] font-inter font-light text-sm hover:text-[#4A2C5A] transition-colors"
-                >
+                <button onClick={() => { signOut(); onClose(); }}
+                  className="block w-full text-center py-3 px-4 text-[13px] text-[#9A9088] hover:text-[#1A1410] transition-colors"
+                  style={{ fontFamily: "var(--font-dm)" }}>
                   Sign Out
                 </button>
               </>
             ) : (
               <>
-                <Link
-                  href="/login"
-                  onClick={onClose}
-                  className="block w-full text-center py-2.5 px-4 rounded-lg bg-[#4A2C5A] text-white font-inter font-normal text-sm hover:bg-[#5B3A6B] transition-colors"
-                >
+                <Link href="/login" onClick={onClose}
+                  className="block w-full text-center py-3 px-4 bg-[#1A1410] text-[#F7F3EE] text-[13px] tracking-wide hover:bg-[#2E2318] transition-colors duration-300"
+                  style={{ fontFamily: "var(--font-dm)" }}>
                   Sign In
                 </Link>
-                <Link
-                  href="/register"
-                  onClick={onClose}
-                  className="block w-full text-center py-2.5 px-4 rounded-lg border border-[#4A2C5A] text-[#4A2C5A] font-inter font-light text-sm hover:bg-[#E8DFF5]/50 transition-colors"
-                >
+                <Link href="/register" onClick={onClose}
+                  className="block w-full text-center py-3 px-4 border border-[#1A1410] text-[#1A1410] text-[13px] tracking-wide hover:bg-[#EDE8DF] transition-colors duration-300"
+                  style={{ fontFamily: "var(--font-dm)" }}>
                   Create Account
                 </Link>
               </>

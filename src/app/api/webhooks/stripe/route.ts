@@ -136,36 +136,36 @@ async function sendOrderConfirmation(orderId: string) {
       subject: `Order Confirmed — ${order.orderNumber}`,
       html: `
         <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#2A2A2A">
-          <div style="background:#4A2C5A;padding:32px;text-align:center">
+          <div style="background:#1A1410;padding:32px;text-align:center">
             <h1 style="color:white;font-family:Georgia,serif;margin:0;font-size:28px">Khwab</h1>
-            <p style="color:#E8DFF5;margin:8px 0 0;font-size:12px;letter-spacing:0.2em;text-transform:uppercase">Home Textiles</p>
+            <p style="color:#F7F3EE;margin:8px 0 0;font-size:12px;letter-spacing:0.2em;text-transform:uppercase">Home Textiles</p>
           </div>
           <div style="padding:32px">
-            <h2 style="color:#4A2C5A;font-family:Georgia,serif">Thank you for your order!</h2>
+            <h2 style="color:#1A1410;font-family:Georgia,serif">Thank you for your order!</h2>
             <p>Hi ${order.user.name ?? "there"},</p>
             <p>Your order <strong>${order.orderNumber}</strong> has been confirmed. We&apos;ll email you when it ships.</p>
             <div style="background:#FAF7F2;border-radius:12px;padding:20px;margin:24px 0">
-              <h3 style="color:#4A2C5A;margin:0 0 12px;font-family:Georgia,serif">Order Summary</h3>
+              <h3 style="color:#1A1410;margin:0 0 12px;font-family:Georgia,serif">Order Summary</h3>
               ${order.items.map((i) => `
-                <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #E8DFF5">
+                <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F7F3EE">
                   <span>${i.productName} × ${i.quantity}</span>
                   <span>$${(Number(i.priceAtPurchase) * i.quantity).toFixed(2)}</span>
                 </div>
               `).join("")}
-              <div style="display:flex;justify-content:space-between;padding:12px 0;font-weight:600;font-size:16px;color:#4A2C5A">
+              <div style="display:flex;justify-content:space-between;padding:12px 0;font-weight:600;font-size:16px;color:#1A1410">
                 <span>Total</span>
                 <span>$${Number(order.total).toFixed(2)} CAD</span>
               </div>
             </div>
             <p style="text-align:center">
               <a href="${process.env.NEXTAUTH_URL}/account/orders/${order.id}"
-                style="display:inline-block;padding:12px 28px;background:#4A2C5A;color:white;border-radius:8px;text-decoration:none;font-size:14px">
+                style="display:inline-block;padding:12px 28px;background:#1A1410;color:white;border-radius:8px;text-decoration:none;font-size:14px">
                 View Order
               </a>
             </p>
           </div>
           <div style="background:#D4C5B0;padding:20px;text-align:center;color:#2A2A2A;font-size:12px">
-            <p>Questions? Email us at <a href="mailto:support@khwab.ca" style="color:#4A2C5A">support@khwab.ca</a></p>
+            <p>Questions? Email us at <a href="mailto:support@khwab.ca" style="color:#1A1410">support@khwab.ca</a></p>
             <p style="margin:4px 0 0">© ${new Date().getFullYear()} Khwab Home Textiles. Canadian Made.</p>
           </div>
         </div>

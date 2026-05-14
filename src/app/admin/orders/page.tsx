@@ -23,7 +23,7 @@ export default async function AdminOrdersPage() {
     PENDING: "bg-yellow-50 text-yellow-700",
     PAID: "bg-blue-50 text-blue-700",
     PROCESSING: "bg-purple-50 text-purple-700",
-    SHIPPED: "bg-[#E8DFF5] text-[#4A2C5A]",
+    SHIPPED: "bg-[#F7F3EE] text-[#1A1410]",
     DELIVERED: "bg-[#6B8E4E]/10 text-[#6B8E4E]",
     CANCELLED: "bg-[#B85450]/10 text-[#B85450]",
     REFUNDED: "bg-gray-50 text-gray-600",
@@ -33,15 +33,15 @@ export default async function AdminOrdersPage() {
     <div className="min-h-screen bg-[#FAF7F2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex items-center gap-4 mb-8">
-          <Link href="/admin" className="text-sm font-inter font-light text-[#8B8B8B] hover:text-[#4A2C5A]">← Dashboard</Link>
-          <h1 className="font-playfair font-semibold text-[#4A2C5A] text-3xl"
-            style={{ fontFamily: "var(--font-playfair)" }}>All Orders</h1>
+          <Link href="/admin" className="text-sm font-inter font-light text-[#8B8B8B] hover:text-[#1A1410]">← Dashboard</Link>
+          <h1 className="font-playfair font-semibold text-[#1A1410] text-3xl"
+            style={{ fontFamily: "var(--font-cormorant)" }}>All Orders</h1>
         </div>
 
-        <div className="bg-white rounded-2xl border border-[#E8DFF5]/60 overflow-hidden">
+        <div className="bg-white rounded-2xl border border-[#F7F3EE]/60 overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-[#E8DFF5] bg-[#FAF7F2]/60">
+              <tr className="border-b border-[#F7F3EE] bg-[#FAF7F2]/60">
                 <th className="text-left px-6 py-3 text-xs font-inter font-normal text-[#8B8B8B] uppercase tracking-wider">Order</th>
                 <th className="text-left px-4 py-3 text-xs font-inter font-normal text-[#8B8B8B] uppercase tracking-wider hidden md:table-cell">Customer</th>
                 <th className="text-left px-4 py-3 text-xs font-inter font-normal text-[#8B8B8B] uppercase tracking-wider hidden sm:table-cell">Date</th>
@@ -50,7 +50,7 @@ export default async function AdminOrdersPage() {
                 <th className="px-4 py-3" />
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#E8DFF5]">
+            <tbody className="divide-y divide-[#F7F3EE]">
               {orders.map((order) => (
                 <tr key={order.id} className="hover:bg-[#FAF7F2]/50 transition-colors">
                   <td className="px-6 py-4">
@@ -74,11 +74,11 @@ export default async function AdminOrdersPage() {
                     </span>
                   </td>
                   <td className="px-4 py-4 text-right">
-                    <span className="text-sm font-inter font-normal text-[#4A2C5A]">{formatPrice(Number(order.total))}</span>
+                    <span className="text-sm font-inter font-normal text-[#1A1410]">{formatPrice(Number(order.total))}</span>
                   </td>
                   <td className="px-4 py-4">
                     <Link href={`/admin/orders/${order.id}`}
-                      className="text-xs font-inter font-light text-[#4A2C5A] hover:underline">
+                      className="text-xs font-inter font-light text-[#1A1410] hover:underline">
                       Manage →
                     </Link>
                   </td>

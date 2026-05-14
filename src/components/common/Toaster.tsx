@@ -44,7 +44,7 @@ export function Toaster() {
   const icons = {
     success: <CheckCircle2 size={18} className="text-[#6B8E4E] shrink-0" />,
     error: <XCircle size={18} className="text-[#B85450] shrink-0" />,
-    info: <Info size={18} className="text-[#4A2C5A] shrink-0" />,
+    info: <Info size={18} className="text-[#1A1410] shrink-0" />,
   };
 
   return (
@@ -58,7 +58,7 @@ export function Toaster() {
           key={t.id}
           className={cn(
             "flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg pointer-events-auto",
-            "bg-white border border-[#E8DFF5] max-w-[340px] animate-in slide-in-from-right-4 fade-in duration-300",
+            "bg-white border border-[#F7F3EE] max-w-[340px] animate-in slide-in-from-right-4 fade-in duration-300",
             "font-inter text-sm font-light text-[#2A2A2A]"
           )}
           role="alert"

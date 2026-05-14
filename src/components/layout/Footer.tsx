@@ -14,83 +14,78 @@ const serviceLinks = [
   { label: "FAQ", href: "/faq" },
   { label: "Shipping & Returns", href: "/shipping-returns" },
   { label: "Contact Us", href: "/contact" },
-  { label: "Size Guide", href: "/size-guide" },
-  { label: "Care Instructions", href: "/care" },
 ];
 
 const companyLinks = [
   { label: "About Khwab", href: "/about" },
-  { label: "Our Story", href: "/about#story" },
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Service", href: "/terms" },
 ];
 
 export function Footer() {
   return (
-    <footer className="bg-[#D4C5B0]/40 border-t border-[#D4C5B0]" role="contentinfo">
-      {/* Main footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+    <footer className="bg-[#1A1410]" role="contentinfo">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 lg:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-4">
-              <span
-                className="font-playfair text-2xl font-semibold text-[#4A2C5A]"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
+            <Link href="/" className="inline-block mb-5">
+              <span className="text-2xl font-light text-[#F7F3EE] tracking-wide"
+                style={{ fontFamily: "var(--font-cormorant)" }}>
                 Khwab
               </span>
-              <div className="text-[10px] text-[#C9A961] tracking-[0.2em] uppercase font-inter font-light mt-0.5">
+              <div className="text-[9px] text-[#C4992E] tracking-[0.3em] uppercase mt-0.5"
+                style={{ fontFamily: "var(--font-dm)" }}>
                 Home Textiles
               </div>
             </Link>
-            <p className="text-sm text-[#2A2A2A] font-inter font-light leading-relaxed mb-5 max-w-[220px]">
-              Premium Pakistani-inspired home textiles for the modern Canadian home. Family-owned, Canadian-made.
+            <p className="text-[13px] text-[#F7F3EE]/45 leading-relaxed mb-6 max-w-[200px]"
+              style={{ fontFamily: "var(--font-dm)" }}>
+              Premium Pakistani-inspired home textiles for the modern Canadian home.
             </p>
-            <div className="flex items-center gap-3">
-              <a
-                href="https://instagram.com/khwabhome"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#D4C5B0] text-[#4A2C5A] hover:bg-[#4A2C5A] hover:text-white hover:border-[#4A2C5A] transition-all"
-                aria-label="Instagram"
-              >
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-              </a>
-              <a
-                href="https://facebook.com/khwabhome"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#D4C5B0] text-[#4A2C5A] hover:bg-[#4A2C5A] hover:text-white hover:border-[#4A2C5A] transition-all"
-                aria-label="Facebook"
-              >
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-              </a>
-              <a
-                href="mailto:hello@khwab.ca"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-[#D4C5B0] text-[#4A2C5A] hover:bg-[#4A2C5A] hover:text-white hover:border-[#4A2C5A] transition-all"
-                aria-label="Email us"
-              >
-                <Mail size={16} />
-              </a>
+            <div className="flex items-center gap-2.5">
+              {[
+                {
+                  href: "https://instagram.com/khwabhome",
+                  label: "Instagram",
+                  icon: <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>,
+                },
+                {
+                  href: "https://facebook.com/khwabhome",
+                  label: "Facebook",
+                  icon: <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>,
+                },
+                {
+                  href: "mailto:hello@khwab.ca",
+                  label: "Email",
+                  icon: <Mail size={14} />,
+                },
+              ].map((s) => (
+                <a key={s.label} href={s.href}
+                  target={s.href.startsWith("http") ? "_blank" : undefined}
+                  rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="w-8 h-8 border border-[#F7F3EE]/15 text-[#F7F3EE]/40 hover:text-[#C4992E] hover:border-[#C4992E]/40 flex items-center justify-center transition-colors duration-300"
+                  aria-label={s.label}
+                >
+                  {s.icon}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Shop */}
           <div>
-            <h3
-              className="text-xs font-inter font-medium text-[#4A2C5A] uppercase tracking-[0.15em] mb-5"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
+            <h3 className="text-[10px] tracking-[0.3em] uppercase text-[#F7F3EE]/30 mb-5"
+              style={{ fontFamily: "var(--font-dm)" }}>
               Shop
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {shopLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#2A2A2A] font-inter font-light hover:text-[#4A2C5A] transition-colors"
-                  >
+                  <Link href={link.href}
+                    className="text-[13px] text-[#F7F3EE]/50 hover:text-[#F7F3EE] transition-colors duration-200"
+                    style={{ fontFamily: "var(--font-dm)" }}>
                     {link.label}
                   </Link>
                 </li>
@@ -98,21 +93,27 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Customer Service */}
+          {/* Support */}
           <div>
-            <h3
-              className="text-xs font-inter font-medium text-[#4A2C5A] uppercase tracking-[0.15em] mb-5"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              Customer Service
+            <h3 className="text-[10px] tracking-[0.3em] uppercase text-[#F7F3EE]/30 mb-5"
+              style={{ fontFamily: "var(--font-dm)" }}>
+              Support
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {serviceLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#2A2A2A] font-inter font-light hover:text-[#4A2C5A] transition-colors"
-                  >
+                  <Link href={link.href}
+                    className="text-[13px] text-[#F7F3EE]/50 hover:text-[#F7F3EE] transition-colors duration-200"
+                    style={{ fontFamily: "var(--font-dm)" }}>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+              {companyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href}
+                    className="text-[13px] text-[#F7F3EE]/50 hover:text-[#F7F3EE] transition-colors duration-200"
+                    style={{ fontFamily: "var(--font-dm)" }}>
                     {link.label}
                   </Link>
                 </li>
@@ -122,42 +123,28 @@ export function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h3
-              className="text-xs font-inter font-medium text-[#4A2C5A] uppercase tracking-[0.15em] mb-5"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
+            <h3 className="text-[10px] tracking-[0.3em] uppercase text-[#F7F3EE]/30 mb-5"
+              style={{ fontFamily: "var(--font-dm)" }}>
               Stay in Touch
             </h3>
-            <p className="text-sm text-[#2A2A2A] font-inter font-light mb-4 leading-relaxed">
-              New arrivals, exclusive offers, and home inspiration — right to your inbox.
+            <p className="text-[13px] text-[#F7F3EE]/45 mb-4 leading-relaxed"
+              style={{ fontFamily: "var(--font-dm)" }}>
+              New arrivals and exclusive offers — right to your inbox.
             </p>
             <NewsletterForm compact />
-            <div className="mt-5 space-y-1">
-              {companyLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block text-sm text-[#2A2A2A] font-inter font-light hover:text-[#4A2C5A] transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[#D4C5B0] bg-[#D4C5B0]/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-[#8B8B8B] font-inter font-light text-center sm:text-left">
-            © {new Date().getFullYear()} Khwab Home Textiles. All rights reserved. Made with ❤️ in Canada.
+      <div className="border-t border-[#F7F3EE]/08">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-[11px] text-[#F7F3EE]/25" style={{ fontFamily: "var(--font-dm)" }}>
+            © {new Date().getFullYear()} Khwab Home Textiles. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <span className="text-xs text-[#8B8B8B] font-inter">
-              🇨🇦 Canadian Owned & Operated
-            </span>
-          </div>
+          <p className="text-[11px] text-[#F7F3EE]/25" style={{ fontFamily: "var(--font-dm)" }}>
+            Canadian Owned & Operated
+          </p>
         </div>
       </div>
     </footer>

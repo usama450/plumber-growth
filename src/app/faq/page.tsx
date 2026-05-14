@@ -20,12 +20,12 @@ const faqs = [
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-[#E8DFF5] last:border-0">
+    <div className="border-b border-[#F7F3EE] last:border-0">
       <button onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-5 text-left"
         aria-expanded={open}>
         <span className="text-sm font-inter font-normal text-[#2A2A2A] pr-4">{q}</span>
-        <ChevronDown size={16} className={cn("text-[#4A2C5A] shrink-0 transition-transform duration-200", open && "rotate-180")} />
+        <ChevronDown size={16} className={cn("text-[#1A1410] shrink-0 transition-transform duration-200", open && "rotate-180")} />
       </button>
       {open && (
         <div className="pb-5 text-sm font-inter font-light text-[#8B8B8B] leading-relaxed pr-6">{a}</div>
@@ -37,21 +37,21 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 export default function FaqPage() {
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
-      <div className="bg-[#E8DFF5]/30 border-b border-[#E8DFF5] py-12">
+      <div className="bg-[#F7F3EE]/30 border-b border-[#F7F3EE] py-12">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h1 className="font-playfair font-semibold text-[#4A2C5A] text-3xl"
-            style={{ fontFamily: "var(--font-playfair)" }}>Frequently Asked Questions</h1>
+          <h1 className="font-playfair font-semibold text-[#1A1410] text-3xl"
+            style={{ fontFamily: "var(--font-cormorant)" }}>Frequently Asked Questions</h1>
           <p className="text-[#8B8B8B] font-inter font-light mt-2">Everything you need to know about Khwab.</p>
         </div>
       </div>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-white rounded-2xl border border-[#E8DFF5]/60 px-6 sm:px-8">
+        <div className="bg-white rounded-2xl border border-[#F7F3EE]/60 px-6 sm:px-8">
           {faqs.map((faq) => <FaqItem key={faq.q} {...faq} />)}
         </div>
         <div className="mt-8 text-center">
           <p className="text-sm font-inter font-light text-[#8B8B8B]">
             Still have questions?{" "}
-            <a href="/contact" className="text-[#4A2C5A] hover:underline">Contact our team →</a>
+            <a href="/contact" className="text-[#1A1410] hover:underline">Contact our team →</a>
           </p>
         </div>
       </div>

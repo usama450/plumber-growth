@@ -1,52 +1,46 @@
 import { NewsletterForm } from "@/components/common/NewsletterForm";
+import { ScrollReveal } from "@/components/common/ScrollReveal";
 
 export function NewsletterSection() {
   return (
-    <section className="py-16 lg:py-20 bg-[#4A2C5A] relative overflow-hidden">
-      {/* Decorative background pattern */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `radial-gradient(circle, #E8DFF5 1px, transparent 1px),
-            radial-gradient(circle at 50% 50%, #C9A961 1px, transparent 1px)`,
-          backgroundSize: "60px 60px, 30px 30px",
-          backgroundPosition: "0 0, 15px 15px",
-        }}
-      />
+    <section className="py-20 lg:py-24 bg-[#EDE8DF] relative overflow-hidden">
+      {/* Decorative large letter */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[20rem] font-light text-[#DDD5C9]/30 leading-none select-none pointer-events-none overflow-hidden"
+        style={{ fontFamily: "var(--font-cormorant)" }}>
+        K
+      </div>
 
-      {/* Gold accent circles */}
-      <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#C9A961]/10 -translate-y-1/2 translate-x-1/3" />
-      <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-[#B8A4D4]/20 translate-y-1/2 -translate-x-1/4" />
+      <div className="relative max-w-2xl mx-auto px-6 sm:px-8 text-center">
+        <ScrollReveal type="fade-up">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="eyebrow-line" />
+            <span className="text-[11px] tracking-[0.35em] uppercase text-[#C4992E] font-medium"
+              style={{ fontFamily: "var(--font-dm)" }}>
+              Join the Family
+            </span>
+            <span className="eyebrow-line" />
+          </div>
 
-      <div className="relative max-w-2xl mx-auto px-4 sm:px-6 text-center">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <div className="h-px w-8 bg-[#C9A961]" />
-          <span className="text-xs font-inter tracking-[0.2em] uppercase text-[#C9A961] font-light">
-            Join the Family
-          </span>
-          <div className="h-px w-8 bg-[#C9A961]" />
-        </div>
+          <h2 className="text-[#1A1410] mb-4" style={{ fontFamily: "var(--font-cormorant)" }}>
+            Get 10% Off Your First Order
+          </h2>
 
-        <h2
-          className="font-playfair font-semibold text-white mb-4"
-          style={{ fontFamily: "var(--font-playfair)" }}
-        >
-          Get 10% Off Your First Order
-        </h2>
+          <p className="text-[15px] text-[#6B6258] mb-9 leading-relaxed max-w-md mx-auto"
+            style={{ fontFamily: "var(--font-dm)" }}>
+            Subscribe for exclusive offers, new arrival previews, and home styling inspiration.
+            No spam — just beautiful things.
+          </p>
 
-        <p className="text-base font-inter font-light text-[#E8DFF5] mb-8 leading-relaxed">
-          Subscribe to our newsletter for exclusive offers, new arrival previews, and home styling inspiration. No spam — just beautiful things.
-        </p>
+          <div className="max-w-sm mx-auto">
+            <NewsletterForm />
+          </div>
 
-        <div className="max-w-md mx-auto">
-          <NewsletterForm />
-        </div>
-
-        <p className="mt-4 text-xs font-inter font-light text-[#B8A4D4]">
-          By subscribing, you agree to our{" "}
-          <a href="/privacy" className="underline hover:text-white transition-colors">Privacy Policy</a>.
-          Unsubscribe anytime.
-        </p>
+          <p className="mt-5 text-[12px] text-[#9A9088]" style={{ fontFamily: "var(--font-dm)" }}>
+            By subscribing, you agree to our{" "}
+            <a href="/privacy" className="underline hover:text-[#1A1410] transition-colors">Privacy Policy</a>.
+            Unsubscribe anytime.
+          </p>
+        </ScrollReveal>
       </div>
     </section>
   );

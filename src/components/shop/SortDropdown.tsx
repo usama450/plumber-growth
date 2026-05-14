@@ -29,7 +29,7 @@ export function SortDropdown() {
       <select
         value={current}
         onChange={(e) => handleChange(e.target.value)}
-        className="appearance-none pl-4 pr-8 py-2 bg-white border border-[#D4C5B0] rounded-lg text-sm font-inter font-light text-[#2A2A2A] focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] cursor-pointer"
+        className="appearance-none pl-4 pr-8 py-2 bg-white border border-[#D4C5B0] rounded-lg text-sm font-inter font-light text-[#2A2A2A] focus:outline-none focus:ring-2 focus:ring-[#C4992E] cursor-pointer"
         aria-label="Sort products"
       >
         {SORT_OPTIONS.map((opt) => (

@@ -59,7 +59,7 @@ export function NewsletterForm({ compact = false, className }: NewsletterFormPro
           className={cn(
             "flex-1 px-4 py-2.5 rounded-lg border border-[#D4C5B0] bg-white",
             "text-sm font-inter font-light text-[#2A2A2A] placeholder-[#8B8B8B]",
-            "focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] focus:border-transparent",
+            "focus:outline-none focus:ring-2 focus:ring-[#C4992E] focus:border-transparent",
             "transition-all"
           )}
           aria-label="Email address"
@@ -69,7 +69,7 @@ export function NewsletterForm({ compact = false, className }: NewsletterFormPro
           disabled={status === "loading"}
           className={cn(
             "flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg",
-            "bg-[#4A2C5A] text-white font-inter font-normal text-sm",
+            "bg-[#1A1410] text-white font-inter font-normal text-sm",
             "hover:bg-[#5B3A6B] transition-colors disabled:opacity-60",
             compact ? "w-full" : "shrink-0"
           )}

@@ -42,12 +42,12 @@ export function CartDrawer() {
         aria-label="Shopping cart"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-[#E8DFF5]">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-[#F7F3EE]">
           <div className="flex items-center gap-2">
-            <ShoppingBag size={20} className="text-[#4A2C5A]" />
+            <ShoppingBag size={20} className="text-[#1A1410]" />
             <h2
-              className="font-playfair text-lg font-semibold text-[#4A2C5A]"
-              style={{ fontFamily: "var(--font-playfair)" }}
+              className="font-playfair text-lg font-semibold text-[#1A1410]"
+              style={{ fontFamily: "var(--font-cormorant)" }}
             >
               Your Cart
             </h2>
@@ -59,7 +59,7 @@ export function CartDrawer() {
           </div>
           <button
             onClick={closeCart}
-            className="p-2 text-[#8B8B8B] hover:text-[#4A2C5A] rounded-full hover:bg-[#E8DFF5]/50 transition-colors"
+            className="p-2 text-[#8B8B8B] hover:text-[#1A1410] rounded-full hover:bg-[#F7F3EE]/50 transition-colors"
             aria-label="Close cart"
           >
             <X size={20} />
@@ -68,9 +68,9 @@ export function CartDrawer() {
 
         {/* Free shipping progress */}
         {items.length > 0 && (
-          <div className="px-5 py-3 bg-[#E8DFF5]/40 border-b border-[#E8DFF5]">
+          <div className="px-5 py-3 bg-[#F7F3EE]/40 border-b border-[#F7F3EE]">
             {remaining > 0 ? (
-              <p className="text-xs font-inter font-light text-[#4A2C5A] mb-2">
+              <p className="text-xs font-inter font-light text-[#1A1410] mb-2">
                 Add <strong>{formatPrice(remaining)}</strong> more for free shipping!
               </p>
             ) : (
@@ -80,7 +80,7 @@ export function CartDrawer() {
             )}
             <div className="h-1.5 bg-[#D4C5B0] rounded-full overflow-hidden">
               <div
-                className="h-full bg-[#4A2C5A] rounded-full transition-all duration-500"
+                className="h-full bg-[#1A1410] rounded-full transition-all duration-500"
                 style={{ width: `${shippingProgress}%` }}
               />
             </div>
@@ -92,8 +92,8 @@ export function CartDrawer() {
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center py-12">
               <ShoppingBag size={48} className="text-[#D4C5B0] mb-4" />
-              <h3 className="font-playfair text-lg font-semibold text-[#4A2C5A] mb-2"
-                style={{ fontFamily: "var(--font-playfair)" }}>
+              <h3 className="font-playfair text-lg font-semibold text-[#1A1410] mb-2"
+                style={{ fontFamily: "var(--font-cormorant)" }}>
                 Your cart is empty
               </h3>
               <p className="text-sm text-[#8B8B8B] font-inter font-light mb-6">
@@ -102,7 +102,7 @@ export function CartDrawer() {
               <Link
                 href="/shop"
                 onClick={closeCart}
-                className="px-6 py-2.5 bg-[#4A2C5A] text-white text-sm font-inter font-normal rounded-lg hover:bg-[#5B3A6B] transition-colors"
+                className="px-6 py-2.5 bg-[#1A1410] text-white text-sm font-inter font-normal rounded-lg hover:bg-[#5B3A6B] transition-colors"
               >
                 Shop Now
               </Link>
@@ -112,9 +112,9 @@ export function CartDrawer() {
               {items.map((item) => (
                 <div
                   key={item.variantId}
-                  className="flex gap-4 p-3 bg-white rounded-xl border border-[#E8DFF5]/60"
+                  className="flex gap-4 p-3 bg-white rounded-xl border border-[#F7F3EE]/60"
                 >
-                  <div className="w-20 h-20 rounded-lg overflow-hidden bg-[#E8DFF5]/30 shrink-0">
+                  <div className="w-20 h-20 rounded-lg overflow-hidden bg-[#F7F3EE]/30 shrink-0">
                     <Image
                       src={item.image}
                       alt={item.name}
@@ -127,7 +127,7 @@ export function CartDrawer() {
                     <Link
                       href={`/product/${item.slug}`}
                       onClick={closeCart}
-                      className="text-sm font-inter font-light text-[#2A2A2A] hover:text-[#4A2C5A] transition-colors line-clamp-1"
+                      className="text-sm font-inter font-light text-[#2A2A2A] hover:text-[#1A1410] transition-colors line-clamp-1"
                     >
                       {item.name}
                     </Link>
@@ -143,10 +143,10 @@ export function CartDrawer() {
                       )}
                     </div>
                     <div className="flex items-center justify-between mt-2.5">
-                      <div className="flex items-center gap-1 border border-[#E8DFF5] rounded-lg overflow-hidden">
+                      <div className="flex items-center gap-1 border border-[#F7F3EE] rounded-lg overflow-hidden">
                         <button
                           onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
-                          className="w-7 h-7 flex items-center justify-center text-[#4A2C5A] hover:bg-[#E8DFF5]/50 transition-colors"
+                          className="w-7 h-7 flex items-center justify-center text-[#1A1410] hover:bg-[#F7F3EE]/50 transition-colors"
                           aria-label="Decrease quantity"
                         >
                           <Minus size={13} />
@@ -157,14 +157,14 @@ export function CartDrawer() {
                         <button
                           onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
                           disabled={item.quantity >= item.maxStock}
-                          className="w-7 h-7 flex items-center justify-center text-[#4A2C5A] hover:bg-[#E8DFF5]/50 transition-colors disabled:opacity-40"
+                          className="w-7 h-7 flex items-center justify-center text-[#1A1410] hover:bg-[#F7F3EE]/50 transition-colors disabled:opacity-40"
                           aria-label="Increase quantity"
                         >
                           <Plus size={13} />
                         </button>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-inter font-normal text-[#4A2C5A]">
+                        <span className="text-sm font-inter font-normal text-[#1A1410]">
                           {formatPrice(item.price * item.quantity)}
                         </span>
                         <button
@@ -185,10 +185,10 @@ export function CartDrawer() {
 
         {/* Footer */}
         {items.length > 0 && (
-          <div className="border-t border-[#E8DFF5] px-5 py-4 bg-white">
+          <div className="border-t border-[#F7F3EE] px-5 py-4 bg-white">
             <div className="flex items-center justify-between mb-4">
               <span className="font-inter font-light text-[#2A2A2A]">Subtotal</span>
-              <span className="font-inter font-normal text-[#4A2C5A] text-lg">
+              <span className="font-inter font-normal text-[#1A1410] text-lg">
                 {formatPrice(subtotal)}
               </span>
             </div>
@@ -198,13 +198,13 @@ export function CartDrawer() {
             <Link
               href="/cart"
               onClick={closeCart}
-              className="block w-full text-center py-3.5 bg-[#4A2C5A] text-white font-inter font-normal rounded-xl hover:bg-[#5B3A6B] transition-colors mb-2"
+              className="block w-full text-center py-3.5 bg-[#1A1410] text-white font-inter font-normal rounded-xl hover:bg-[#5B3A6B] transition-colors mb-2"
             >
               View Cart & Checkout
             </Link>
             <button
               onClick={closeCart}
-              className="block w-full text-center py-2 text-sm text-[#8B8B8B] font-inter font-light hover:text-[#4A2C5A] transition-colors"
+              className="block w-full text-center py-2 text-sm text-[#8B8B8B] font-inter font-light hover:text-[#1A1410] transition-colors"
             >
               Continue Shopping
             </button>

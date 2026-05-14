@@ -24,23 +24,23 @@ export default async function AdminCustomersPage() {
     <div className="min-h-screen bg-[#FAF7F2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex items-center gap-4 mb-8">
-          <Link href="/admin" className="text-sm font-inter font-light text-[#8B8B8B] hover:text-[#4A2C5A]">← Dashboard</Link>
-          <h1 className="font-playfair font-semibold text-[#4A2C5A] text-3xl"
-            style={{ fontFamily: "var(--font-playfair)" }}>Customers</h1>
+          <Link href="/admin" className="text-sm font-inter font-light text-[#8B8B8B] hover:text-[#1A1410]">← Dashboard</Link>
+          <h1 className="font-playfair font-semibold text-[#1A1410] text-3xl"
+            style={{ fontFamily: "var(--font-cormorant)" }}>Customers</h1>
           <span className="text-sm font-inter font-light text-[#8B8B8B]">({customers.length})</span>
         </div>
 
-        <div className="bg-white rounded-2xl border border-[#E8DFF5]/60 overflow-hidden">
+        <div className="bg-white rounded-2xl border border-[#F7F3EE]/60 overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-[#E8DFF5] bg-[#FAF7F2]/60">
+              <tr className="border-b border-[#F7F3EE] bg-[#FAF7F2]/60">
                 <th className="text-left px-6 py-3 text-xs font-inter font-normal text-[#8B8B8B] uppercase tracking-wider">Customer</th>
                 <th className="text-left px-4 py-3 text-xs font-inter font-normal text-[#8B8B8B] uppercase tracking-wider hidden sm:table-cell">Joined</th>
                 <th className="text-left px-4 py-3 text-xs font-inter font-normal text-[#8B8B8B] uppercase tracking-wider">Orders</th>
                 <th className="text-right px-4 py-3 text-xs font-inter font-normal text-[#8B8B8B] uppercase tracking-wider">Total Spent</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#E8DFF5]">
+            <tbody className="divide-y divide-[#F7F3EE]">
               {customers.map((customer) => {
                 const totalSpent = customer.orders.reduce((s, o) => s + Number(o.total), 0);
                 return (
@@ -58,7 +58,7 @@ export default async function AdminCustomersPage() {
                       <span className="text-sm font-inter font-light text-[#2A2A2A]">{customer._count.orders}</span>
                     </td>
                     <td className="px-4 py-4 text-right">
-                      <span className="text-sm font-inter font-normal text-[#4A2C5A]">{formatPrice(totalSpent)}</span>
+                      <span className="text-sm font-inter font-normal text-[#1A1410]">{formatPrice(totalSpent)}</span>
                     </td>
                   </tr>
                 );

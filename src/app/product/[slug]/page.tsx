@@ -10,22 +10,27 @@ interface ProductPageProps {
 }
 
 async function getProduct(slug: string) {
-  return prisma.product.findUnique({
-    where: { slug, isActive: true },
-    include: {
-      images: { orderBy: { displayOrder: "asc" } },
-      variants: true,
-      category: true,
-      reviews: {
-        include: { user: { select: { name: true, image: true } } },
-        orderBy: { createdAt: "desc" },
+  try {
+    return await prisma.product.findUnique({
+      where: { slug, isActive: true },
+      include: {
+        images: { orderBy: { displayOrder: "asc" } },
+        variants: true,
+        category: true,
+        reviews: {
+          include: { user: { select: { name: true, image: true } } },
+          orderBy: { createdAt: "desc" },
+        },
+        _count: { select: { reviews: true } },
       },
-      _count: { select: { reviews: true } },
-    },
-  });
+    });
+  } catch {
+    return null;
+  }
 }
 
 async function getRelated(categoryId: string, excludeId: string): Promise<ProductCardData[]> {
+  try {
   const products = await prisma.product.findMany({
     where: { categoryId, id: { not: excludeId }, isActive: true },
     take: 4,
@@ -47,6 +52,9 @@ async function getRelated(categoryId: string, excludeId: string): Promise<Produc
       _count: p._count, avgRating: Math.round(avg * 10) / 10,
     };
   });
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
@@ -112,10 +120,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
         }}
       />
       {related.length > 0 && (
-        <section className="py-16 bg-[#FAF7F2] border-t border-[#E8DFF5]">
+        <section className="py-16 bg-[#FAF7F2] border-t border-[#F7F3EE]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-playfair font-semibold text-[#4A2C5A] text-2xl mb-8"
-              style={{ fontFamily: "var(--font-playfair)" }}>
+            <h2 className="font-playfair font-semibold text-[#1A1410] text-2xl mb-8"
+              style={{ fontFamily: "var(--font-cormorant)" }}>
               You Might Also Like
             </h2>
             <ProductGrid products={related} columns={4} />

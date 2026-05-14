@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -9,15 +9,17 @@ import { Providers } from "@/components/common/Providers";
 import { CookieBanner } from "@/components/common/CookieBanner";
 import { Analytics } from "@/components/common/Analytics";
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-cormorant",
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-dm",
   display: "swap",
 });
 
@@ -30,14 +32,8 @@ export const metadata: Metadata = {
   description:
     "Premium Pakistani-inspired bedsheets, comforter sets, and bath towels. Family-owned, Canadian-made with 25 years of experience. Shop now and elevate your home.",
   keywords: [
-    "bedsheets",
-    "comforters",
-    "bath towels",
-    "home textiles",
-    "Pakistani textiles",
-    "Canadian made",
-    "premium bedding",
-    "Toronto",
+    "bedsheets", "comforters", "bath towels", "home textiles",
+    "Pakistani textiles", "Canadian made", "premium bedding", "Toronto",
   ],
   openGraph: {
     type: "website",
@@ -45,8 +41,7 @@ export const metadata: Metadata = {
     url: "https://khwab.ca",
     siteName: "Khwab",
     title: "Khwab — Premium Home Textiles | Canadian Made",
-    description:
-      "Premium Pakistani-inspired bedsheets, comforter sets, and bath towels for the modern Canadian home.",
+    description: "Premium Pakistani-inspired bedsheets, comforter sets, and bath towels for the modern Canadian home.",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Khwab Home Textiles" }],
   },
   twitter: {
@@ -58,18 +53,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
       <body>
         <Providers>
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[100] bg-[#4A2C5A] text-white px-4 py-2 rounded-lg font-medium"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[100] bg-[#1A1410] text-white px-4 py-2 rounded-lg"
           >
             Skip to content
           </a>

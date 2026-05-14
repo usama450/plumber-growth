@@ -1,81 +1,83 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ScrollReveal } from "@/components/common/ScrollReveal";
 
 export function BrandStory() {
   return (
-    <section className="py-16 lg:py-24 bg-[#FAF7F2]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section className="py-20 lg:py-28 bg-[#F7F3EE]">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
-          {/* Image side */}
-          <div className="relative order-2 lg:order-1">
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
+          {/* Image */}
+          <ScrollReveal type="fade-right" className="relative order-2 lg:order-1">
+            <div className="relative aspect-[4/5] overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=85"
-                alt="Khwab family team in their Canadian facility"
+                alt="Khwab family team"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              {/* Decorative border */}
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-[#B8A4D4]/30" />
+              {/* Thin gold border overlay */}
+              <div className="absolute inset-0 ring-1 ring-[#C4992E]/20 pointer-events-none" />
             </div>
 
-            {/* Floating stat card */}
-            <div className="absolute -bottom-5 -right-4 lg:-right-8 bg-[#4A2C5A] text-white rounded-2xl p-5 shadow-xl">
-              <div className="text-3xl font-playfair font-semibold mb-0.5"
-                style={{ fontFamily: "var(--font-playfair)" }}>
-                25+
-              </div>
-              <div className="text-xs font-inter font-light tracking-wide text-[#E8DFF5]">
-                Years of Excellence
+            {/* Stat card */}
+            <div className="absolute -bottom-6 -right-4 lg:-right-10 bg-[#1A1410] text-[#F7F3EE] p-6 min-w-[130px] shadow-2xl">
+              <div className="text-4xl font-light text-[#C4992E] mb-1 leading-none"
+                style={{ fontFamily: "var(--font-cormorant)" }}>25+</div>
+              <div className="text-[10px] tracking-[0.25em] uppercase text-[#F7F3EE]/60"
+                style={{ fontFamily: "var(--font-dm)" }}>
+                Years of<br />Excellence
               </div>
             </div>
 
-            {/* Decorative element */}
-            <div className="absolute -top-4 -left-4 w-20 h-20 rounded-full bg-[#E8DFF5] -z-10" />
-          </div>
+            {/* Decorative square */}
+            <div className="absolute -top-5 -left-5 w-24 h-24 border border-[#DDD5C9] -z-10" />
+          </ScrollReveal>
 
-          {/* Text side */}
-          <div className="order-1 lg:order-2">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="h-px w-8 bg-[#C9A961]" />
-              <span className="text-xs font-inter tracking-[0.2em] uppercase text-[#C9A961] font-light">
+          {/* Text */}
+          <ScrollReveal type="fade-left" className="order-1 lg:order-2">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="eyebrow-line" />
+              <span className="text-[11px] tracking-[0.35em] uppercase text-[#C4992E] font-medium"
+                style={{ fontFamily: "var(--font-dm)" }}>
                 Our Story
               </span>
             </div>
 
-            <h2
-              className="font-playfair font-semibold text-[#4A2C5A] mb-6 leading-tight"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
+            <h2 className="text-[#1A1410] mb-7 leading-tight"
+              style={{ fontFamily: "var(--font-cormorant)" }}>
               A family legacy, woven into every thread
             </h2>
 
-            <div className="space-y-4 font-inter font-light text-[#2A2A2A] leading-relaxed">
+            <div className="space-y-5 text-[15px] text-[#6B6258] leading-relaxed"
+              style={{ fontFamily: "var(--font-dm)", fontWeight: 400 }}>
               <p>
-                Khwab — meaning <em>&ldquo;dream&rdquo;</em> in Urdu — was born from a simple belief: that the place where you rest should feel like a sanctuary.
+                Khwab — meaning <em className="font-medium text-[#1A1410]">&ldquo;dream&rdquo;</em> in Urdu — was born from a simple belief: that the place where you rest should feel like a sanctuary.
               </p>
               <p>
-                Our family has been crafting premium home textiles for over 25 years, drawing on rich Pakistani weaving traditions and adapting them for the modern Canadian home. Every set is manufactured right here in Canada, with full control over quality at every step.
+                Our family has been crafting premium home textiles for over 25 years, drawing on rich Pakistani weaving traditions and adapting them for the modern Canadian home.
               </p>
               <p>
                 We source the finest Egyptian and Pakistani cotton, apply time-honoured dyeing techniques, and finish every piece to standards that would make our grandmothers proud.
               </p>
             </div>
 
-            <div className="mt-8 grid grid-cols-3 gap-4 py-6 border-y border-[#E8DFF5]">
+            {/* Stats */}
+            <div className="mt-10 grid grid-cols-3 gap-6 py-8 border-y border-[#DDD5C9]">
               {[
                 { stat: "100%", label: "Canadian Made" },
                 { stat: "50k+", label: "Happy Homes" },
-                { stat: "🍁", label: "Family Owned" },
+                { stat: "1999", label: "Est. in Canada" },
               ].map((item) => (
                 <div key={item.label} className="text-center">
-                  <div className="text-xl font-playfair font-semibold text-[#4A2C5A] mb-1"
-                    style={{ fontFamily: "var(--font-playfair)" }}>
+                  <div className="text-2xl font-light text-[#1A1410] mb-1"
+                    style={{ fontFamily: "var(--font-cormorant)" }}>
                     {item.stat}
                   </div>
-                  <div className="text-xs font-inter font-light text-[#8B8B8B] tracking-wide">
+                  <div className="text-[11px] tracking-[0.15em] uppercase text-[#9A9088]"
+                    style={{ fontFamily: "var(--font-dm)" }}>
                     {item.label}
                   </div>
                 </div>
@@ -85,12 +87,16 @@ export function BrandStory() {
             <div className="mt-8">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-[#4A2C5A] text-[#4A2C5A] font-inter font-light text-sm rounded-xl hover:bg-[#E8DFF5]/50 transition-all"
+                className="btn-gold inline-flex items-center gap-3 px-7 py-3.5 bg-[#1A1410] text-[#F7F3EE] text-[13px] tracking-wide hover:bg-[#2E2318] transition-colors duration-300"
+                style={{ fontFamily: "var(--font-dm)" }}
               >
-                Read Our Full Story →
+                Read Our Full Story
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

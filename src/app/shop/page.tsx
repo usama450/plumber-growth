@@ -49,6 +49,7 @@ async function getProducts(searchParams: Record<string, string | string[] | unde
     }),
   };
 
+  try {
   const [products, total] = await Promise.all([
     prisma.product.findMany({
       where,
@@ -78,6 +79,9 @@ async function getProducts(searchParams: Record<string, string | string[] | unde
       };
     }),
   };
+  } catch {
+    return { products: [], total: 0 };
+  }
 }
 
 interface ShopPageProps {
@@ -91,11 +95,11 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
       {/* Page header */}
-      <div className="bg-[#E8DFF5]/30 border-b border-[#E8DFF5] py-10">
+      <div className="bg-[#F7F3EE]/30 border-b border-[#F7F3EE] py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1
-            className="font-playfair font-semibold text-[#4A2C5A] text-3xl"
-            style={{ fontFamily: "var(--font-playfair)" }}
+            className="font-playfair font-semibold text-[#1A1410] text-3xl"
+            style={{ fontFamily: "var(--font-cormorant)" }}
           >
             Shop All Products
           </h1>
@@ -133,13 +137,13 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
               <ProductGrid products={products} columns={4} />
             ) : (
               <div className="text-center py-20">
-                <p className="text-lg font-playfair text-[#4A2C5A] mb-2"
-                  style={{ fontFamily: "var(--font-playfair)" }}>
+                <p className="text-lg font-playfair text-[#1A1410] mb-2"
+                  style={{ fontFamily: "var(--font-cormorant)" }}>
                   No products found
                 </p>
                 <p className="text-sm font-inter font-light text-[#8B8B8B]">
                   Try adjusting your filters or{" "}
-                  <a href="/shop" className="text-[#4A2C5A] underline">clear all filters</a>
+                  <a href="/shop" className="text-[#1A1410] underline">clear all filters</a>
                 </p>
               </div>
             )}

@@ -6,8 +6,8 @@ export default function TermsPage() {
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="font-playfair font-semibold text-[#4A2C5A] text-3xl mb-2"
-          style={{ fontFamily: "var(--font-playfair)" }}>Terms of Service</h1>
+        <h1 className="font-playfair font-semibold text-[#1A1410] text-3xl mb-2"
+          style={{ fontFamily: "var(--font-cormorant)" }}>Terms of Service</h1>
         <p className="text-sm text-[#8B8B8B] font-inter font-light mb-10">Last updated: {new Date().toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" })}</p>
         <div className="space-y-6 font-inter font-light text-[#2A2A2A] leading-relaxed text-sm">
           <p>By using the Khwab website (khwab.ca) and purchasing our products, you agree to these Terms of Service. Khwab Home Textiles is operated from Ontario, Canada and these terms are governed by the laws of Ontario.</p>
@@ -21,7 +21,7 @@ export default function TermsPage() {
             { title: "Contact", text: "Questions about these terms? Contact us at legal@khwab.ca." },
           ].map((s) => (
             <div key={s.title}>
-              <h2 className="text-base font-inter font-normal text-[#4A2C5A] mt-6 mb-2">{s.title}</h2>
+              <h2 className="text-base font-inter font-normal text-[#1A1410] mt-6 mb-2">{s.title}</h2>
               <p>{s.text}</p>
             </div>
           ))}

@@ -59,7 +59,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       <div className="relative max-w-2xl mx-auto mt-16 mx-4 sm:mx-auto">
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
           {/* Search input */}
-          <div className="flex items-center gap-3 px-5 py-4 border-b border-[#E8DFF5]">
+          <div className="flex items-center gap-3 px-5 py-4 border-b border-[#F7F3EE]">
             <Search size={20} className="text-[#8B8B8B] shrink-0" />
             <input
               ref={inputRef}
@@ -70,7 +70,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               className="flex-1 text-[15px] font-inter font-light text-[#2A2A2A] placeholder-[#8B8B8B] outline-none bg-transparent"
             />
             {isLoading && <Loader2 size={18} className="text-[#8B8B8B] animate-spin shrink-0" />}
-            <button onClick={onClose} className="p-1 text-[#8B8B8B] hover:text-[#4A2C5A] transition-colors">
+            <button onClick={onClose} className="p-1 text-[#8B8B8B] hover:text-[#1A1410] transition-colors">
               <X size={20} />
             </button>
           </div>
@@ -83,9 +83,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   key={product.id}
                   href={`/product/${product.slug}`}
                   onClick={onClose}
-                  className="flex items-center gap-4 px-5 py-3 hover:bg-[#E8DFF5]/30 transition-colors"
+                  className="flex items-center gap-4 px-5 py-3 hover:bg-[#F7F3EE]/30 transition-colors"
                 >
-                  <div className="w-14 h-14 rounded-lg overflow-hidden bg-[#E8DFF5] shrink-0">
+                  <div className="w-14 h-14 rounded-lg overflow-hidden bg-[#F7F3EE] shrink-0">
                     {product.images[0] && (
                       <Image
                         src={product.images[0].imageUrl}
@@ -100,16 +100,16 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     <p className="text-sm font-inter font-light text-[#2A2A2A] truncate">{product.name}</p>
                     <p className="text-xs text-[#8B8B8B] mt-0.5">{product.category.name}</p>
                   </div>
-                  <span className="text-sm font-inter font-normal text-[#4A2C5A] shrink-0">
+                  <span className="text-sm font-inter font-normal text-[#1A1410] shrink-0">
                     {formatPrice(product.price)}
                   </span>
                 </Link>
               ))}
-              <div className="px-5 pt-2 pb-3 border-t border-[#E8DFF5] mt-1">
+              <div className="px-5 pt-2 pb-3 border-t border-[#F7F3EE] mt-1">
                 <Link
                   href={`/shop?q=${encodeURIComponent(query)}`}
                   onClick={onClose}
-                  className="text-sm text-[#4A2C5A] hover:underline font-inter"
+                  className="text-sm text-[#1A1410] hover:underline font-inter"
                 >
                   View all results for &ldquo;{query}&rdquo; →
                 </Link>
@@ -131,7 +131,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   <button
                     key={term}
                     onClick={() => setQuery(term)}
-                    className="px-3 py-1.5 bg-[#E8DFF5] text-[#4A2C5A] rounded-full text-sm font-inter font-light hover:bg-[#B8A4D4]/40 transition-colors"
+                    className="px-3 py-1.5 bg-[#F7F3EE] text-[#1A1410] rounded-full text-sm font-inter font-light hover:bg-[#C4992E]/40 transition-colors"
                   >
                     {term}
                   </button>

@@ -74,33 +74,37 @@ async function getProductsByCategory(category: string, searchParams: Record<stri
     ...(sizeFilter.length > 0 && { variants: { some: { size: { in: sizeFilter } } } }),
   };
 
-  const [products, total] = await Promise.all([
-    prisma.product.findMany({
-      where, orderBy,
-      include: {
-        images: { orderBy: { displayOrder: "asc" }, take: 2 },
-        variants: { select: { size: true, color: true, stockQuantity: true } },
-        category: { select: { name: true, slug: true } },
-        _count: { select: { reviews: true } },
-        reviews: { select: { rating: true } },
-      },
-    }),
-    prisma.product.count({ where }),
-  ]);
+  try {
+    const [products, total] = await Promise.all([
+      prisma.product.findMany({
+        where, orderBy,
+        include: {
+          images: { orderBy: { displayOrder: "asc" }, take: 2 },
+          variants: { select: { size: true, color: true, stockQuantity: true } },
+          category: { select: { name: true, slug: true } },
+          _count: { select: { reviews: true } },
+          reviews: { select: { rating: true } },
+        },
+      }),
+      prisma.product.count({ where }),
+    ]);
 
-  return {
-    total,
-    products: products.map((p) => {
-      const avgRating = p.reviews.length > 0 ? p.reviews.reduce((s, r) => s + r.rating, 0) / p.reviews.length : 0;
-      return {
-        id: p.id, name: p.name, slug: p.slug,
-        price: Number(p.price), comparePrice: p.comparePrice ? Number(p.comparePrice) : null,
-        isOnSale: p.isOnSale, isFeatured: p.isFeatured,
-        images: p.images, category: p.category, variants: p.variants,
-        _count: p._count, avgRating: Math.round(avgRating * 10) / 10,
-      };
-    }),
-  };
+    return {
+      total,
+      products: products.map((p) => {
+        const avgRating = p.reviews.length > 0 ? p.reviews.reduce((s, r) => s + r.rating, 0) / p.reviews.length : 0;
+        return {
+          id: p.id, name: p.name, slug: p.slug,
+          price: Number(p.price), comparePrice: p.comparePrice ? Number(p.comparePrice) : null,
+          isOnSale: p.isOnSale, isFeatured: p.isFeatured,
+          images: p.images, category: p.category, variants: p.variants,
+          _count: p._count, avgRating: Math.round(avgRating * 10) / 10,
+        };
+      }),
+    };
+  } catch {
+    return { products: [], total: 0 };
+  }
 }
 
 export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
@@ -116,10 +120,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       {/* Category hero */}
       <div className="relative h-48 sm:h-64 overflow-hidden">
         <Image src={meta.image} alt={meta.heroTitle} fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1a0a24]/70 to-[#4A2C5A]/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1a0a24]/70 to-[#1A1410]/30" />
         <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-12 lg:px-20">
           <h1 className="font-playfair font-semibold text-white text-3xl sm:text-4xl mb-2"
-            style={{ fontFamily: "var(--font-playfair)" }}>
+            style={{ fontFamily: "var(--font-cormorant)" }}>
             {meta.heroTitle}
           </h1>
           <p className="text-sm font-inter font-light text-white/80 max-w-md">{meta.heroSub}</p>
@@ -144,12 +148,12 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               <ProductGrid products={products} columns={4} />
             ) : (
               <div className="text-center py-20">
-                <p className="text-lg font-playfair text-[#4A2C5A] mb-2"
-                  style={{ fontFamily: "var(--font-playfair)" }}>
+                <p className="text-lg font-playfair text-[#1A1410] mb-2"
+                  style={{ fontFamily: "var(--font-cormorant)" }}>
                   No products found
                 </p>
                 <p className="text-sm font-inter font-light text-[#8B8B8B]">
-                  <a href={`/shop/${category}`} className="text-[#4A2C5A] underline">Clear filters</a>
+                  <a href={`/shop/${category}`} className="text-[#1A1410] underline">Clear filters</a>
                 </p>
               </div>
             )}

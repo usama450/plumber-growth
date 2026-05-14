@@ -20,9 +20,9 @@ export default async function AdminCouponsPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
-            <Link href="/admin" className="text-sm font-inter font-light text-[#8B8B8B] hover:text-[#4A2C5A]">← Dashboard</Link>
-            <h1 className="font-playfair font-semibold text-[#4A2C5A] text-3xl"
-              style={{ fontFamily: "var(--font-playfair)" }}>Coupons</h1>
+            <Link href="/admin" className="text-sm font-inter font-light text-[#8B8B8B] hover:text-[#1A1410]">← Dashboard</Link>
+            <h1 className="font-playfair font-semibold text-[#1A1410] text-3xl"
+              style={{ fontFamily: "var(--font-cormorant)" }}>Coupons</h1>
           </div>
         </div>
         <AdminCouponsClient initialCoupons={coupons.map((c) => ({

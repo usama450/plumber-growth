@@ -43,15 +43,15 @@ function LoginForm() {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/">
-            <h1 className="font-playfair text-3xl font-semibold text-[#4A2C5A]"
-              style={{ fontFamily: "var(--font-playfair)" }}>Khwab</h1>
+            <h1 className="font-playfair text-3xl font-semibold text-[#1A1410]"
+              style={{ fontFamily: "var(--font-cormorant)" }}>Khwab</h1>
             <p className="text-[10px] text-[#C9A961] tracking-[0.2em] uppercase font-inter font-light mt-1">Home Textiles</p>
           </Link>
         </div>
 
-        <div className="bg-white rounded-2xl p-8 border border-[#E8DFF5]/60 shadow-[0_4px_24px_rgba(74,44,90,0.08)]">
-          <h2 className="font-playfair font-semibold text-[#4A2C5A] text-2xl mb-1"
-            style={{ fontFamily: "var(--font-playfair)" }}>Welcome back</h2>
+        <div className="bg-white rounded-2xl p-8 border border-[#F7F3EE]/60 shadow-[0_4px_24px_rgba(74,44,90,0.08)]">
+          <h2 className="font-playfair font-semibold text-[#1A1410] text-2xl mb-1"
+            style={{ fontFamily: "var(--font-cormorant)" }}>Welcome back</h2>
           <p className="text-sm font-inter font-light text-[#8B8B8B] mb-6">Sign in to your account</p>
 
           {searchParams.get("error") && (
@@ -68,7 +68,7 @@ function LoginForm() {
 
           {/* Google OAuth */}
           <button onClick={handleGoogle}
-            className="w-full flex items-center justify-center gap-3 py-3 border border-[#D4C5B0] rounded-xl text-sm font-inter font-light text-[#2A2A2A] hover:bg-[#E8DFF5]/30 transition-colors mb-5">
+            className="w-full flex items-center justify-center gap-3 py-3 border border-[#D4C5B0] rounded-xl text-sm font-inter font-light text-[#2A2A2A] hover:bg-[#F7F3EE]/30 transition-colors mb-5">
             <svg viewBox="0 0 24 24" width="18" height="18">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -79,16 +79,16 @@ function LoginForm() {
           </button>
 
           <div className="flex items-center gap-3 mb-5">
-            <div className="flex-1 h-px bg-[#E8DFF5]" />
+            <div className="flex-1 h-px bg-[#F7F3EE]" />
             <span className="text-xs text-[#8B8B8B] font-inter font-light">or</span>
-            <div className="flex-1 h-px bg-[#E8DFF5]" />
+            <div className="flex-1 h-px bg-[#F7F3EE]" />
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-inter font-light text-[#2A2A2A] mb-1.5" htmlFor="email">Email</label>
               <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required
-                className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light text-[#2A2A2A] focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] focus:border-transparent transition-all"
+                className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light text-[#2A2A2A] focus:outline-none focus:ring-2 focus:ring-[#C4992E] focus:border-transparent transition-all"
                 placeholder="you@example.com" />
             </div>
             <div>
@@ -96,21 +96,21 @@ function LoginForm() {
               <div className="relative">
                 <input id="password" type={showPassword ? "text" : "password"} value={password}
                   onChange={(e) => setPassword(e.target.value)} required
-                  className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light text-[#2A2A2A] focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] focus:border-transparent transition-all pr-11"
+                  className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light text-[#2A2A2A] focus:outline-none focus:ring-2 focus:ring-[#C4992E] focus:border-transparent transition-all pr-11"
                   placeholder="••••••••" />
                 <button type="button" onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8B8B8B] hover:text-[#4A2C5A] transition-colors">
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8B8B8B] hover:text-[#1A1410] transition-colors">
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
             </div>
             <div className="flex justify-end">
-              <Link href="/forgot-password" className="text-xs font-inter font-light text-[#8B8B8B] hover:text-[#4A2C5A] transition-colors">
+              <Link href="/forgot-password" className="text-xs font-inter font-light text-[#8B8B8B] hover:text-[#1A1410] transition-colors">
                 Forgot password?
               </Link>
             </div>
             <button type="submit" disabled={loading}
-              className="w-full py-3.5 bg-[#4A2C5A] text-white font-inter font-normal text-sm rounded-xl hover:bg-[#5B3A6B] transition-colors disabled:opacity-70 flex items-center justify-center gap-2">
+              className="w-full py-3.5 bg-[#1A1410] text-white font-inter font-normal text-sm rounded-xl hover:bg-[#5B3A6B] transition-colors disabled:opacity-70 flex items-center justify-center gap-2">
               {loading ? <><Loader2 size={16} className="animate-spin" />Signing in...</> : "Sign In"}
             </button>
           </form>
@@ -118,7 +118,7 @@ function LoginForm() {
 
         <p className="text-center text-sm font-inter font-light text-[#8B8B8B] mt-6">
           Don&apos;t have an account?{" "}
-          <Link href="/register" className="text-[#4A2C5A] hover:underline">Create one →</Link>
+          <Link href="/register" className="text-[#1A1410] hover:underline">Create one →</Link>
         </p>
       </div>
     </div>
@@ -129,7 +129,7 @@ export default function LoginPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-[#FAF7F2] flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-[#4A2C5A] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-[#1A1410] border-t-transparent rounded-full animate-spin" />
       </div>
     }>
       <LoginForm />

@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 export default function ShippingReturnsPage() {
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
-      <div className="bg-[#E8DFF5]/30 border-b border-[#E8DFF5] py-12">
+      <div className="bg-[#F7F3EE]/30 border-b border-[#F7F3EE] py-12">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h1 className="font-playfair font-semibold text-[#4A2C5A] text-3xl"
-            style={{ fontFamily: "var(--font-playfair)" }}>Shipping & Returns</h1>
+          <h1 className="font-playfair font-semibold text-[#1A1410] text-3xl"
+            style={{ fontFamily: "var(--font-cormorant)" }}>Shipping & Returns</h1>
         </div>
       </div>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
@@ -45,9 +45,9 @@ export default function ShippingReturnsPage() {
           },
         ].map((section) => (
           <div key={section.title}>
-            <h2 className="font-playfair font-semibold text-[#4A2C5A] text-xl mb-4"
-              style={{ fontFamily: "var(--font-playfair)" }}>{section.title}</h2>
-            <div className="bg-white rounded-2xl border border-[#E8DFF5]/60 p-6 space-y-3">
+            <h2 className="font-playfair font-semibold text-[#1A1410] text-xl mb-4"
+              style={{ fontFamily: "var(--font-cormorant)" }}>{section.title}</h2>
+            <div className="bg-white rounded-2xl border border-[#F7F3EE]/60 p-6 space-y-3">
               {section.content.map((item) => (
                 <p key={item} className="text-sm font-inter font-light text-[#2A2A2A] leading-relaxed">
                   {item.split("**").map((part, i) =>

@@ -81,11 +81,11 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
             subject: `Your Khwab order has shipped! — ${fullOrder.orderNumber}`,
             html: `
               <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
-                <div style="background:#4A2C5A;padding:32px;text-align:center">
+                <div style="background:#1A1410;padding:32px;text-align:center">
                   <h1 style="color:white;font-family:Georgia,serif;margin:0">Khwab</h1>
                 </div>
                 <div style="padding:32px">
-                  <h2 style="color:#4A2C5A;font-family:Georgia,serif">Your order is on its way!</h2>
+                  <h2 style="color:#1A1410;font-family:Georgia,serif">Your order is on its way!</h2>
                   <p>Hi ${fullOrder.user.name ?? "there"},</p>
                   <p>Great news — order <strong>${fullOrder.orderNumber}</strong> has shipped.</p>
                   <p>Tracking number: <strong>${trackingNumber}</strong></p>

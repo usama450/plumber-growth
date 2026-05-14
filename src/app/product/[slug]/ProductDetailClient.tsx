@@ -75,11 +75,11 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-1.5 text-xs font-inter font-light text-[#8B8B8B] mb-8" aria-label="Breadcrumb">
-          <Link href="/" className="hover:text-[#4A2C5A] transition-colors">Home</Link>
+          <Link href="/" className="hover:text-[#1A1410] transition-colors">Home</Link>
           <ChevronRight size={12} />
-          <Link href="/shop" className="hover:text-[#4A2C5A] transition-colors">Shop</Link>
+          <Link href="/shop" className="hover:text-[#1A1410] transition-colors">Shop</Link>
           <ChevronRight size={12} />
-          <Link href={`/shop/${product.category.slug}`} className="hover:text-[#4A2C5A] transition-colors capitalize">
+          <Link href={`/shop/${product.category.slug}`} className="hover:text-[#1A1410] transition-colors capitalize">
             {product.category.name}
           </Link>
           <ChevronRight size={12} />
@@ -89,7 +89,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Gallery */}
           <div className="space-y-3">
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-[#E8DFF5]/30">
+            <div className="relative aspect-square rounded-2xl overflow-hidden bg-[#F7F3EE]/30">
               {product.images[selectedImage] && (
                 <Image
                   src={product.images[selectedImage].imageUrl}
@@ -112,7 +112,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                 {product.images.map((img, i) => (
                   <button key={img.id} onClick={() => setSelectedImage(i)}
                     className={cn("aspect-square rounded-lg overflow-hidden border-2 transition-all",
-                      i === selectedImage ? "border-[#4A2C5A]" : "border-transparent hover:border-[#B8A4D4]")}
+                      i === selectedImage ? "border-[#1A1410]" : "border-transparent hover:border-[#C4992E]")}
                     aria-label={`View image ${i + 1}`}
                   >
                     <Image src={img.imageUrl} alt={img.altText ?? `${product.name} ${i + 1}`}
@@ -128,8 +128,8 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
             <p className="text-xs font-inter font-light text-[#8B8B8B] uppercase tracking-wider mb-2">
               {product.category.name}
             </p>
-            <h1 className="font-playfair font-semibold text-[#4A2C5A] text-2xl sm:text-3xl mb-3"
-              style={{ fontFamily: "var(--font-playfair)" }}>
+            <h1 className="font-playfair font-semibold text-[#1A1410] text-2xl sm:text-3xl mb-3"
+              style={{ fontFamily: "var(--font-cormorant)" }}>
               {product.name}
             </h1>
 
@@ -150,8 +150,8 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
 
             {/* Price */}
             <div className="flex items-center gap-3 mb-6">
-              <span className="text-2xl font-playfair font-semibold text-[#4A2C5A]"
-                style={{ fontFamily: "var(--font-playfair)" }}>
+              <span className="text-2xl font-playfair font-semibold text-[#1A1410]"
+                style={{ fontFamily: "var(--font-cormorant)" }}>
                 {formatPrice(product.price)}
               </span>
               {product.comparePrice && product.comparePrice > product.price && (
@@ -159,7 +159,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                   <span className="text-lg font-inter font-light text-[#8B8B8B] line-through">
                     {formatPrice(product.comparePrice)}
                   </span>
-                  <span className="px-2 py-0.5 bg-[#4A2C5A] text-white text-xs font-inter font-normal rounded-md">
+                  <span className="px-2 py-0.5 bg-[#1A1410] text-white text-xs font-inter font-normal rounded-md">
                     Save {discount}%
                   </span>
                 </>
@@ -171,7 +171,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
               <div className="mb-5">
                 <div className="flex items-center justify-between mb-2.5">
                   <span className="text-sm font-inter font-normal text-[#2A2A2A]">Size</span>
-                  {selectedSize && <span className="text-sm font-inter font-light text-[#4A2C5A]">{selectedSize}</span>}
+                  {selectedSize && <span className="text-sm font-inter font-light text-[#1A1410]">{selectedSize}</span>}
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {sizes.map((size) => {
@@ -179,9 +179,9 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                     return (
                       <button key={size} onClick={() => setSelectedSize(size)} disabled={!hasStock}
                         className={cn("px-4 py-2 rounded-lg border text-sm font-inter font-light transition-all",
-                          selectedSize === size ? "bg-[#4A2C5A] text-white border-[#4A2C5A]"
-                          : hasStock ? "bg-white text-[#2A2A2A] border-[#D4C5B0] hover:border-[#B8A4D4]"
-                          : "bg-[#FAF7F2] text-[#D4C5B0] border-[#E8DFF5] cursor-not-allowed line-through")}
+                          selectedSize === size ? "bg-[#1A1410] text-white border-[#1A1410]"
+                          : hasStock ? "bg-white text-[#2A2A2A] border-[#D4C5B0] hover:border-[#C4992E]"
+                          : "bg-[#FAF7F2] text-[#D4C5B0] border-[#F7F3EE] cursor-not-allowed line-through")}
                         aria-pressed={selectedSize === size}
                       >{size}</button>
                     );
@@ -195,14 +195,14 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
               <div className="mb-5">
                 <div className="flex items-center justify-between mb-2.5">
                   <span className="text-sm font-inter font-normal text-[#2A2A2A]">Color</span>
-                  {selectedColor && <span className="text-sm font-inter font-light text-[#4A2C5A] capitalize">{selectedColor}</span>}
+                  {selectedColor && <span className="text-sm font-inter font-light text-[#1A1410] capitalize">{selectedColor}</span>}
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {colors.map((color) => (
                     <button key={color} onClick={() => setSelectedColor(color)}
                       className={cn("px-3 py-1.5 rounded-lg border text-sm font-inter font-light capitalize transition-all",
-                        selectedColor === color ? "bg-[#4A2C5A] text-white border-[#4A2C5A]"
-                        : "bg-white text-[#2A2A2A] border-[#D4C5B0] hover:border-[#B8A4D4]")}
+                        selectedColor === color ? "bg-[#1A1410] text-white border-[#1A1410]"
+                        : "bg-white text-[#2A2A2A] border-[#D4C5B0] hover:border-[#C4992E]")}
                       aria-pressed={selectedColor === color}
                     >{color}</button>
                   ))}
@@ -215,11 +215,11 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
               <span className="text-sm font-inter font-normal text-[#2A2A2A] block mb-2.5">Quantity</span>
               <div className="inline-flex items-center border border-[#D4C5B0] rounded-xl overflow-hidden">
                 <button onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-11 h-11 flex items-center justify-center text-[#4A2C5A] hover:bg-[#E8DFF5]/50 transition-colors"
+                  className="w-11 h-11 flex items-center justify-center text-[#1A1410] hover:bg-[#F7F3EE]/50 transition-colors"
                   aria-label="Decrease quantity"><Minus size={15} /></button>
                 <span className="w-12 text-center text-sm font-inter font-light text-[#2A2A2A]">{quantity}</span>
                 <button onClick={() => setQuantity(Math.min((selectedVariant?.stockQuantity ?? 99), quantity + 1))}
-                  className="w-11 h-11 flex items-center justify-center text-[#4A2C5A] hover:bg-[#E8DFF5]/50 transition-colors"
+                  className="w-11 h-11 flex items-center justify-center text-[#1A1410] hover:bg-[#F7F3EE]/50 transition-colors"
                   disabled={!!selectedVariant && quantity >= selectedVariant.stockQuantity}
                   aria-label="Increase quantity"><Plus size={15} /></button>
               </div>
@@ -235,20 +235,20 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
               <button onClick={handleAddToCart} disabled={addingToCart || isOutOfStock}
                 className={cn("flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-inter font-normal text-sm transition-all",
                   isOutOfStock ? "bg-[#D4C5B0] text-[#8B8B8B] cursor-not-allowed"
-                  : "bg-[#4A2C5A] text-white hover:bg-[#5B3A6B] hover:shadow-[0_4px_16px_rgba(74,44,90,0.3)] disabled:opacity-70")}>
+                  : "bg-[#1A1410] text-white hover:bg-[#5B3A6B] hover:shadow-[0_4px_16px_rgba(74,44,90,0.3)] disabled:opacity-70")}>
                 <ShoppingBag size={17} />
                 {isOutOfStock ? "Out of Stock" : addingToCart ? "Adding..." : "Add to Cart"}
               </button>
               <button onClick={() => setIsWishlisted(!isWishlisted)}
                 className={cn("w-12 h-12 flex items-center justify-center rounded-xl border transition-all",
-                  isWishlisted ? "bg-[#E8DFF5] border-[#B8A4D4]" : "border-[#D4C5B0] hover:border-[#B8A4D4] hover:bg-[#E8DFF5]/30")}
+                  isWishlisted ? "bg-[#F7F3EE] border-[#C4992E]" : "border-[#D4C5B0] hover:border-[#C4992E] hover:bg-[#F7F3EE]/30")}
                 aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}>
-                <Heart size={18} className={cn(isWishlisted ? "fill-[#4A2C5A] text-[#4A2C5A]" : "text-[#4A2C5A]")} />
+                <Heart size={18} className={cn(isWishlisted ? "fill-[#1A1410] text-[#1A1410]" : "text-[#1A1410]")} />
               </button>
             </div>
 
             {/* Trust signals */}
-            <div className="space-y-2 py-5 border-y border-[#E8DFF5]">
+            <div className="space-y-2 py-5 border-y border-[#F7F3EE]">
               {[
                 { icon: "🚚", text: "Free shipping on orders over $125" },
                 { icon: "↩️", text: "Free 30-day returns" },
@@ -265,7 +265,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
 
         {/* Tabs */}
         <div className="mt-12 lg:mt-16">
-          <div className="flex border-b border-[#E8DFF5]">
+          <div className="flex border-b border-[#F7F3EE]">
             {([
               { key: "description", label: "Description" },
               { key: "care", label: "Materials & Care" },
@@ -273,8 +273,8 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
             ] as const).map((tab) => (
               <button key={tab.key} onClick={() => setActiveTab(tab.key)}
                 className={cn("px-6 py-3 text-sm font-inter font-light border-b-2 transition-colors",
-                  activeTab === tab.key ? "border-[#4A2C5A] text-[#4A2C5A]"
-                  : "border-transparent text-[#8B8B8B] hover:text-[#4A2C5A]")}>
+                  activeTab === tab.key ? "border-[#1A1410] text-[#1A1410]"
+                  : "border-transparent text-[#8B8B8B] hover:text-[#1A1410]")}>
                 {tab.label}
               </button>
             ))}
@@ -285,10 +285,10 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
               <div className="prose prose-sm font-inter font-light text-[#2A2A2A] leading-relaxed space-y-3">
                 <p>{product.description}</p>
                 {product.threadCount && (
-                  <p><strong className="font-normal text-[#4A2C5A]">Thread Count:</strong> {product.threadCount} TC</p>
+                  <p><strong className="font-normal text-[#1A1410]">Thread Count:</strong> {product.threadCount} TC</p>
                 )}
                 {product.material && (
-                  <p><strong className="font-normal text-[#4A2C5A]">Material:</strong> {product.material}</p>
+                  <p><strong className="font-normal text-[#1A1410]">Material:</strong> {product.material}</p>
                 )}
               </div>
             )}
@@ -309,7 +309,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
             )}
             {activeTab === "shipping" && (
               <div className="font-inter font-light text-[#2A2A2A] text-sm leading-relaxed space-y-3">
-                <p><strong className="font-normal text-[#4A2C5A]">Free shipping</strong> on all orders over $125 CAD across Canada.</p>
+                <p><strong className="font-normal text-[#1A1410]">Free shipping</strong> on all orders over $125 CAD across Canada.</p>
                 <p>Orders under $125 ship for a flat <strong className="font-normal">$15 CAD</strong>.</p>
                 <p>Most orders ship within 1–2 business days. Delivery takes 3–7 business days depending on your location.</p>
                 <p>We offer <strong className="font-normal">free 30-day returns</strong> on all unwashed, unused items in original packaging.</p>
@@ -320,14 +320,14 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
 
         {/* Reviews */}
         {product.reviews.length > 0 && (
-          <div className="mt-8 pt-8 border-t border-[#E8DFF5]">
-            <h2 className="font-playfair font-semibold text-[#4A2C5A] text-xl mb-6"
-              style={{ fontFamily: "var(--font-playfair)" }}>
+          <div className="mt-8 pt-8 border-t border-[#F7F3EE]">
+            <h2 className="font-playfair font-semibold text-[#1A1410] text-xl mb-6"
+              style={{ fontFamily: "var(--font-cormorant)" }}>
               Customer Reviews ({product._count.reviews})
             </h2>
             <div className="space-y-5">
               {product.reviews.slice(0, 5).map((review) => (
-                <div key={review.id} className="bg-white rounded-xl p-5 border border-[#E8DFF5]/60">
+                <div key={review.id} className="bg-white rounded-xl p-5 border border-[#F7F3EE]/60">
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <div className="flex items-center gap-0.5 mb-1">
@@ -355,13 +355,13 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
       </div>
 
       {/* Mobile sticky CTA */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E8DFF5] px-4 py-3 flex gap-3">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#F7F3EE] px-4 py-3 flex gap-3">
         <div className="flex-1">
           <p className="text-xs font-inter font-light text-[#8B8B8B] line-clamp-1">{product.name}</p>
-          <p className="text-sm font-inter font-normal text-[#4A2C5A]">{formatPrice(product.price)}</p>
+          <p className="text-sm font-inter font-normal text-[#1A1410]">{formatPrice(product.price)}</p>
         </div>
         <button onClick={handleAddToCart} disabled={addingToCart || isOutOfStock}
-          className="px-5 py-2.5 bg-[#4A2C5A] text-white text-sm font-inter font-normal rounded-xl hover:bg-[#5B3A6B] transition-colors disabled:opacity-60">
+          className="px-5 py-2.5 bg-[#1A1410] text-white text-sm font-inter font-normal rounded-xl hover:bg-[#5B3A6B] transition-colors disabled:opacity-60">
           {isOutOfStock ? "Sold Out" : "Add to Cart"}
         </button>
       </div>

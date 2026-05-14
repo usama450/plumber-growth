@@ -26,20 +26,20 @@ export default async function AdminProductsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
-            <Link href="/admin" className="text-sm font-inter font-light text-[#8B8B8B] hover:text-[#4A2C5A]">← Dashboard</Link>
-            <h1 className="font-playfair font-semibold text-[#4A2C5A] text-3xl"
-              style={{ fontFamily: "var(--font-playfair)" }}>Products</h1>
+            <Link href="/admin" className="text-sm font-inter font-light text-[#8B8B8B] hover:text-[#1A1410]">← Dashboard</Link>
+            <h1 className="font-playfair font-semibold text-[#1A1410] text-3xl"
+              style={{ fontFamily: "var(--font-cormorant)" }}>Products</h1>
           </div>
           <Link href="/admin/products/new"
-            className="px-4 py-2 bg-[#4A2C5A] text-white text-sm font-inter font-normal rounded-lg hover:bg-[#5B3A6B] transition-colors">
+            className="px-4 py-2 bg-[#1A1410] text-white text-sm font-inter font-normal rounded-lg hover:bg-[#5B3A6B] transition-colors">
             + Add Product
           </Link>
         </div>
 
-        <div className="bg-white rounded-2xl border border-[#E8DFF5]/60 overflow-hidden">
+        <div className="bg-white rounded-2xl border border-[#F7F3EE]/60 overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-[#E8DFF5] bg-[#FAF7F2]/60">
+              <tr className="border-b border-[#F7F3EE] bg-[#FAF7F2]/60">
                 <th className="text-left px-6 py-3 text-xs font-inter font-normal text-[#8B8B8B] uppercase tracking-wider">Product</th>
                 <th className="text-left px-4 py-3 text-xs font-inter font-normal text-[#8B8B8B] uppercase tracking-wider hidden sm:table-cell">Category</th>
                 <th className="text-left px-4 py-3 text-xs font-inter font-normal text-[#8B8B8B] uppercase tracking-wider">Price</th>
@@ -49,7 +49,7 @@ export default async function AdminProductsPage() {
                 <th className="px-4 py-3" />
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#E8DFF5]">
+            <tbody className="divide-y divide-[#F7F3EE]">
               {products.map((product) => {
                 const totalStock = product.variants.reduce((s, v) => s + v.stockQuantity, 0);
                 return (
@@ -58,9 +58,9 @@ export default async function AdminProductsPage() {
                       <div className="flex items-center gap-3">
                         {product.images[0] ? (
                           <img src={product.images[0].imageUrl} alt={product.name}
-                            className="w-10 h-10 rounded-lg object-cover border border-[#E8DFF5] shrink-0" />
+                            className="w-10 h-10 rounded-lg object-cover border border-[#F7F3EE] shrink-0" />
                         ) : (
-                          <div className="w-10 h-10 rounded-lg bg-[#E8DFF5]/40 shrink-0" />
+                          <div className="w-10 h-10 rounded-lg bg-[#F7F3EE]/40 shrink-0" />
                         )}
                         <div>
                           <p className="text-sm font-inter font-normal text-[#2A2A2A] line-clamp-1">{product.name}</p>
@@ -102,11 +102,11 @@ export default async function AdminProductsPage() {
                     <td className="px-4 py-4">
                       <div className="flex gap-2">
                         <Link href={`/product/${product.slug}`} target="_blank"
-                          className="text-xs font-inter font-light text-[#8B8B8B] hover:text-[#4A2C5A] transition-colors">
+                          className="text-xs font-inter font-light text-[#8B8B8B] hover:text-[#1A1410] transition-colors">
                           View
                         </Link>
                         <Link href={`/admin/products/${product.id}/edit`}
-                          className="text-xs font-inter font-light text-[#4A2C5A] hover:underline transition-colors">
+                          className="text-xs font-inter font-light text-[#1A1410] hover:underline transition-colors">
                           Edit
                         </Link>
                       </div>

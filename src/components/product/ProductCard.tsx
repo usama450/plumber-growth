@@ -22,10 +22,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
   const primaryImage = product.images[0];
   const hoverImage = product.images[1] ?? product.images[0];
-  const discount = product.comparePrice
-    ? getDiscountPercentage(product.price, product.comparePrice)
-    : 0;
-
+  const discount = product.comparePrice ? getDiscountPercentage(product.price, product.comparePrice) : 0;
   const defaultVariant = product.variants.find((v) => v.stockQuantity > 0);
   const isOutOfStock = product.variants.every((v) => v.stockQuantity === 0);
   const avgRating = product.avgRating ?? 0;
@@ -39,14 +36,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
         id: `${product.id}-${defaultVariant.size}-${defaultVariant.color}`,
         productId: product.id,
         variantId: `${product.id}-${defaultVariant.size ?? "default"}`,
-        name: product.name,
-        slug: product.slug,
+        name: product.name, slug: product.slug,
         image: primaryImage?.imageUrl ?? "",
         price: product.price,
-        size: defaultVariant.size,
-        color: defaultVariant.color,
-        quantity: 1,
-        sku: `${product.id}-default`,
+        size: defaultVariant.size, color: defaultVariant.color,
+        quantity: 1, sku: `${product.id}-default`,
         maxStock: defaultVariant.stockQuantity,
       });
       toast.success("Added to cart!");
@@ -58,23 +52,26 @@ export function ProductCard({ product, className }: ProductCardProps) {
   return (
     <article
       className={cn(
-        "group relative bg-white rounded-xl overflow-hidden",
-        "border border-[#E8DFF5]/60 hover:border-[#B8A4D4]/60",
-        "shadow-[0_2px_12px_rgba(74,44,90,0.06)] hover:shadow-[0_8px_32px_rgba(74,44,90,0.12)]",
-        "transition-all duration-300",
+        "group relative bg-white overflow-hidden",
+        "transition-all duration-400",
         className
       )}
+      style={{
+        boxShadow: isHovered ? "0 20px 60px rgba(26,20,16,0.10)" : "0 2px 8px rgba(26,20,16,0.04)",
+        transform: isHovered ? "translateY(-3px)" : "none",
+        transition: "transform 0.4s cubic-bezier(0.25,0.1,0.25,1), box-shadow 0.4s cubic-bezier(0.25,0.1,0.25,1)",
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image */}
-      <Link href={`/product/${product.slug}`} className="block relative aspect-[4/5] overflow-hidden bg-[#E8DFF5]/30">
+      <Link href={`/product/${product.slug}`} className="block relative aspect-[4/5] overflow-hidden bg-[#EDE8DF]">
         {primaryImage && (
           <Image
             src={isHovered && hoverImage !== primaryImage ? hoverImage.imageUrl : primaryImage.imageUrl}
             alt={primaryImage.altText ?? product.name}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-600 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-[1.06]"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
         )}
@@ -82,59 +79,49 @@ export function ProductCard({ product, className }: ProductCardProps) {
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
           {product.isOnSale && discount > 0 && (
-            <span className="px-2 py-0.5 bg-[#4A2C5A] text-white text-[11px] font-inter font-normal rounded-md">
+            <span className="px-2.5 py-1 bg-[#1A1410] text-[#F7F3EE] text-[10px] tracking-[0.15em] uppercase"
+              style={{ fontFamily: "var(--font-dm)" }}>
               -{discount}%
             </span>
           )}
-          {product.isFeatured && (
-            <span className="px-2 py-0.5 bg-[#C9A961] text-white text-[11px] font-inter font-normal rounded-md">
-              Featured
-            </span>
-          )}
           {isOutOfStock && (
-            <span className="px-2 py-0.5 bg-[#8B8B8B] text-white text-[11px] font-inter font-normal rounded-md">
+            <span className="px-2.5 py-1 bg-[#9A9088] text-white text-[10px] tracking-[0.15em] uppercase"
+              style={{ fontFamily: "var(--font-dm)" }}>
               Sold Out
             </span>
           )}
         </div>
 
-        {/* Wishlist button */}
+        {/* Wishlist */}
         <button
           onClick={(e) => { e.preventDefault(); setIsWishlisted(!isWishlisted); }}
           className={cn(
-            "absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full",
-            "bg-white/90 backdrop-blur-sm border border-[#E8DFF5]",
-            "opacity-0 group-hover:opacity-100 transition-all duration-200",
-            "hover:bg-[#E8DFF5] hover:border-[#B8A4D4]"
+            "absolute top-3 right-3 w-8 h-8 flex items-center justify-center",
+            "bg-white/90 backdrop-blur-sm border border-[#DDD5C9]",
+            "opacity-0 group-hover:opacity-100 transition-all duration-300",
+            "hover:border-[#C4992E]"
           )}
           aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
         >
           <Heart
-            size={14}
-            className={cn(
-              "transition-colors",
-              isWishlisted ? "fill-[#4A2C5A] text-[#4A2C5A]" : "text-[#4A2C5A]"
-            )}
+            size={13}
+            className={cn("transition-colors", isWishlisted ? "fill-[#1A1410] text-[#1A1410]" : "text-[#1A1410]")}
           />
         </button>
 
-        {/* Quick add overlay */}
+        {/* Quick add */}
         {!isOutOfStock && (
           <div className={cn(
-            "absolute bottom-0 left-0 right-0 p-3 transition-all duration-300",
+            "absolute bottom-0 left-0 right-0 transition-all duration-300",
             isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           )}>
             <button
               onClick={handleQuickAdd}
               disabled={addingToCart}
-              className={cn(
-                "w-full flex items-center justify-center gap-2 py-2.5 rounded-lg",
-                "bg-[#4A2C5A] text-white text-sm font-inter font-normal",
-                "hover:bg-[#5B3A6B] transition-colors disabled:opacity-70"
-              )}
-              aria-label={`Quick add ${product.name} to cart`}
+              className="w-full flex items-center justify-center gap-2 py-3 bg-[#1A1410] text-[#F7F3EE] text-[11px] tracking-[0.2em] uppercase hover:bg-[#2E2318] transition-colors disabled:opacity-70"
+              style={{ fontFamily: "var(--font-dm)" }}
             >
-              <ShoppingBag size={15} />
+              <ShoppingBag size={13} />
               {addingToCart ? "Adding..." : "Quick Add"}
             </button>
           </div>
@@ -142,43 +129,42 @@ export function ProductCard({ product, className }: ProductCardProps) {
       </Link>
 
       {/* Info */}
-      <div className="p-3.5">
-        <p className="text-[11px] text-[#8B8B8B] font-inter font-light uppercase tracking-wider mb-1">
+      <div className="p-4">
+        <p className="text-[10px] text-[#9A9088] tracking-[0.25em] uppercase mb-1.5"
+          style={{ fontFamily: "var(--font-dm)" }}>
           {product.category.name}
         </p>
         <Link href={`/product/${product.slug}`}>
-          <h3 className="text-sm font-inter font-light text-[#2A2A2A] hover:text-[#4A2C5A] transition-colors line-clamp-1 mb-2"
-            style={{ fontFamily: "var(--font-inter)" }}>
+          <h3 className="text-[15px] text-[#1A1410] hover:text-[#2E2318] transition-colors line-clamp-1 mb-2.5 font-light"
+            style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic" }}>
             {product.name}
           </h3>
         </Link>
 
-        {/* Rating */}
         {avgRating > 0 && (
-          <div className="flex items-center gap-1 mb-2">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <Star
-                key={i}
-                size={11}
-                className={cn(
-                  i <= avgRating ? "fill-[#C9A961] text-[#C9A961]" : "text-[#D4C5B0]"
-                )}
-              />
+          <div className="flex items-center gap-1 mb-2.5">
+            {[1,2,3,4,5].map((i) => (
+              <Star key={i} size={10}
+                className={cn(i <= avgRating ? "fill-[#C4992E] text-[#C4992E]" : "text-[#DDD5C9]")} />
             ))}
-            <span className="text-[11px] text-[#8B8B8B] font-inter ml-0.5">
+            <span className="text-[10px] text-[#9A9088] ml-0.5" style={{ fontFamily: "var(--font-dm)" }}>
               ({product._count?.reviews ?? 0})
             </span>
           </div>
         )}
 
-        {/* Price */}
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-inter font-normal text-[#4A2C5A]">
+        <div className="flex items-center gap-2.5">
+          <span className="text-[15px] text-[#1A1410]" style={{ fontFamily: "var(--font-dm)", fontWeight: 500 }}>
             {formatPrice(product.price)}
           </span>
           {product.comparePrice && product.comparePrice > product.price && (
-            <span className="text-xs font-inter font-light text-[#8B8B8B] line-through">
+            <span className="text-[13px] text-[#9A9088] line-through" style={{ fontFamily: "var(--font-dm)" }}>
               {formatPrice(product.comparePrice)}
+            </span>
+          )}
+          {product.isOnSale && discount > 0 && (
+            <span className="text-[11px] text-[#C4992E]" style={{ fontFamily: "var(--font-dm)" }}>
+              Save {discount}%
             </span>
           )}
         </div>

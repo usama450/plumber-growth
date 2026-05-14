@@ -73,30 +73,30 @@ export function AdminProductForm({ categories }: Props) {
       )}
 
       {/* Basic Info */}
-      <div className="bg-white rounded-2xl p-6 border border-[#E8DFF5]/60 space-y-4">
-        <h2 className="font-playfair font-semibold text-[#4A2C5A] text-xl"
-          style={{ fontFamily: "var(--font-playfair)" }}>Basic Info</h2>
+      <div className="bg-white rounded-2xl p-6 border border-[#F7F3EE]/60 space-y-4">
+        <h2 className="font-playfair font-semibold text-[#1A1410] text-xl"
+          style={{ fontFamily: "var(--font-cormorant)" }}>Basic Info</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-inter font-light text-[#2A2A2A] mb-1.5">Product Name *</label>
             <input required value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value, slug: slugify(e.target.value) })}
-              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] transition-all" />
+              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#C4992E] transition-all" />
           </div>
           <div>
             <label className="block text-sm font-inter font-light text-[#2A2A2A] mb-1.5">Slug *</label>
             <input required value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value })}
-              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] transition-all" />
+              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#C4992E] transition-all" />
           </div>
           <div className="sm:col-span-2">
             <label className="block text-sm font-inter font-light text-[#2A2A2A] mb-1.5">Description *</label>
             <textarea required rows={4} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })}
-              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] transition-all resize-none" />
+              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#C4992E] transition-all resize-none" />
           </div>
           <div>
             <label className="block text-sm font-inter font-light text-[#2A2A2A] mb-1.5">Category *</label>
             <select required value={form.categoryId} onChange={(e) => setForm({ ...form, categoryId: e.target.value })}
-              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] transition-all">
+              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#C4992E] transition-all">
               {categories.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
             </select>
           </div>
@@ -104,28 +104,28 @@ export function AdminProductForm({ categories }: Props) {
             <label className="block text-sm font-inter font-light text-[#2A2A2A] mb-1.5">Thread Count</label>
             <input type="number" value={form.threadCount} onChange={(e) => setForm({ ...form, threadCount: e.target.value })}
               placeholder="e.g. 400"
-              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] transition-all" />
+              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#C4992E] transition-all" />
           </div>
         </div>
       </div>
 
       {/* Pricing */}
-      <div className="bg-white rounded-2xl p-6 border border-[#E8DFF5]/60 space-y-4">
-        <h2 className="font-playfair font-semibold text-[#4A2C5A] text-xl"
-          style={{ fontFamily: "var(--font-playfair)" }}>Pricing</h2>
+      <div className="bg-white rounded-2xl p-6 border border-[#F7F3EE]/60 space-y-4">
+        <h2 className="font-playfair font-semibold text-[#1A1410] text-xl"
+          style={{ fontFamily: "var(--font-cormorant)" }}>Pricing</h2>
         <div className="grid sm:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-inter font-light text-[#2A2A2A] mb-1.5">Price (CAD) *</label>
             <input required type="number" step="0.01" min="0.01" value={form.price}
               onChange={(e) => setForm({ ...form, price: e.target.value })}
-              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] transition-all" />
+              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#C4992E] transition-all" />
           </div>
           <div>
             <label className="block text-sm font-inter font-light text-[#2A2A2A] mb-1.5">Compare Price</label>
             <input type="number" step="0.01" min="0" value={form.comparePrice}
               onChange={(e) => setForm({ ...form, comparePrice: e.target.value })}
               placeholder="Original price"
-              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] transition-all" />
+              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#C4992E] transition-all" />
           </div>
           <div className="flex flex-col gap-3 pt-2">
             {[
@@ -136,7 +136,7 @@ export function AdminProductForm({ categories }: Props) {
               <label key={key} className="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" checked={form[key as keyof typeof form] as boolean}
                   onChange={(e) => setForm({ ...form, [key]: e.target.checked })}
-                  className="rounded border-[#D4C5B0] text-[#4A2C5A]" />
+                  className="rounded border-[#D4C5B0] text-[#1A1410]" />
                 <span className="text-sm font-inter font-light text-[#2A2A2A]">{label}</span>
               </label>
             ))}
@@ -145,37 +145,37 @@ export function AdminProductForm({ categories }: Props) {
       </div>
 
       {/* Material & Care */}
-      <div className="bg-white rounded-2xl p-6 border border-[#E8DFF5]/60 space-y-4">
-        <h2 className="font-playfair font-semibold text-[#4A2C5A] text-xl"
-          style={{ fontFamily: "var(--font-playfair)" }}>Material & Care</h2>
+      <div className="bg-white rounded-2xl p-6 border border-[#F7F3EE]/60 space-y-4">
+        <h2 className="font-playfair font-semibold text-[#1A1410] text-xl"
+          style={{ fontFamily: "var(--font-cormorant)" }}>Material & Care</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-inter font-light text-[#2A2A2A] mb-1.5">Material</label>
             <input value={form.material} onChange={(e) => setForm({ ...form, material: e.target.value })}
               placeholder="e.g. 100% Egyptian Cotton"
-              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] transition-all" />
+              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#C4992E] transition-all" />
           </div>
           <div>
             <label className="block text-sm font-inter font-light text-[#2A2A2A] mb-1.5">Care Instructions</label>
             <input value={form.careInstructions} onChange={(e) => setForm({ ...form, careInstructions: e.target.value })}
               placeholder="e.g. Machine wash warm"
-              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] transition-all" />
+              className="w-full px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#C4992E] transition-all" />
           </div>
         </div>
       </div>
 
       {/* Images */}
-      <div className="bg-white rounded-2xl p-6 border border-[#E8DFF5]/60 space-y-4">
-        <h2 className="font-playfair font-semibold text-[#4A2C5A] text-xl"
-          style={{ fontFamily: "var(--font-playfair)" }}>Images</h2>
+      <div className="bg-white rounded-2xl p-6 border border-[#F7F3EE]/60 space-y-4">
+        <h2 className="font-playfair font-semibold text-[#1A1410] text-xl"
+          style={{ fontFamily: "var(--font-cormorant)" }}>Images</h2>
         {images.map((img, i) => (
           <div key={i} className="flex gap-3">
             <input value={img.url} onChange={(e) => setImages(images.map((x, j) => j === i ? { ...x, url: e.target.value } : x))}
               placeholder="Image URL (Cloudinary or Unsplash)"
-              className="flex-1 px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] transition-all" />
+              className="flex-1 px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#C4992E] transition-all" />
             <input value={img.alt} onChange={(e) => setImages(images.map((x, j) => j === i ? { ...x, alt: e.target.value } : x))}
               placeholder="Alt text"
-              className="w-40 px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] transition-all" />
+              className="w-40 px-4 py-3 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#C4992E] transition-all" />
             {images.length > 1 && (
               <button type="button" onClick={() => setImages(images.filter((_, j) => j !== i))}
                 className="text-[#B85450]/60 hover:text-[#B85450] transition-colors">
@@ -185,15 +185,15 @@ export function AdminProductForm({ categories }: Props) {
           </div>
         ))}
         <button type="button" onClick={() => setImages([...images, { url: "", alt: "" }])}
-          className="flex items-center gap-2 text-sm font-inter font-light text-[#4A2C5A] hover:underline">
+          className="flex items-center gap-2 text-sm font-inter font-light text-[#1A1410] hover:underline">
           <Plus size={14} /> Add Image
         </button>
       </div>
 
       {/* Variants */}
-      <div className="bg-white rounded-2xl p-6 border border-[#E8DFF5]/60 space-y-4">
-        <h2 className="font-playfair font-semibold text-[#4A2C5A] text-xl"
-          style={{ fontFamily: "var(--font-playfair)" }}>Variants</h2>
+      <div className="bg-white rounded-2xl p-6 border border-[#F7F3EE]/60 space-y-4">
+        <h2 className="font-playfair font-semibold text-[#1A1410] text-xl"
+          style={{ fontFamily: "var(--font-cormorant)" }}>Variants</h2>
         {variants.map((variant, i) => (
           <div key={i} className="grid grid-cols-4 gap-3">
             {[
@@ -205,13 +205,13 @@ export function AdminProductForm({ categories }: Props) {
               <input key={key} type={type ?? "text"} value={variant[key as keyof Variant]}
                 onChange={(e) => setVariants(variants.map((v, j) => j === i ? { ...v, [key]: e.target.value } : v))}
                 placeholder={placeholder}
-                className="px-3 py-2.5 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#B8A4D4] transition-all" />
+                className="px-3 py-2.5 rounded-xl border border-[#D4C5B0] bg-[#FAF7F2] text-sm font-inter font-light focus:outline-none focus:ring-2 focus:ring-[#C4992E] transition-all" />
             ))}
           </div>
         ))}
         <div className="flex gap-3">
           <button type="button" onClick={() => setVariants([...variants, { size: "", color: "", sku: "", stockQuantity: "0" }])}
-            className="flex items-center gap-2 text-sm font-inter font-light text-[#4A2C5A] hover:underline">
+            className="flex items-center gap-2 text-sm font-inter font-light text-[#1A1410] hover:underline">
             <Plus size={14} /> Add Variant
           </button>
           {variants.length > 1 && (
@@ -228,7 +228,7 @@ export function AdminProductForm({ categories }: Props) {
 
       <div className="flex gap-3 pb-8">
         <button type="submit" disabled={saving}
-          className="px-8 py-3 bg-[#4A2C5A] text-white font-inter font-normal text-sm rounded-xl hover:bg-[#5B3A6B] transition-colors disabled:opacity-70 flex items-center gap-2">
+          className="px-8 py-3 bg-[#1A1410] text-white font-inter font-normal text-sm rounded-xl hover:bg-[#5B3A6B] transition-colors disabled:opacity-70 flex items-center gap-2">
           {saving && <Loader2 size={16} className="animate-spin" />}
           Create Product
         </button>

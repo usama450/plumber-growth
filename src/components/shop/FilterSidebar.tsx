@@ -14,8 +14,8 @@ const CATEGORIES = [
 const COLORS = [
   { label: "White", value: "white", hex: "#FFFFFF" },
   { label: "Ivory", value: "ivory", hex: "#FFFFF0" },
-  { label: "Lavender", value: "lavender", hex: "#E8DFF5" },
-  { label: "Plum", value: "plum", hex: "#4A2C5A" },
+  { label: "Lavender", value: "lavender", hex: "#F7F3EE" },
+  { label: "Plum", value: "plum", hex: "#1A1410" },
   { label: "Navy", value: "navy", hex: "#1a237e" },
   { label: "Sage", value: "sage", hex: "#6B8E4E" },
   { label: "Blush", value: "blush", hex: "#F4A7B9" },
@@ -79,7 +79,7 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
             </button>
           )}
           {onClose && (
-            <button onClick={onClose} className="lg:hidden text-[#8B8B8B] hover:text-[#4A2C5A]">
+            <button onClick={onClose} className="lg:hidden text-[#8B8B8B] hover:text-[#1A1410]">
               <X size={18} />
             </button>
           )}
@@ -89,7 +89,7 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
       <div className="space-y-7">
         {/* Category */}
         <div>
-          <h3 className="text-xs font-inter font-medium text-[#4A2C5A] uppercase tracking-[0.12em] mb-3">
+          <h3 className="text-xs font-inter font-medium text-[#1A1410] uppercase tracking-[0.12em] mb-3">
             Category
           </h3>
           <div className="space-y-2">
@@ -99,9 +99,9 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
                   type="checkbox"
                   checked={selectedCategories.includes(cat.value)}
                   onChange={() => updateParam("category", cat.value, true)}
-                  className="w-4 h-4 rounded border-[#D4C5B0] text-[#4A2C5A] accent-[#4A2C5A] cursor-pointer"
+                  className="w-4 h-4 rounded border-[#D4C5B0] text-[#1A1410] accent-[#1A1410] cursor-pointer"
                 />
-                <span className="text-sm font-inter font-light text-[#2A2A2A] group-hover:text-[#4A2C5A] transition-colors">
+                <span className="text-sm font-inter font-light text-[#2A2A2A] group-hover:text-[#1A1410] transition-colors">
                   {cat.label}
                 </span>
               </label>
@@ -111,7 +111,7 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
 
         {/* Price Range */}
         <div>
-          <h3 className="text-xs font-inter font-medium text-[#4A2C5A] uppercase tracking-[0.12em] mb-3">
+          <h3 className="text-xs font-inter font-medium text-[#1A1410] uppercase tracking-[0.12em] mb-3">
             Price Range
           </h3>
           <div className="space-y-2">
@@ -122,11 +122,11 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
               step={10}
               value={parseInt(maxPrice)}
               onChange={(e) => updateParam("maxPrice", e.target.value)}
-              className="w-full accent-[#4A2C5A]"
+              className="w-full accent-[#1A1410]"
             />
             <div className="flex justify-between text-xs font-inter font-light text-[#8B8B8B]">
               <span>$0</span>
-              <span className="text-[#4A2C5A] font-normal">Up to ${maxPrice}</span>
+              <span className="text-[#1A1410] font-normal">Up to ${maxPrice}</span>
               <span>$500</span>
             </div>
           </div>
@@ -134,7 +134,7 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
 
         {/* Color */}
         <div>
-          <h3 className="text-xs font-inter font-medium text-[#4A2C5A] uppercase tracking-[0.12em] mb-3">
+          <h3 className="text-xs font-inter font-medium text-[#1A1410] uppercase tracking-[0.12em] mb-3">
             Color
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -145,8 +145,8 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
                 title={color.label}
                 className={`w-7 h-7 rounded-full border-2 transition-all ${
                   selectedColors.includes(color.value)
-                    ? "border-[#4A2C5A] scale-110"
-                    : "border-[#D4C5B0] hover:border-[#B8A4D4]"
+                    ? "border-[#1A1410] scale-110"
+                    : "border-[#D4C5B0] hover:border-[#C4992E]"
                 }`}
                 style={{ backgroundColor: color.hex }}
                 aria-label={color.label}
@@ -158,7 +158,7 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
 
         {/* Size */}
         <div>
-          <h3 className="text-xs font-inter font-medium text-[#4A2C5A] uppercase tracking-[0.12em] mb-3">
+          <h3 className="text-xs font-inter font-medium text-[#1A1410] uppercase tracking-[0.12em] mb-3">
             Size
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -168,8 +168,8 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
                 onClick={() => updateParam("size", size, true)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-inter font-light border transition-all ${
                   selectedSizes.includes(size)
-                    ? "bg-[#4A2C5A] text-white border-[#4A2C5A]"
-                    : "bg-white text-[#2A2A2A] border-[#D4C5B0] hover:border-[#B8A4D4] hover:bg-[#E8DFF5]/30"
+                    ? "bg-[#1A1410] text-white border-[#1A1410]"
+                    : "bg-white text-[#2A2A2A] border-[#D4C5B0] hover:border-[#C4992E] hover:bg-[#F7F3EE]/30"
                 }`}
                 aria-pressed={selectedSizes.includes(size)}
               >
@@ -191,7 +191,7 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
                 else params.set("sale", "true");
                 router.push(`${pathname}?${params.toString()}`);
               }}
-              className="w-4 h-4 rounded border-[#D4C5B0] accent-[#4A2C5A] cursor-pointer"
+              className="w-4 h-4 rounded border-[#D4C5B0] accent-[#1A1410] cursor-pointer"
             />
             <span className="text-sm font-inter font-light text-[#2A2A2A]">On Sale</span>
           </label>
