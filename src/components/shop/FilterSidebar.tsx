@@ -66,20 +66,20 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
     <aside className="w-full">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="font-inter font-normal text-sm text-[#2A2A2A] uppercase tracking-wider">
+        <h2 className="font-inter font-normal text-sm text-[#E7D3A8] uppercase tracking-wider">
           Filters
         </h2>
         <div className="flex items-center gap-2">
           {hasFilters && (
             <button
               onClick={clearAll}
-              className="text-xs font-inter font-light text-[#8B8B8B] hover:text-[#B85450] transition-colors"
+              className="text-xs font-inter font-light text-[#A8A4B0] hover:text-[#9D4EDD] transition-colors"
             >
               Clear all
             </button>
           )}
           {onClose && (
-            <button onClick={onClose} className="lg:hidden text-[#8B8B8B] hover:text-[#1A1410]">
+            <button onClick={onClose} className="lg:hidden text-[#A8A4B0] hover:text-[#F8F4EE]">
               <X size={18} />
             </button>
           )}
@@ -89,7 +89,7 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
       <div className="space-y-7">
         {/* Category */}
         <div>
-          <h3 className="text-xs font-inter font-medium text-[#1A1410] uppercase tracking-[0.12em] mb-3">
+          <h3 className="text-xs font-inter font-medium text-[#E7D3A8] uppercase tracking-[0.12em] mb-3">
             Category
           </h3>
           <div className="space-y-2">
@@ -99,9 +99,9 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
                   type="checkbox"
                   checked={selectedCategories.includes(cat.value)}
                   onChange={() => updateParam("category", cat.value, true)}
-                  className="w-4 h-4 rounded border-[#D4C5B0] text-[#1A1410] accent-[#1A1410] cursor-pointer"
+                  className="w-4 h-4 rounded border-[#3A1A5C] accent-[#9D4EDD] cursor-pointer"
                 />
-                <span className="text-sm font-inter font-light text-[#2A2A2A] group-hover:text-[#1A1410] transition-colors">
+                <span className="text-sm font-inter font-light text-[#A8A4B0] group-hover:text-[#F8F4EE] transition-colors">
                   {cat.label}
                 </span>
               </label>
@@ -111,7 +111,7 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
 
         {/* Price Range */}
         <div>
-          <h3 className="text-xs font-inter font-medium text-[#1A1410] uppercase tracking-[0.12em] mb-3">
+          <h3 className="text-xs font-inter font-medium text-[#E7D3A8] uppercase tracking-[0.12em] mb-3">
             Price Range
           </h3>
           <div className="space-y-2">
@@ -122,11 +122,11 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
               step={10}
               value={parseInt(maxPrice)}
               onChange={(e) => updateParam("maxPrice", e.target.value)}
-              className="w-full accent-[#1A1410]"
+              className="w-full accent-[#9D4EDD]"
             />
-            <div className="flex justify-between text-xs font-inter font-light text-[#8B8B8B]">
+            <div className="flex justify-between text-xs font-inter font-light text-[#A8A4B0]">
               <span>$0</span>
-              <span className="text-[#1A1410] font-normal">Up to ${maxPrice}</span>
+              <span className="text-[#E7D3A8] font-normal">Up to ${maxPrice}</span>
               <span>$500</span>
             </div>
           </div>
@@ -134,7 +134,7 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
 
         {/* Color */}
         <div>
-          <h3 className="text-xs font-inter font-medium text-[#1A1410] uppercase tracking-[0.12em] mb-3">
+          <h3 className="text-xs font-inter font-medium text-[#E7D3A8] uppercase tracking-[0.12em] mb-3">
             Color
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -145,8 +145,8 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
                 title={color.label}
                 className={`w-7 h-7 rounded-full border-2 transition-all ${
                   selectedColors.includes(color.value)
-                    ? "border-[#1A1410] scale-110"
-                    : "border-[#D4C5B0] hover:border-[#C4992E]"
+                    ? "border-[#9D4EDD] scale-110 shadow-[0_0_8px_rgba(157,78,221,0.6)]"
+                    : "border-[#3A1A5C] hover:border-[#9D4EDD]"
                 }`}
                 style={{ backgroundColor: color.hex }}
                 aria-label={color.label}
@@ -158,7 +158,7 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
 
         {/* Size */}
         <div>
-          <h3 className="text-xs font-inter font-medium text-[#1A1410] uppercase tracking-[0.12em] mb-3">
+          <h3 className="text-xs font-inter font-medium text-[#E7D3A8] uppercase tracking-[0.12em] mb-3">
             Size
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -168,8 +168,8 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
                 onClick={() => updateParam("size", size, true)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-inter font-light border transition-all ${
                   selectedSizes.includes(size)
-                    ? "bg-[#1A1410] text-white border-[#1A1410]"
-                    : "bg-white text-[#2A2A2A] border-[#D4C5B0] hover:border-[#C4992E] hover:bg-[#F7F3EE]/30"
+                    ? "bg-[#9D4EDD] text-[#F8F4EE] border-[#9D4EDD] shadow-[0_0_10px_rgba(157,78,221,0.4)]"
+                    : "bg-[#0D0415] text-[#A8A4B0] border-[#3A1A5C] hover:border-[#9D4EDD] hover:text-[#F8F4EE]"
                 }`}
                 aria-pressed={selectedSizes.includes(size)}
               >
@@ -191,9 +191,9 @@ export function FilterSidebar({ onClose }: FilterSidebarProps) {
                 else params.set("sale", "true");
                 router.push(`${pathname}?${params.toString()}`);
               }}
-              className="w-4 h-4 rounded border-[#D4C5B0] accent-[#1A1410] cursor-pointer"
+              className="w-4 h-4 rounded border-[#3A1A5C] accent-[#9D4EDD] cursor-pointer"
             />
-            <span className="text-sm font-inter font-light text-[#2A2A2A]">On Sale</span>
+            <span className="text-sm font-inter font-light text-[#A8A4B0] hover:text-[#F8F4EE] transition-colors">On Sale</span>
           </label>
         </div>
       </div>

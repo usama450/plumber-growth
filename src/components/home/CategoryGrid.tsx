@@ -49,7 +49,7 @@ export async function CategoryGrid() {
     );
 
   return (
-    <section className="py-20 lg:py-28 bg-[#F8F4EE]">
+    <section className="py-20 lg:py-28 bg-[#050507]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Heading */}
         <ScrollReveal
@@ -57,7 +57,7 @@ export async function CategoryGrid() {
           className="text-center mb-14 lg:mb-18"
         >
           <h2
-            className="text-[#5A189A]"
+            className="text-[#E7D3A8]"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Shop by Category

@@ -23,6 +23,7 @@ export default function CartPage() {
   const estimatedTax = (subtotal - discount) * 0.13;
   const total = subtotal - discount + shipping + estimatedTax;
   const shippingProgress = Math.min((subtotal / FREE_SHIPPING_THRESHOLD) * 100, 100);
+  const remaining = Math.max(FREE_SHIPPING_THRESHOLD - subtotal, 0);
 
   const handleValidateCoupon = async () => {
     if (!couponInput.trim()) return;
@@ -72,17 +73,21 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center px-4 py-20 bg-[#FAF7F2]">
-        <ShoppingBag size={64} className="text-[#D4C5B0] mb-6" />
-        <h1 className="font-playfair font-semibold text-[#1A1410] text-2xl mb-3"
-          style={{ fontFamily: "var(--font-cormorant)" }}>
+      <div className="min-h-[60vh] flex flex-col items-center justify-center px-4 py-20 bg-[#050507]">
+        <ShoppingBag size={64} className="mb-6" style={{ color: "rgba(90,24,154,0.3)" }} />
+        <h1
+          className="text-[#E7D3A8] text-2xl mb-3"
+          style={{ fontFamily: "var(--font-playfair)", fontWeight: 400 }}
+        >
           Your cart is empty
         </h1>
-        <p className="text-[#8B8B8B] font-inter font-light mb-8 text-center">
+        <p
+          className="text-[#A8A4B0] font-light mb-8 text-center"
+          style={{ fontFamily: "var(--font-inter)" }}
+        >
           Discover our premium home textiles and fill your home with comfort.
         </p>
-        <Link href="/shop"
-          className="px-8 py-3 bg-[#1A1410] text-white font-inter font-normal text-sm rounded-xl hover:bg-[#5B3A6B] transition-colors">
+        <Link href="/shop" className="btn-gold-shimmer">
           Continue Shopping
         </Link>
       </div>
@@ -90,27 +95,44 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2]">
+    <div className="min-h-screen bg-[#050507]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <h1 className="font-playfair font-semibold text-[#1A1410] text-3xl mb-8"
-          style={{ fontFamily: "var(--font-cormorant)" }}>
+        <h1
+          className="text-[#E7D3A8] text-3xl mb-8"
+          style={{ fontFamily: "var(--font-playfair)", fontWeight: 400 }}
+        >
           Shopping Cart
         </h1>
 
         {/* Free shipping progress */}
-        <div className="bg-white rounded-xl p-4 border border-[#F7F3EE] mb-6">
-          {shipping === 0 ? (
-            <p className="text-sm font-inter font-light text-[#6B8E4E]">
+        <div className="bg-[#150820] rounded-xl p-4 border border-[#3A1A5C] mb-6">
+          {remaining === 0 ? (
+            <p
+              className="text-sm font-light text-[#6B8E4E] mb-2"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
               🎉 You qualify for free shipping!
             </p>
           ) : (
-            <p className="text-sm font-inter font-light text-[#1A1410] mb-2">
-              Add <strong>{formatPrice(FREE_SHIPPING_THRESHOLD - subtotal)}</strong> more for free shipping
+            <p
+              className="text-sm font-light text-[#A8A4B0] mb-2"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              Add{" "}
+              <strong className="text-[#E7D3A8]">{formatPrice(remaining)}</strong>{" "}
+              more for free shipping
             </p>
           )}
-          <div className="h-1.5 bg-[#F7F3EE] rounded-full overflow-hidden">
-            <div className="h-full bg-[#1A1410] rounded-full transition-all duration-500"
-              style={{ width: `${shippingProgress}%` }} />
+          <div className="h-2 bg-[#0D0415] rounded-full overflow-hidden border border-[#3A1A5C]">
+            <div
+              className="h-full rounded-full transition-all duration-500"
+              style={{
+                width: `${shippingProgress}%`,
+                background: remaining === 0
+                  ? "linear-gradient(to right, #C9A961, #E7D3A8)"
+                  : "linear-gradient(to right, #5A189A, #9D4EDD)",
+              }}
+            />
           </div>
         </div>
 
@@ -118,41 +140,72 @@ export default function CartPage() {
           {/* Items */}
           <div className="lg:col-span-2 space-y-4">
             {items.map((item) => (
-              <div key={item.variantId}
-                className="bg-white rounded-xl p-4 sm:p-5 border border-[#F7F3EE]/60 flex gap-4">
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-[#F7F3EE]/30 shrink-0">
-                  <Image src={item.image} alt={item.name} width={112} height={112}
-                    className="w-full h-full object-cover" />
+              <div
+                key={item.variantId}
+                className="bg-[#150820] rounded-xl p-4 sm:p-5 border border-[#3A1A5C] flex gap-4"
+              >
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-[#0D0415] shrink-0">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={112}
+                    height={112}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
-                    <Link href={`/product/${item.slug}`}
-                      className="text-sm font-inter font-light text-[#2A2A2A] hover:text-[#1A1410] transition-colors line-clamp-2">
+                    <Link
+                      href={`/product/${item.slug}`}
+                      className="text-sm font-light text-[#F8F4EE]/80 hover:text-[#E7D3A8] transition-colors line-clamp-2"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
                       {item.name}
                     </Link>
-                    <button onClick={() => removeItem(item.variantId)}
-                      className="text-[#8B8B8B] hover:text-[#B85450] transition-colors p-1 shrink-0"
-                      aria-label={`Remove ${item.name}`}>
+                    <button
+                      onClick={() => removeItem(item.variantId)}
+                      className="text-[#6B6475] hover:text-[#B85450] transition-colors p-1 shrink-0"
+                      aria-label={`Remove ${item.name}`}
+                    >
                       <Trash2 size={16} />
                     </button>
                   </div>
-                  <div className="flex items-center gap-2 mt-1 text-xs text-[#8B8B8B] font-inter font-light">
+                  <div
+                    className="flex items-center gap-2 mt-1 text-xs text-[#A8A4B0] font-light"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
                     {item.size && <span>{item.size}</span>}
-                    {item.size && item.color && <span>·</span>}
+                    {item.size && item.color && <span className="text-[#3A1A5C]">·</span>}
                     {item.color && <span className="capitalize">{item.color}</span>}
                   </div>
                   <div className="flex items-center justify-between mt-3">
-                    <div className="flex items-center border border-[#F7F3EE] rounded-lg overflow-hidden">
-                      <button onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
-                        className="w-8 h-8 flex items-center justify-center text-[#1A1410] hover:bg-[#F7F3EE]/50 transition-colors"
-                        aria-label="Decrease quantity"><Minus size={13} /></button>
-                      <span className="w-9 text-center text-sm font-inter font-light">{item.quantity}</span>
-                      <button onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
+                    <div className="inline-flex items-center bg-[#0D0415] border border-[#3A1A5C] rounded-full overflow-hidden">
+                      <button
+                        onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
+                        className="w-8 h-8 flex items-center justify-center text-[#A8A4B0] hover:text-[#E7D3A8] hover:bg-[#2A0F3D] transition-colors"
+                        aria-label="Decrease quantity"
+                      >
+                        <Minus size={13} />
+                      </button>
+                      <span
+                        className="w-9 text-center text-sm text-[#F8F4EE]"
+                        style={{ fontFamily: "var(--font-inter)" }}
+                      >
+                        {item.quantity}
+                      </span>
+                      <button
+                        onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
                         disabled={item.quantity >= item.maxStock}
-                        className="w-8 h-8 flex items-center justify-center text-[#1A1410] hover:bg-[#F7F3EE]/50 transition-colors disabled:opacity-40"
-                        aria-label="Increase quantity"><Plus size={13} /></button>
+                        className="w-8 h-8 flex items-center justify-center text-[#A8A4B0] hover:text-[#E7D3A8] hover:bg-[#2A0F3D] transition-colors disabled:opacity-40"
+                        aria-label="Increase quantity"
+                      >
+                        <Plus size={13} />
+                      </button>
                     </div>
-                    <span className="text-sm font-inter font-normal text-[#1A1410]">
+                    <span
+                      className="text-sm text-[#E7D3A8]"
+                      style={{ fontFamily: "var(--font-inter)", fontWeight: 400 }}
+                    >
                       {formatPrice(item.price * item.quantity)}
                     </span>
                   </div>
@@ -163,69 +216,126 @@ export default function CartPage() {
 
           {/* Order summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl p-6 border border-[#F7F3EE]/60 sticky top-[120px]">
-              <h2 className="font-playfair font-semibold text-[#1A1410] text-lg mb-5"
-                style={{ fontFamily: "var(--font-cormorant)" }}>
+            <div className="bg-[#150820] rounded-2xl p-6 border border-[#3A1A5C] sticky top-[120px]">
+              <h2
+                className="text-[#E7D3A8] text-lg mb-5"
+                style={{ fontFamily: "var(--font-playfair)", fontWeight: 400 }}
+              >
                 Order Summary
               </h2>
 
               {/* Coupon */}
               {couponCode ? (
-                <div className="flex items-center justify-between bg-[#F7F3EE]/40 rounded-lg px-3 py-2.5 mb-5">
+                <div className="flex items-center justify-between bg-[#2A0F3D]/60 rounded-lg px-3 py-2.5 mb-5 border border-[#3A1A5C]">
                   <div className="flex items-center gap-2">
-                    <Tag size={14} className="text-[#1A1410]" />
-                    <span className="text-sm font-inter font-light text-[#1A1410]">{couponCode}</span>
+                    <Tag size={14} className="text-[#E7D3A8]" />
+                    <span
+                      className="text-sm font-light text-[#E7D3A8]"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      {couponCode}
+                    </span>
                   </div>
-                  <button onClick={removeCoupon}
-                    className="text-xs text-[#8B8B8B] hover:text-[#B85450] font-inter transition-colors">
+                  <button
+                    onClick={removeCoupon}
+                    className="text-xs text-[#A8A4B0] hover:text-[#B85450] transition-colors"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
                     Remove
                   </button>
                 </div>
               ) : (
                 <div className="flex gap-2 mb-5">
-                  <input type="text" value={couponInput} onChange={(e) => setCouponInput(e.target.value)}
+                  <input
+                    type="text"
+                    value={couponInput}
+                    onChange={(e) => setCouponInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleValidateCoupon()}
                     placeholder="Promo code"
-                    className="flex-1 px-3 py-2.5 border border-[#D4C5B0] rounded-lg text-sm font-inter font-light text-[#2A2A2A] placeholder-[#8B8B8B] focus:outline-none focus:ring-2 focus:ring-[#C4992E]" />
-                  <button onClick={handleValidateCoupon} disabled={validatingCoupon || !couponInput.trim()}
-                    className="px-4 py-2.5 bg-[#1A1410] text-white text-sm font-inter font-normal rounded-lg hover:bg-[#5B3A6B] transition-colors disabled:opacity-60">
+                    className="flex-1 px-3 py-2.5 bg-[#0D0415] border border-[#3A1A5C] rounded-lg text-sm font-light text-[#F8F4EE] placeholder-[#6B6475] focus:outline-none focus:ring-1 focus:ring-[#5A189A] transition-all"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  />
+                  <button
+                    onClick={handleValidateCoupon}
+                    disabled={validatingCoupon || !couponInput.trim()}
+                    className="px-4 py-2.5 bg-gradient-to-r from-[#5A189A] to-[#7B3DBF] text-[#F8F4EE] text-sm rounded-lg hover:brightness-110 transition-all disabled:opacity-60 flex items-center"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
                     {validatingCoupon ? <Loader2 size={14} className="animate-spin" /> : "Apply"}
                   </button>
                 </div>
               )}
 
-              <div className="space-y-3 pb-4 border-b border-[#F7F3EE]">
-                <div className="flex justify-between text-sm font-inter font-light text-[#2A2A2A]">
-                  <span>Subtotal</span><span>{formatPrice(subtotal)}</span>
+              <div className="space-y-3 pb-4 border-b border-[#3A1A5C]">
+                <div
+                  className="flex justify-between text-sm font-light text-[#A8A4B0]"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  <span>Subtotal</span>
+                  <span className="text-[#F8F4EE]">{formatPrice(subtotal)}</span>
                 </div>
                 {discount > 0 && (
-                  <div className="flex justify-between text-sm font-inter font-light text-[#6B8E4E]">
-                    <span>Discount</span><span>-{formatPrice(discount)}</span>
+                  <div
+                    className="flex justify-between text-sm font-light text-[#6B8E4E]"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    <span>Discount</span>
+                    <span>-{formatPrice(discount)}</span>
                   </div>
                 )}
-                <div className="flex justify-between text-sm font-inter font-light text-[#2A2A2A]">
+                <div
+                  className="flex justify-between text-sm font-light text-[#A8A4B0]"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
                   <span>Estimated Shipping</span>
-                  <span>{shipping === 0 ? "FREE" : formatPrice(shipping)}</span>
+                  <span className={shipping === 0 ? "text-[#6B8E4E]" : "text-[#F8F4EE]"}>
+                    {shipping === 0 ? "FREE" : formatPrice(shipping)}
+                  </span>
                 </div>
-                <div className="flex justify-between text-sm font-inter font-light text-[#2A2A2A]">
-                  <span>Estimated Tax (HST)</span><span>{formatPrice(estimatedTax)}</span>
+                <div
+                  className="flex justify-between text-sm font-light text-[#A8A4B0]"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  <span>Estimated Tax (HST)</span>
+                  <span className="text-[#F8F4EE]">{formatPrice(estimatedTax)}</span>
                 </div>
               </div>
 
               <div className="flex justify-between items-center pt-4 mb-6">
-                <span className="font-inter font-normal text-[#2A2A2A]">Total</span>
-                <span className="font-playfair font-semibold text-[#1A1410] text-xl"
-                  style={{ fontFamily: "var(--font-cormorant)" }}>
+                <span
+                  className="text-[#A8A4B0]"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  Total
+                </span>
+                <span
+                  className="text-[#E7D3A8] text-xl"
+                  style={{ fontFamily: "var(--font-playfair)", fontWeight: 400 }}
+                >
                   {formatPrice(total)}
                 </span>
               </div>
 
-              <button onClick={handleCheckout} disabled={checkingOut}
-                className="w-full py-3.5 bg-[#1A1410] text-white font-inter font-normal rounded-xl hover:bg-[#5B3A6B] transition-all hover:shadow-[0_4px_16px_rgba(74,44,90,0.3)] disabled:opacity-70 flex items-center justify-center gap-2">
-                {checkingOut ? <><Loader2 size={16} className="animate-spin" />Processing...</> : "Proceed to Checkout →"}
+              <button
+                onClick={handleCheckout}
+                disabled={checkingOut}
+                className="w-full py-3.5 bg-gradient-to-r from-[#5A189A] to-[#7B3DBF] text-[#F8F4EE] text-sm tracking-[0.06em] uppercase rounded-lg border border-[#E7D3A8]/20 hover:brightness-110 transition-all hover:shadow-[0_8px_32px_rgba(90,24,154,0.4)] disabled:opacity-70 flex items-center justify-center gap-2"
+                style={{ fontFamily: "var(--font-inter)", fontWeight: 500 }}
+              >
+                {checkingOut ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" />
+                    Processing...
+                  </>
+                ) : (
+                  "Proceed to Checkout →"
+                )}
               </button>
 
-              <p className="text-center text-xs text-[#8B8B8B] font-inter font-light mt-3">
+              <p
+                className="text-center text-xs text-[#6B6475] font-light mt-3"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
                 Secure checkout powered by Stripe
               </p>
             </div>

@@ -1,18 +1,71 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 
+function FloatingParticles() {
+  const [particles, setParticles] = useState<Array<{
+    id: number; left: number; size: number; duration: number; delay: number; gold: boolean;
+  }>>([]);
+
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 12 }, (_, i) => ({
+        id: i,
+        left: Math.random() * 95,
+        size: 2 + Math.random() * 2,
+        duration: 10 + Math.random() * 10,
+        delay: Math.random() * 6,
+        gold: i % 2 === 0,
+      }))
+    );
+  }, []);
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          className="absolute rounded-full"
+          style={{
+            left: `${p.left}%`,
+            bottom: 0,
+            width: p.size,
+            height: p.size,
+            backgroundColor: p.gold ? "rgba(231,211,168,0.5)" : "rgba(201,169,97,0.35)",
+            animation: `floatParticle ${p.duration}s ease-in-out ${p.delay}s infinite`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export function BrandStory() {
   return (
-    <section className="py-20 lg:py-28 bg-[#1A0826] relative overflow-hidden">
+    <section className="py-20 lg:py-28 bg-[#0D0415] relative overflow-hidden">
       {/* Decorative radial glow top-right */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at top right, rgba(90,24,154,0.15), transparent 70%)",
+            "radial-gradient(ellipse at top right, rgba(157,78,221,0.12), transparent 70%)",
         }}
       />
+
+      {/* Decorative radial glow bottom-left */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at bottom left, rgba(90,24,154,0.08), transparent 70%)",
+        }}
+      />
+
+      {/* Floating particles */}
+      <FloatingParticles />
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -101,7 +154,7 @@ export function BrandStory() {
             {/* CTA */}
             <Link
               href="/about"
-              className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 text-sm tracking-[0.15em] uppercase bg-[#5A189A] text-[#F8F4EE] border border-[#E7D3A8]/30 hover:bg-[#7B3DBF] hover:shadow-[0_8px_30px_rgba(90,24,154,0.4)] transition-all duration-300"
+              className="btn-gold-shimmer inline-flex items-center justify-center gap-2.5 px-8 py-3.5 text-sm tracking-[0.15em] uppercase"
               style={{ fontFamily: "var(--font-inter)", fontWeight: 400 }}
             >
               Read Our Story

@@ -138,7 +138,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const { products, total } = await getProductsByCategory(category, sp);
 
   return (
-    <div className="min-h-screen bg-[#F8F4EE]">
+    <div className="min-h-screen bg-[#050507]">
       {/* Category hero */}
       <div className="bg-[#050507] relative overflow-hidden min-h-[40vh] flex items-end">
         <Image
@@ -180,10 +180,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-6">
               <p
-                className="text-sm font-light text-[#8B8B8B]"
+                className="text-sm font-light text-[#A8A4B0]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                <span className="text-[#1A1A1A]">{total}</span> products
+                <span className="text-[#F8F4EE]">{total}</span> products
               </p>
               <Suspense>
                 <SortDropdown />
@@ -194,16 +194,16 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             ) : (
               <div className="text-center py-20">
                 <p
-                  className="text-lg text-[#1A1A1A] mb-2"
+                  className="text-lg text-[#E7D3A8] mb-2"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   No products found
                 </p>
                 <p
-                  className="text-sm font-light text-[#8B8B8B]"
+                  className="text-sm font-light text-[#A8A4B0]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  <a href={`/shop/${category}`} className="text-[#5A189A] underline">
+                  <a href={`/shop/${category}`} className="text-[#9D4EDD] underline hover:text-[#E7D3A8] transition-colors">
                     Clear filters
                   </a>
                 </p>

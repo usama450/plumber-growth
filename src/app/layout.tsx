@@ -55,8 +55,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="bg-[#F8F4EE]">
+    <html lang="en" className={`${playfair.variable} ${inter.variable} geo-pattern-bg`}>
+      <body className="bg-[#050507]">
         <Providers>
           <a
             href="#main-content"

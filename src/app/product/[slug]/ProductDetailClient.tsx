@@ -14,6 +14,7 @@ import {
   RotateCcw,
   MapPin,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import { useCartStore } from "@/store/cart";
 import { toast } from "@/components/common/Toaster";
 import { formatPrice, getDiscountPercentage, cn } from "@/lib/utils";
@@ -163,7 +164,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
   };
 
   return (
-    <div className="bg-[#F8F4EE] py-8 lg:py-12">
+    <div className="bg-[#050507] py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav
@@ -174,25 +175,25 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
           <Link href="/" className="text-[#5A189A] hover:underline transition-colors">
             Home
           </Link>
-          <ChevronRight size={12} className="text-[#8B8B8B]" />
+          <ChevronRight size={12} className="text-[#6B6475]" />
           <Link href="/shop" className="text-[#5A189A] hover:underline transition-colors">
             Shop
           </Link>
-          <ChevronRight size={12} className="text-[#8B8B8B]" />
+          <ChevronRight size={12} className="text-[#6B6475]" />
           <Link
             href={`/shop/${product.category.slug}`}
             className="text-[#5A189A] hover:underline transition-colors capitalize"
           >
             {product.category.name}
           </Link>
-          <ChevronRight size={12} className="text-[#8B8B8B]" />
-          <span className="text-[#8B8B8B] line-clamp-1">{product.name}</span>
+          <ChevronRight size={12} className="text-[#6B6475]" />
+          <span className="text-[#6B6475] line-clamp-1">{product.name}</span>
         </nav>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Gallery */}
           <div className="space-y-3">
-            <div className="relative aspect-square rounded-[12px] overflow-hidden bg-[#F5EFE5] shadow-[0_4px_24px_rgba(26,10,38,0.08)]">
+            <div className="relative aspect-square rounded-[12px] overflow-hidden bg-[#150820] shadow-[0_8px_40px_rgba(5,0,7,0.4)]">
               {product.images[selectedImage] && (
                 <Image
                   src={product.images[selectedImage].imageUrl}
@@ -204,8 +205,8 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                 />
               )}
               {isOutOfStock && (
-                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                  <span className="px-4 py-2 bg-white/90 rounded-full text-sm text-[#1A1A1A]"
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <span className="px-4 py-2 bg-[#050507]/90 rounded-full text-sm text-[#A8A4B0]"
                     style={{ fontFamily: "var(--font-inter)" }}>
                     Out of Stock
                   </span>
@@ -219,9 +220,9 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                     key={img.id}
                     onClick={() => setSelectedImage(i)}
                     className={cn(
-                      "aspect-square rounded-[8px] overflow-hidden transition-all ring-offset-[#F8F4EE]",
+                      "aspect-square rounded-[8px] overflow-hidden transition-all ring-offset-[#050507]",
                       i === selectedImage
-                        ? "ring-2 ring-[#5A189A]"
+                        ? "ring-2 ring-[#E7D3A8]"
                         : "hover:ring-1 hover:ring-[#C9A961]"
                     )}
                     aria-label={`View image ${i + 1}`}
@@ -240,10 +241,15 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
           </div>
 
           {/* Product info */}
-          <div className="lg:pt-2">
+          <motion.div
+            className="lg:pt-2"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
             {/* Category */}
             <p
-              className="text-[10px] text-[#8B8B8B] tracking-[0.3em] uppercase mb-2"
+              className="text-[10px] tracking-[0.35em] uppercase text-[#9D4EDD] mb-2"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {product.category.name}
@@ -251,7 +257,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
 
             {/* Product name */}
             <h1
-              className="text-[#1A1A1A] text-2xl sm:text-3xl font-bold mb-3"
+              className="text-[#E7D3A8] text-2xl sm:text-3xl font-bold mb-3"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               {product.name}
@@ -273,7 +279,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                 ))}
               </div>
               <span
-                className="text-sm text-[#8B8B8B]"
+                className="text-sm text-[#A8A4B0]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {product._count.reviews > 0
@@ -285,7 +291,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
             {/* Price */}
             <div className="flex items-center gap-3 mb-6">
               <span
-                className="text-2xl text-[#5A189A] font-medium"
+                className="text-2xl text-[#E7D3A8] font-medium"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {formatPrice(product.price)}
@@ -293,13 +299,13 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
               {product.comparePrice && product.comparePrice > product.price && (
                 <>
                   <span
-                    className="text-lg text-[#8B8B8B] line-through"
+                    className="text-lg text-[#6B6475] line-through"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {formatPrice(product.comparePrice)}
                   </span>
                   <span
-                    className="bg-[#1A0826] text-[#E7D3A8] text-xs px-2 py-0.5 rounded"
+                    className="bg-gradient-to-r from-[#5A189A] to-[#7B3DBF] text-[#F8F4EE] text-xs px-2 py-0.5 rounded"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Save {discount}%
@@ -310,24 +316,18 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
 
             {/* Color selector */}
             {colors.length > 0 && (
-              <div className="mb-5">
-                <div className="flex items-center justify-between mb-2.5">
-                  <span
-                    className="text-sm font-normal text-[#1A1A1A]"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  >
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[11px] tracking-[0.25em] uppercase text-[#A8A4B0]" style={{ fontFamily: "var(--font-inter)" }}>
                     Color
                   </span>
                   {selectedColor && (
-                    <span
-                      className="text-sm text-[#5A189A] capitalize"
-                      style={{ fontFamily: "var(--font-inter)" }}
-                    >
+                    <span className="text-[13px] text-[#E7D3A8] capitalize" style={{ fontFamily: "var(--font-inter)" }}>
                       {selectedColor}
                     </span>
                   )}
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-3 mb-3">
                   {colors.map((color) => {
                     const hex = getColorHex(color);
                     const isSelected = selectedColor === color;
@@ -340,9 +340,9 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                           aria-label={`Select color ${color}`}
                           aria-pressed={isSelected}
                           className={cn(
-                            "w-10 h-10 rounded-full border-2 transition-all ring-offset-2 ring-offset-[#F8F4EE]",
+                            "w-10 h-10 rounded-full border-2 transition-all ring-offset-2 ring-offset-[#050507]",
                             isSelected
-                              ? "border-transparent ring-2 ring-[#5A189A]"
+                              ? "border-transparent ring-2 ring-[#E7D3A8]"
                               : "border-transparent hover:border-[#C9A961]"
                           )}
                           style={{ backgroundColor: hex }}
@@ -355,10 +355,10 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                         onClick={() => setSelectedColor(color)}
                         aria-pressed={isSelected}
                         className={cn(
-                          "px-3 py-1.5 rounded border text-sm capitalize transition-all",
+                          "px-4 py-2 rounded-full text-[12px] tracking-wide capitalize transition-all border",
                           isSelected
-                            ? "bg-[#5A189A] text-[#F8F4EE] border-[#5A189A]"
-                            : "bg-white text-[#1A1A1A] border-[#E8DFF5] hover:border-[#C9A961]"
+                            ? "bg-[#5A189A] text-[#F8F4EE] border-[#5A189A] shadow-[0_0_16px_rgba(90,24,154,0.4)]"
+                            : "bg-[#150820] text-[#A8A4B0] border-[#3A1A5C] hover:border-[#5A189A] hover:text-[#F8F4EE]"
                         )}
                         style={{ fontFamily: "var(--font-inter)" }}
                       >
@@ -367,6 +367,15 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                     );
                   })}
                 </div>
+                {/* 12px color bar showing selected color */}
+                {selectedColor && getColorHex(selectedColor) && (
+                  <div className="h-3 rounded-full overflow-hidden bg-[#150820] border border-[#3A1A5C]">
+                    <div
+                      className="h-full rounded-full"
+                      style={{ backgroundColor: getColorHex(selectedColor)!, width: "100%" }}
+                    />
+                  </div>
+                )}
               </div>
             )}
 
@@ -375,14 +384,14 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
               <div className="mb-5">
                 <div className="flex items-center justify-between mb-2.5">
                   <span
-                    className="text-sm font-normal text-[#1A1A1A]"
+                    className="text-[11px] tracking-[0.25em] uppercase text-[#A8A4B0]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Size
                   </span>
                   {selectedSize && (
                     <span
-                      className="text-sm text-[#5A189A]"
+                      className="text-[13px] text-[#E7D3A8]"
                       style={{ fontFamily: "var(--font-inter)" }}
                     >
                       {selectedSize}
@@ -401,12 +410,12 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                         disabled={!hasStock}
                         aria-pressed={selectedSize === size}
                         className={cn(
-                          "px-4 py-2 rounded border text-sm transition-all",
+                          "px-5 py-2.5 rounded-full text-[12px] tracking-wide transition-all border",
                           selectedSize === size
-                            ? "bg-[#5A189A] text-[#F8F4EE] border-[#5A189A]"
+                            ? "bg-gradient-to-r from-[#5A189A] to-[#7B3DBF] text-[#F8F4EE] border-transparent shadow-[0_0_20px_rgba(90,24,154,0.4)]"
                             : hasStock
-                            ? "bg-white text-[#1A1A1A] border-[#E8DFF5] hover:border-[#C9A961]"
-                            : "bg-[#F8F4EE] text-[#8B8B8B]/50 border-[#E8DFF5] cursor-not-allowed line-through"
+                            ? "bg-[#150820] text-[#A8A4B0] border-[#3A1A5C] hover:border-[#5A189A] hover:text-[#F8F4EE]"
+                            : "bg-[#0D0415] text-[#6B6475] border-[#1A0826] cursor-not-allowed line-through"
                         )}
                         style={{ fontFamily: "var(--font-inter)" }}
                       >
@@ -421,21 +430,21 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
             {/* Quantity */}
             <div className="mb-6">
               <span
-                className="text-sm font-normal text-[#1A1A1A] block mb-2.5"
+                className="text-[11px] tracking-[0.25em] uppercase text-[#A8A4B0] block mb-2.5"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Quantity
               </span>
-              <div className="inline-flex items-center border border-[#E8DFF5] rounded-[8px] overflow-hidden">
+              <div className="inline-flex items-center bg-[#150820] border border-[#3A1A5C] rounded-full overflow-hidden">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-11 h-11 flex items-center justify-center text-[#1A1A1A] hover:bg-[#E8DFF5]/50 transition-colors"
+                  className="w-11 h-11 flex items-center justify-center text-[#A8A4B0] hover:text-[#E7D3A8] hover:bg-[#2A0F3D] transition-colors rounded-full"
                   aria-label="Decrease quantity"
                 >
-                  <Minus size={15} />
+                  <Minus size={14} />
                 </button>
                 <span
-                  className="w-12 text-center text-sm text-[#1A1A1A]"
+                  className="w-12 text-center text-sm text-[#F8F4EE]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
                   {quantity}
@@ -445,10 +454,10 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                     setQuantity(Math.min(selectedVariant?.stockQuantity ?? 99, quantity + 1))
                   }
                   disabled={!!selectedVariant && quantity >= selectedVariant.stockQuantity}
-                  className="w-11 h-11 flex items-center justify-center text-[#1A1A1A] hover:bg-[#E8DFF5]/50 transition-colors disabled:opacity-40"
+                  className="w-11 h-11 flex items-center justify-center text-[#A8A4B0] hover:text-[#E7D3A8] hover:bg-[#2A0F3D] transition-colors rounded-full disabled:opacity-40"
                   aria-label="Increase quantity"
                 >
-                  <Plus size={15} />
+                  <Plus size={14} />
                 </button>
               </div>
               {selectedVariant &&
@@ -470,12 +479,12 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                 onClick={handleAddToCart}
                 disabled={addingToCart || isOutOfStock}
                 className={cn(
-                  "flex-1 flex items-center justify-center gap-2 py-4 rounded-[4px] text-sm tracking-[0.1em] uppercase transition-all border border-[#E7D3A8]/30",
+                  "flex-1 flex items-center justify-center gap-2 py-4 text-sm tracking-[0.12em] uppercase transition-all rounded-[6px] border border-[#E7D3A8]/25 disabled:opacity-60 disabled:cursor-not-allowed",
                   isOutOfStock
-                    ? "bg-[#8B8B8B]/40 text-[#F8F4EE] cursor-not-allowed"
-                    : "bg-[#5A189A] text-[#F8F4EE] hover:bg-[#7B3DBF] hover:shadow-[0_8px_30px_rgba(90,24,154,0.4)] disabled:opacity-70"
+                    ? "bg-[#2A0F3D]/40 text-[#A8A4B0] cursor-not-allowed"
+                    : "bg-gradient-to-r from-[#5A189A] to-[#7B3DBF] text-[#F8F4EE] hover:brightness-110 hover:shadow-[0_8px_32px_rgba(90,24,154,0.5)]"
                 )}
-                style={{ fontFamily: "var(--font-inter)" }}
+                style={{ fontFamily: "var(--font-inter)", fontWeight: 500 }}
               >
                 <ShoppingBag size={17} />
                 {isOutOfStock ? "Out of Stock" : addingToCart ? "Adding..." : "Add to Cart"}
@@ -483,33 +492,26 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
               <button
                 onClick={() => setIsWishlisted(!isWishlisted)}
                 className={cn(
-                  "w-12 h-12 flex items-center justify-center rounded-[8px] border transition-all",
-                  isWishlisted
-                    ? "border-[#C9A961] bg-[#F5EFE5]"
-                    : "border-[#E8DFF5] hover:border-[#C9A961]"
+                  "btn-icon",
+                  isWishlisted && "!bg-[#5A189A]/30 !border-[#C9A961]"
                 )}
                 aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
               >
-                <Heart
-                  size={18}
-                  className={cn(
-                    isWishlisted ? "fill-[#5A189A] text-[#5A189A]" : "text-[#1A1A1A]"
-                  )}
-                />
+                <Heart size={18} className={cn(isWishlisted ? "fill-[#C9A961] text-[#C9A961]" : "text-[#A8A4B0]")} />
               </button>
             </div>
 
             {/* Trust badges */}
-            <div className="space-y-3 py-5 border-y border-[#E8DFF5]">
+            <div className="space-y-3 py-5 border-y border-[#3A1A5C]">
               {[
                 { Icon: Truck, text: "Free Shipping over $125" },
                 { Icon: RotateCcw, text: "Free 30-Day Returns" },
                 { Icon: MapPin, text: "Canadian Made" },
               ].map(({ Icon, text }) => (
                 <div key={text} className="flex items-center gap-3">
-                  <Icon size={16} className="text-[#5A189A] shrink-0" />
+                  <Icon size={16} className="text-[#9D4EDD] shrink-0" />
                   <span
-                    className="text-[13px] font-light text-[#1A1A1A]"
+                    className="text-[13px] font-light text-[#A8A4B0]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {text}
@@ -517,12 +519,12 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Tabs */}
         <div className="mt-12 lg:mt-16">
-          <div className="flex border-b border-[#E8DFF5]">
+          <div className="flex border-b border-[#3A1A5C]">
             {(
               [
                 { key: "description", label: "Description" },
@@ -533,12 +535,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={cn(
-                  "px-6 py-3 text-sm transition-colors border-b-2",
-                  activeTab === tab.key
-                    ? "border-[#5A189A] text-[#5A189A]"
-                    : "border-transparent text-[#8B8B8B] hover:text-[#1A1A1A]"
-                )}
+                className={cn("btn-tab", activeTab === tab.key && "active")}
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {tab.label}
@@ -549,19 +546,19 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
           <div className="py-6 max-w-2xl">
             {activeTab === "description" && (
               <div
-                className="text-sm text-[#1A1A1A] leading-relaxed space-y-3 font-light"
+                className="text-sm text-[#A8A4B0] leading-relaxed space-y-3 font-light"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <p>{product.description}</p>
                 {product.threadCount && (
                   <p>
-                    <strong className="font-medium text-[#1A1A1A]">Thread Count:</strong>{" "}
+                    <strong className="font-medium text-[#E7D3A8]">Thread Count:</strong>{" "}
                     {product.threadCount} TC
                   </p>
                 )}
                 {product.material && (
                   <p>
-                    <strong className="font-medium text-[#1A1A1A]">Material:</strong>{" "}
+                    <strong className="font-medium text-[#E7D3A8]">Material:</strong>{" "}
                     {product.material}
                   </p>
                 )}
@@ -569,7 +566,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
             )}
             {activeTab === "care" && (
               <div
-                className="text-sm text-[#1A1A1A] leading-relaxed font-light space-y-2"
+                className="text-sm text-[#A8A4B0] leading-relaxed font-light space-y-2"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {product.careInstructions ? (
@@ -594,22 +591,22 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
             )}
             {activeTab === "shipping" && (
               <div
-                className="text-sm text-[#1A1A1A] leading-relaxed font-light space-y-3"
+                className="text-sm text-[#A8A4B0] leading-relaxed font-light space-y-3"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <p>
-                  <strong className="font-medium">Free shipping</strong> on all orders over $125
+                  <strong className="font-medium text-[#E7D3A8]">Free shipping</strong> on all orders over $125
                   CAD across Canada.
                 </p>
                 <p>
-                  Orders under $125 ship for a flat <strong className="font-medium">$15 CAD</strong>.
+                  Orders under $125 ship for a flat <strong className="font-medium text-[#E7D3A8]">$15 CAD</strong>.
                 </p>
                 <p>
                   Most orders ship within 1–2 business days. Delivery takes 3–7 business days
                   depending on your location.
                 </p>
                 <p>
-                  We offer <strong className="font-medium">free 30-day returns</strong> on all
+                  We offer <strong className="font-medium text-[#E7D3A8]">free 30-day returns</strong> on all
                   unwashed, unused items in original packaging.
                 </p>
               </div>
@@ -618,9 +615,9 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
         </div>
 
         {/* Reviews */}
-        <div className="mt-8 pt-8 border-t border-[#E8DFF5]">
+        <div className="mt-8 pt-8 border-t border-[#3A1A5C]">
           <h2
-            className="text-[#1A1A1A] text-xl font-bold mb-6"
+            className="text-[#E7D3A8] text-xl font-bold mb-6"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Customer Reviews
@@ -630,13 +627,13 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
           {product.reviews.length === 0 ? (
             <div className="text-center py-12">
               <p
-                className="text-[#8B8B8B] mb-4"
+                className="text-[#A8A4B0] mb-4"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Be the first to review this product
               </p>
               <button
-                className="px-6 py-3 border border-[#5A189A] text-[#5A189A] text-sm tracking-[0.1em] uppercase rounded-[4px] hover:bg-[#5A189A]/5 transition-all"
+                className="px-6 py-3 border border-[#5A189A] text-[#5A189A] text-sm tracking-[0.1em] uppercase rounded-[4px] hover:bg-[#5A189A]/10 transition-all"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Write a Review
@@ -647,7 +644,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
               {product.reviews.slice(0, 5).map((review) => (
                 <div
                   key={review.id}
-                  className="bg-white rounded-[8px] p-5 border border-[#E8DFF5]"
+                  className="bg-[#150820] rounded-xl p-5 border border-[#3A1A5C]"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div>
@@ -666,7 +663,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                       </div>
                       {review.title && (
                         <h4
-                          className="text-sm font-medium text-[#1A1A1A]"
+                          className="text-sm font-medium text-[#E7D3A8]"
                           style={{ fontFamily: "var(--font-inter)" }}
                         >
                           {review.title}
@@ -675,7 +672,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                     </div>
                     <div className="text-right">
                       <p
-                        className="text-sm font-light text-[#1A1A1A]"
+                        className="text-sm font-light text-[#A8A4B0]"
                         style={{ fontFamily: "var(--font-inter)" }}
                       >
                         {review.user.name}
@@ -691,7 +688,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                     </div>
                   </div>
                   <p
-                    className="text-sm font-light text-[#1A1A1A] leading-relaxed"
+                    className="text-sm font-light text-[#A8A4B0] leading-relaxed"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {review.comment}
@@ -706,19 +703,19 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
       {/* Mobile sticky CTA */}
       <div
         className={cn(
-          "fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-[#F8F4EE]/95 backdrop-blur border-t border-[#E8DFF5] px-4 py-3 flex gap-3 transition-transform duration-200",
+          "fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-[#050507]/95 backdrop-blur-xl border-t border-[#3A1A5C] px-4 py-3 flex gap-3 transition-transform duration-200",
           stickyVisible ? "translate-y-0" : "translate-y-full"
         )}
       >
         <div className="flex-1 min-w-0">
           <p
-            className="text-xs text-[#8B8B8B] line-clamp-1"
+            className="text-xs text-[#A8A4B0] line-clamp-1"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {product.name}
           </p>
           <p
-            className="text-sm font-medium text-[#5A189A]"
+            className="text-sm font-medium text-[#E7D3A8]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {formatPrice(product.price)}
@@ -727,7 +724,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
         <button
           onClick={handleAddToCart}
           disabled={addingToCart || isOutOfStock}
-          className="px-5 py-2.5 bg-[#5A189A] text-[#F8F4EE] text-sm tracking-[0.05em] uppercase rounded-[4px] border border-[#E7D3A8]/30 hover:bg-[#7B3DBF] transition-all disabled:opacity-60"
+          className="px-5 py-2.5 bg-gradient-to-r from-[#5A189A] to-[#7B3DBF] text-[#F8F4EE] text-sm tracking-[0.05em] uppercase rounded-[4px] border border-[#E7D3A8]/25 hover:brightness-110 transition-all disabled:opacity-60"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           {isOutOfStock ? "Sold Out" : "Add to Cart"}

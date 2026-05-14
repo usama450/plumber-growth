@@ -50,12 +50,12 @@ async function getFeaturedProducts(): Promise<ProductCardData[]> {
 
 function SkeletonCard() {
   return (
-    <div className="bg-white rounded-[8px] overflow-hidden animate-pulse">
-      <div className="aspect-[4/5] bg-[#E8DFF5]/40" />
+    <div className="bg-[#150820] rounded-[8px] overflow-hidden animate-pulse">
+      <div className="aspect-[4/5] bg-[#3A1A5C]/40" />
       <div className="p-4 space-y-2.5">
-        <div className="h-2.5 bg-[#E8DFF5]/60 rounded w-1/3" />
-        <div className="h-4 bg-[#E8DFF5]/60 rounded w-3/4" />
-        <div className="h-3 bg-[#E8DFF5]/40 rounded w-1/4" />
+        <div className="h-2.5 bg-[#3A1A5C]/60 rounded w-1/3" />
+        <div className="h-4 bg-[#3A1A5C]/60 rounded w-3/4" />
+        <div className="h-3 bg-[#3A1A5C]/40 rounded w-1/4" />
       </div>
     </div>
   );
@@ -65,7 +65,7 @@ export async function FeaturedProducts() {
   const products = await getFeaturedProducts();
 
   return (
-    <section className="py-20 lg:py-28 bg-[#F5EFE5]">
+    <section className="py-20 lg:py-28 bg-[#050507]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header */}
         <ScrollReveal
@@ -83,7 +83,7 @@ export async function FeaturedProducts() {
               </span>
             </div>
             <h2
-              className="text-[#5A189A]"
+              className="text-[#E7D3A8]"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               Our Collection
@@ -91,7 +91,7 @@ export async function FeaturedProducts() {
           </div>
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 text-[13px] text-[#8B8B8B] hover:text-[#5A189A] transition-colors border-b border-[#8B8B8B]/30 hover:border-[#5A189A] pb-0.5 self-start sm:self-auto"
+            className="inline-flex items-center gap-2 text-[13px] text-[#A8A4B0] hover:text-[#E7D3A8] transition-colors border-b border-[#3A1A5C] hover:border-[#E7D3A8] pb-0.5 self-start sm:self-auto"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             View all

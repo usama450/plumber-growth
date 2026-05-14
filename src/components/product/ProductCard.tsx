@@ -56,9 +56,9 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
   return (
     <article
-      className={cn("group relative bg-white rounded-[8px] overflow-hidden", className)}
+      className={cn("group relative bg-[#150820] rounded-[8px] overflow-hidden", className)}
       style={{
-        border: isHovered ? "1px solid #E8DFF5" : "1px solid transparent",
+        border: isHovered ? "1px solid #3A1A5C" : "1px solid transparent",
         boxShadow: isHovered
           ? "0 12px 40px rgba(26,10,38,0.12)"
           : "0 2px 8px rgba(26,10,38,0.04)",
@@ -72,7 +72,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
       {/* Image area */}
       <Link
         href={`/product/${product.slug}`}
-        className="block relative aspect-[4/5] bg-[#F5EFE5] overflow-hidden rounded-t-[8px]"
+        className="block relative aspect-[4/5] bg-[#150820] overflow-hidden rounded-t-[8px]"
       >
         {primaryImage && (
           <Image
@@ -116,7 +116,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           }}
           className={cn(
             "absolute top-3 right-3 w-8 h-8 flex items-center justify-center",
-            "bg-white/90 backdrop-blur-sm border border-[#E8DFF5]",
+            "bg-[#150820]/90 backdrop-blur-sm border border-[#3A1A5C]",
             "opacity-0 group-hover:opacity-100 transition-all duration-300",
             "hover:border-[#C9A961]"
           )}
@@ -126,7 +126,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             size={13}
             className={cn(
               "transition-colors",
-              isWishlisted ? "fill-[#1A1A1A] text-[#1A1A1A]" : "text-[#1A1A1A]"
+              isWishlisted ? "fill-[#E7D3A8] text-[#E7D3A8]" : "text-[#A8A4B0]"
             )}
           />
         </button>
@@ -156,7 +156,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
       <div className="p-4">
         {/* Category label */}
         <p
-          className="text-[10px] text-[#8B8B8B] tracking-[0.25em] uppercase mb-1"
+          className="text-[10px] text-[#A8A4B0] tracking-[0.25em] uppercase mb-1"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           {product.category.name}
@@ -165,7 +165,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
         {/* Product name */}
         <Link href={`/product/${product.slug}`}>
           <h3
-            className="text-[15px] text-[#1A1A1A] hover:text-[#5A189A] transition-colors line-clamp-1 mb-2 font-normal italic"
+            className="text-[15px] text-[#E7D3A8] hover:text-[#C9A961] transition-colors line-clamp-1 mb-2 font-normal italic"
             style={{ fontFamily: "var(--font-playfair)", fontWeight: 400 }}
           >
             {product.name}
@@ -187,7 +187,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
               />
             ))}
             <span
-              className="text-[10px] text-[#8B8B8B] ml-0.5"
+              className="text-[10px] text-[#A8A4B0] ml-0.5"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               ({product._count?.reviews ?? 0})
@@ -198,14 +198,14 @@ export function ProductCard({ product, className }: ProductCardProps) {
         {/* Price row */}
         <div className="flex items-center gap-2.5">
           <span
-            className="text-[15px] text-[#5A189A]"
+            className="text-[15px] text-[#E7D3A8]"
             style={{ fontFamily: "var(--font-inter)", fontWeight: 500 }}
           >
             {formatPrice(product.price)}
           </span>
           {product.comparePrice && product.comparePrice > product.price && (
             <span
-              className="text-[13px] text-[#8B8B8B] line-through"
+              className="text-[13px] text-[#A8A4B0] line-through"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {formatPrice(product.comparePrice)}
