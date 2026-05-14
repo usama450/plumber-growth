@@ -56,169 +56,196 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
   return (
     <article
-      className={cn("group relative bg-[#150820] rounded-[8px] overflow-hidden", className)}
+      className={cn("group relative overflow-hidden rounded-2xl", className)}
       style={{
-        border: isHovered ? "1px solid #3A1A5C" : "1px solid transparent",
         boxShadow: isHovered
-          ? "0 12px 40px rgba(26,10,38,0.12)"
-          : "0 2px 8px rgba(26,10,38,0.04)",
-        transform: isHovered ? "translateY(-4px)" : "none",
-        transition:
-          "transform 0.4s cubic-bezier(0.25,0.1,0.25,1), box-shadow 0.4s cubic-bezier(0.25,0.1,0.25,1), border-color 0.4s",
+          ? "0 20px 60px rgba(5,0,7,0.7), 0 0 0 1px rgba(231,211,168,0.15)"
+          : "0 4px 20px rgba(5,0,7,0.4), 0 0 0 1px rgba(58,26,92,0.3)",
+        transform: isHovered ? "translateY(-6px) scale(1.01)" : "translateY(0) scale(1)",
+        transition: "transform 0.4s cubic-bezier(0.25,0.1,0.25,1), box-shadow 0.4s cubic-bezier(0.25,0.1,0.25,1)",
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Image area */}
-      <Link
-        href={`/product/${product.slug}`}
-        className="block relative aspect-[4/5] bg-[#150820] overflow-hidden rounded-t-[8px]"
-      >
-        {primaryImage && (
+      {/* Full card is the image link — info overlays at bottom */}
+      <Link href={`/product/${product.slug}`} className="block relative aspect-[3/4] bg-[#150820]">
+
+        {/* Product image */}
+        {primaryImage ? (
           <Image
-            src={
-              isHovered && hoverImage !== primaryImage
-                ? hoverImage.imageUrl
-                : primaryImage.imageUrl
-            }
+            src={isHovered && hoverImage !== primaryImage ? hoverImage.imageUrl : primaryImage.imageUrl}
             alt={primaryImage.altText ?? product.name}
             fill
-            className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-[1.05]"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
-        )}
-
-        {/* Badges top-left */}
-        <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-          {product.isOnSale && discount > 0 && (
-            <span
-              className="px-2.5 py-1 bg-[#1A0826] text-[#E7D3A8] text-[10px] tracking-[0.15em] uppercase"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              -{discount}%
-            </span>
-          )}
-          {isOutOfStock && (
-            <span
-              className="px-2.5 py-1 bg-[#8B8B8B] text-white text-[10px] tracking-[0.15em] uppercase"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              Sold Out
-            </span>
-          )}
-        </div>
-
-        {/* Wishlist button top-right */}
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            setIsWishlisted(!isWishlisted);
-          }}
-          className={cn(
-            "absolute top-3 right-3 w-8 h-8 flex items-center justify-center",
-            "bg-[#150820]/90 backdrop-blur-sm border border-[#3A1A5C]",
-            "opacity-0 group-hover:opacity-100 transition-all duration-300",
-            "hover:border-[#C9A961]"
-          )}
-          aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
-        >
-          <Heart
-            size={13}
-            className={cn(
-              "transition-colors",
-              isWishlisted ? "fill-[#E7D3A8] text-[#E7D3A8]" : "text-[#A8A4B0]"
-            )}
-          />
-        </button>
-
-        {/* Quick Add button bottom */}
-        {!isOutOfStock && (
-          <div
-            className={cn(
-              "absolute bottom-0 left-0 right-0 transition-all duration-300",
-              isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-            )}
-          >
-            <button
-              onClick={handleQuickAdd}
-              disabled={addingToCart}
-              className="w-full flex items-center justify-center gap-2 py-3 bg-[#5A189A] text-[#F8F4EE] text-[11px] tracking-[0.2em] uppercase hover:bg-[#7B3DBF] transition-colors disabled:opacity-70"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              <ShoppingBag size={13} />
-              {addingToCart ? "Adding..." : "Quick Add"}
-            </button>
+        ) : (
+          /* Placeholder when no image */
+          <div className="absolute inset-0 bg-gradient-to-br from-[#2A0F3D] to-[#150820] flex items-center justify-center">
+            <ShoppingBag size={40} className="text-[#3A1A5C]" />
           </div>
         )}
-      </Link>
 
-      {/* Info area */}
-      <div className="p-4">
-        {/* Category label */}
-        <p
-          className="text-[10px] text-[#A8A4B0] tracking-[0.25em] uppercase mb-1"
-          style={{ fontFamily: "var(--font-inter)" }}
-        >
-          {product.category.name}
-        </p>
+        {/* Permanent subtle gradient at bottom for readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/50 via-40% to-transparent" />
 
-        {/* Product name */}
-        <Link href={`/product/${product.slug}`}>
+        {/* Hover gradient intensifies */}
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-[#1A0826]/80 via-transparent to-transparent transition-opacity duration-400"
+          style={{ opacity: isHovered ? 1 : 0 }}
+        />
+
+        {/* Top badges row */}
+        <div className="absolute top-3 left-3 right-3 flex items-start justify-between z-10">
+          {/* Sale / stock badge */}
+          <div className="flex flex-col gap-1.5">
+            {product.isOnSale && discount > 0 && (
+              <span
+                className="px-2.5 py-1 rounded-full text-[10px] tracking-[0.12em] uppercase font-medium"
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  background: "linear-gradient(135deg, #5A189A, #7B3DBF)",
+                  color: "#F8F4EE",
+                }}
+              >
+                -{discount}%
+              </span>
+            )}
+            {isOutOfStock && (
+              <span
+                className="px-2.5 py-1 rounded-full bg-[#1A0826]/80 backdrop-blur text-[#A8A4B0] text-[10px] tracking-[0.12em] uppercase border border-[#3A1A5C]"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                Sold Out
+              </span>
+            )}
+            {product.isFeatured && !product.isOnSale && (
+              <span
+                className="px-2.5 py-1 rounded-full text-[10px] tracking-[0.12em] uppercase"
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  background: "rgba(201,169,97,0.15)",
+                  border: "1px solid rgba(201,169,97,0.4)",
+                  color: "#C9A961",
+                }}
+              >
+                New
+              </span>
+            )}
+          </div>
+
+          {/* Wishlist button */}
+          <button
+            onClick={(e) => { e.preventDefault(); setIsWishlisted(!isWishlisted); }}
+            className={cn(
+              "w-9 h-9 flex items-center justify-center rounded-full backdrop-blur-md border transition-all duration-300",
+              isWishlisted
+                ? "bg-[#5A189A]/60 border-[#C9A961] opacity-100"
+                : "bg-[#050507]/50 border-[#3A1A5C] opacity-0 group-hover:opacity-100 hover:border-[#C9A961]"
+            )}
+            aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+          >
+            <Heart
+              size={14}
+              className={isWishlisted ? "fill-[#C9A961] text-[#C9A961]" : "text-[#A8A4B0]"}
+            />
+          </button>
+        </div>
+
+        {/* Overlay info — always visible, sitting on gradient */}
+        <div className="absolute bottom-0 left-0 right-0 z-10 p-4">
+          {/* Category */}
+          <p
+            className="text-[9px] tracking-[0.28em] uppercase text-[#A8A4B0] mb-1.5"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            {product.category.name}
+          </p>
+
+          {/* Product name */}
           <h3
-            className="text-[15px] text-[#E7D3A8] hover:text-[#C9A961] transition-colors line-clamp-1 mb-2 font-normal italic"
+            className="text-[15px] text-[#F8F4EE] group-hover:text-[#E7D3A8] transition-colors leading-snug line-clamp-1 mb-2"
             style={{ fontFamily: "var(--font-playfair)", fontWeight: 400 }}
           >
             {product.name}
           </h3>
-        </Link>
 
-        {/* Star rating */}
-        {avgRating > 0 && (
-          <div className="flex items-center gap-1 mb-2">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <Star
-                key={i}
-                size={10}
-                className={cn(
-                  i <= avgRating
-                    ? "fill-[#C9A961] text-[#C9A961]"
-                    : "text-[#C9A961]/30"
-                )}
-              />
-            ))}
-            <span
-              className="text-[10px] text-[#A8A4B0] ml-0.5"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              ({product._count?.reviews ?? 0})
-            </span>
+          {/* Stars + price row */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              {/* Price */}
+              <span
+                className="text-[15px] text-[#E7D3A8]"
+                style={{ fontFamily: "var(--font-inter)", fontWeight: 500 }}
+              >
+                {formatPrice(product.price)}
+              </span>
+              {product.comparePrice && product.comparePrice > product.price && (
+                <span
+                  className="text-[12px] text-[#6B6475] line-through"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {formatPrice(product.comparePrice)}
+                </span>
+              )}
+            </div>
+
+            {/* Stars (compact) */}
+            {avgRating > 0 && (
+              <div className="flex items-center gap-0.5">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star
+                    key={i}
+                    size={9}
+                    className={cn(
+                      i <= Math.round(avgRating)
+                        ? "fill-[#C9A961] text-[#C9A961]"
+                        : "text-[#3A1A5C] fill-[#3A1A5C]"
+                    )}
+                  />
+                ))}
+                <span className="text-[9px] text-[#6B6475] ml-0.5" style={{ fontFamily: "var(--font-inter)" }}>
+                  ({product._count?.reviews ?? 0})
+                </span>
+              </div>
+            )}
           </div>
-        )}
 
-        {/* Price row */}
-        <div className="flex items-center gap-2.5">
-          <span
-            className="text-[15px] text-[#E7D3A8]"
-            style={{ fontFamily: "var(--font-inter)", fontWeight: 500 }}
-          >
-            {formatPrice(product.price)}
-          </span>
-          {product.comparePrice && product.comparePrice > product.price && (
-            <span
-              className="text-[13px] text-[#A8A4B0] line-through"
-              style={{ fontFamily: "var(--font-inter)" }}
+          {/* Quick Add — slides up on hover */}
+          {!isOutOfStock && (
+            <div
+              className="overflow-hidden transition-all duration-300 ease-out"
+              style={{ maxHeight: isHovered ? "48px" : "0px", marginTop: isHovered ? "10px" : "0px" }}
             >
-              {formatPrice(product.comparePrice)}
-            </span>
-          )}
-          {product.isFeatured && (
-            <Star
-              size={10}
-              className="fill-[#C9A961] text-[#C9A961] shrink-0"
-            />
+              <button
+                onClick={handleQuickAdd}
+                disabled={addingToCart}
+                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-[11px] tracking-[0.18em] uppercase transition-all disabled:opacity-70"
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  fontWeight: 500,
+                  background: "linear-gradient(135deg, rgba(90,24,154,0.85), rgba(123,61,191,0.85))",
+                  border: "1px solid rgba(231,211,168,0.2)",
+                  color: "#F8F4EE",
+                  backdropFilter: "blur(8px)",
+                }}
+              >
+                <ShoppingBag size={12} />
+                {addingToCart ? "Adding…" : "Quick Add"}
+              </button>
+            </div>
           )}
         </div>
-      </div>
+
+        {/* Gold shimmer line at top on hover */}
+        <div
+          className="absolute top-0 left-0 right-0 h-[2px] transition-opacity duration-300"
+          style={{
+            background: "linear-gradient(to right, transparent, #C9A961, transparent)",
+            opacity: isHovered ? 1 : 0,
+          }}
+        />
+      </Link>
     </article>
   );
 }

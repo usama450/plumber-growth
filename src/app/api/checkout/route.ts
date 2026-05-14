@@ -47,7 +47,8 @@ export async function POST(req: NextRequest) {
       shipping_options: shipping === 0
         ? [{ shipping_rate_data: { type: "fixed_amount", fixed_amount: { amount: 0, currency: "cad" }, display_name: "Free Shipping", delivery_estimate: { minimum: { unit: "business_day", value: 3 }, maximum: { unit: "business_day", value: 7 } } } }]
         : [{ shipping_rate_data: { type: "fixed_amount", fixed_amount: { amount: 1500, currency: "cad" }, display_name: "Standard Shipping", delivery_estimate: { minimum: { unit: "business_day", value: 3 }, maximum: { unit: "business_day", value: 7 } } } }],
-      automatic_tax: { enabled: true },
+      // automatic_tax requires Stripe Tax account configuration — disabled until configured
+      // automatic_tax: { enabled: true },
       ...(discount > 0 && couponCode && {
         discounts: [{
           coupon: await getOrCreateStripeCoupon(couponCode, discount, subtotal),
