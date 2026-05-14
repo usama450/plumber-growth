@@ -1,39 +1,62 @@
 @import "tailwindcss";
 @import "tailwindcss/preflight";
 
-@layer base {
-  :root {
-    /* Warm Espresso & Gold palette */
-    --background: #F7F3EE;
-    --surface: #EDE8DF;
-    --surface-dark: #1A1410;
-    --foreground: #1A1410;
-    --primary: #1A1410;
-    --primary-hover: #2E2318;
-    --accent: #C4992E;
-    --accent-light: #E8D5A0;
-    --stone: #C4B9A8;
-    --muted: #9A9088;
-    --border: #DDD5C9;
-    --error: #B84040;
-    --success: #4A7A52;
-    --card: #FFFFFF;
+/* ─── Design Tokens (Tailwind v4 @theme) ───────────────────────────────────── */
 
-    /* Typography */
-    --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
-    --font-sans: var(--font-dm), "DM Sans", system-ui, sans-serif;
-  }
+@theme {
+  --color-deep-bg:           #050507;
+  --color-royal-purple:      #1A0826;
+  --color-glow-purple:       #5A189A;
+  --color-glow-purple-hover: #7B3DBF;
+  --color-soft-lavender:     #E8DFF5;
+  --color-champagne-gold:    #E7D3A8;
+  --color-dark-gold:         #C9A961;
+  --color-soft-white:        #F8F4EE;
+  --color-warm-cream:        #F5EFE5;
+  --color-dark-charcoal:     #1A1A1A;
+  --color-light-gray:        #8B8B8B;
+  --color-error:             #B85450;
+  --color-success:           #6B8E4E;
 }
 
-@layer base {
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* ─── Base Layer ────────────────────────────────────────────────────────────── */
 
-  html { scroll-behavior: smooth; }
+@layer base {
+  :root {
+    /* Brand palette */
+    --deep-bg:           #050507;
+    --royal-purple:      #1A0826;
+    --glow-purple:       #5A189A;
+    --glow-purple-hover: #7B3DBF;
+    --soft-lavender:     #E8DFF5;
+    --champagne-gold:    #E7D3A8;
+    --dark-gold:         #C9A961;
+    --soft-white:        #F8F4EE;
+    --warm-cream:        #F5EFE5;
+    --dark-charcoal:     #1A1A1A;
+    --light-gray:        #8B8B8B;
+    --error:             #B85450;
+    --success:           #6B8E4E;
+
+    /* Typography variables */
+    --font-playfair: var(--font-playfair-var), "Playfair Display", Georgia, serif;
+    --font-inter:    var(--font-inter-var), "Inter", system-ui, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
-    background-color: #F7F3EE;
-    color: #1A1410;
-    font-family: var(--font-sans);
+    background-color: #F8F4EE;
+    color: #1A1A1A;
+    font-family: var(--font-inter);
     font-weight: 400;
     line-height: 1.65;
     font-size: 16px;
@@ -42,23 +65,50 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif);
-    color: #1A1410;
-    font-weight: 500;
+    font-family: var(--font-playfair);
+    color: #5A189A;
+    font-weight: 400;
     line-height: 1.15;
     letter-spacing: -0.01em;
   }
 
-  h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; }
-  h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; }
-  h3 { font-size: clamp(1.4rem, 2.5vw, 1.8rem); }
+  h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+  h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
+  h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
 
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; height: auto; }
-  input, textarea, select { font-family: var(--font-sans); }
+  input, textarea, select { font-family: var(--font-inter); }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #F8F4EE; }
+  ::-webkit-scrollbar-thumb { background: #E8DFF5; border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #5A189A; }
+
+  /* ── Selection ── */
+  ::selection { background: #5A189A; color: #F8F4EE; }
 }
 
-/* ─── Scroll Reveal Animations ─────────────────────────────────────────── */
+/* ─── Font Utilities ────────────────────────────────────────────────────────── */
+
+@utility font-playfair {
+  font-family: var(--font-playfair);
+}
+
+@utility font-inter {
+  font-family: var(--font-inter);
+}
+
+@utility font-sans {
+  font-family: var(--font-inter);
+}
+
+@utility font-serif {
+  font-family: var(--font-playfair);
+}
+
+/* ─── Keyframe Animations ────────────────────────────────────────────────────── */
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(40px); }
@@ -81,13 +131,8 @@
 }
 
 @keyframes scaleUp {
-  from { opacity: 0; transform: scale(0.94); }
+  from { opacity: 0; transform: scale(0.93); }
   to   { opacity: 1; transform: scale(1); }
-}
-
-@keyframes lineGrow {
-  from { transform: scaleX(0); transform-origin: left; }
-  to   { transform: scaleX(1); transform-origin: left; }
 }
 
 @keyframes shimmer {
@@ -95,13 +140,23 @@
   100% { background-position: 200% center; }
 }
 
-/* Hero text load animation */
 @keyframes heroReveal {
   from { opacity: 0; transform: translateY(20px) skewY(1deg); }
   to   { opacity: 1; transform: translateY(0) skewY(0deg); }
 }
 
-/* Default state — hidden until JS adds .revealed */
+@keyframes goldShimmer {
+  0%   { background-position: -300% center; }
+  100% { background-position: 300% center; }
+}
+
+@keyframes floatDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Scroll Reveal System ──────────────────────────────────────────────────── */
+
 [data-reveal] {
   opacity: 0;
   transition: none;
@@ -110,48 +165,56 @@
 [data-reveal="fade-up"].revealed {
   animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
 [data-reveal="fade-in"].revealed {
   animation: fadeIn 0.8s ease forwards;
 }
+
 [data-reveal="fade-left"].revealed {
   animation: fadeLeft 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
 [data-reveal="fade-right"].revealed {
   animation: fadeRight 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
 [data-reveal="scale-up"].revealed {
   animation: scaleUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Stagger children */
+/* ─── Stagger System ────────────────────────────────────────────────────────── */
+
 [data-stagger] > * {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 [data-stagger].revealed > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0ms; }
 [data-stagger].revealed > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 80ms; }
 [data-stagger].revealed > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 160ms; }
 [data-stagger].revealed > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 240ms; }
 [data-stagger].revealed > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 320ms; }
 [data-stagger].revealed > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 400ms; }
+[data-stagger].revealed > *:nth-child(7) { opacity: 1; transform: none; transition-delay: 480ms; }
+[data-stagger].revealed > *:nth-child(8) { opacity: 1; transform: none; transition-delay: 560ms; }
 
-/* ─── Hero ──────────────────────────────────────────────────────────────── */
+/* ─── Hero Classes ──────────────────────────────────────────────────────────── */
 
 .hero-headline {
-  font-family: var(--font-serif);
-  font-size: clamp(4rem, 9vw, 8rem);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: #F7F3EE;
+  font-family: var(--font-playfair);
+  font-size: clamp(2.1rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #E7D3A8;
 }
 
 .hero-headline em {
   font-style: italic;
-  font-weight: 300;
-  color: #C4992E;
+  font-weight: 400;
+  color: #C9A961;
 }
 
 .hero-word {
@@ -162,84 +225,193 @@
 .hero-word:nth-child(1) { animation-delay: 0.1s; }
 .hero-word:nth-child(2) { animation-delay: 0.25s; }
 .hero-word:nth-child(3) { animation-delay: 0.4s; }
+.hero-word:nth-child(4) { animation-delay: 0.55s; }
+.hero-word:nth-child(5) { animation-delay: 0.7s; }
 
 .hero-sub {
   opacity: 0;
-  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+  font-family: var(--font-inter);
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  font-weight: 300;
+  color: rgba(248, 244, 238, 0.7);
+  line-height: 1.7;
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
 }
 
 .hero-cta {
   opacity: 0;
-  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.85s forwards;
 }
 
-/* ─── Decorative eyebrow line ───────────────────────────────────────────── */
+/* ─── Eyebrow Line ──────────────────────────────────────────────────────────── */
 
 .eyebrow-line {
   display: inline-block;
   width: 32px;
   height: 1px;
-  background: #C4992E;
-  animation: lineGrow 0.6s ease 0.3s both;
+  background: #E7D3A8;
+  vertical-align: middle;
+  flex-shrink: 0;
 }
 
-/* ─── Hover effects ─────────────────────────────────────────────────────── */
+/* ─── Button: Primary ───────────────────────────────────────────────────────── */
 
-.lift-hover {
-  transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
-              box-shadow 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-.lift-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(26, 20, 16, 0.14);
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background-color: #5A189A;
+  color: #F8F4EE;
+  border: 1px solid rgba(231, 211, 168, 0.35);
+  border-radius: 4px;
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.2s ease;
+  text-decoration: none;
 }
 
-/* Gold shimmer on buttons */
-.btn-gold {
+.btn-primary:hover {
+  background-color: #7B3DBF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(90, 24, 154, 0.45), 0 0 20px rgba(90, 24, 154, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ─── Button: Secondary ─────────────────────────────────────────────────────── */
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background-color: transparent;
+  color: #E7D3A8;
+  border: 1px solid rgba(231, 211, 168, 0.55);
+  border-radius: 4px;
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(231, 211, 168, 0.1);
+  border-color: rgba(231, 211, 168, 0.9);
+  transform: translateY(-1px);
+}
+
+/* ─── Button: Gold Shimmer ──────────────────────────────────────────────────── */
+
+.btn-gold-shimmer {
   position: relative;
   overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background-color: #5A189A;
+  color: #F8F4EE;
+  border: 1px solid rgba(231, 211, 168, 0.35);
+  border-radius: 4px;
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
 }
-.btn-gold::after {
+
+.btn-gold-shimmer::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     105deg,
-    transparent 33%,
-    rgba(255,255,255,0.15) 50%,
-    transparent 66%
+    transparent 30%,
+    rgba(231, 211, 168, 0.2) 50%,
+    transparent 70%
   );
-  background-size: 200% 100%;
-  transition: none;
+  background-size: 300% 100%;
   opacity: 0;
+  transition: opacity 0.15s ease;
 }
-.btn-gold:hover::after {
-  animation: shimmer 0.6s ease forwards;
+
+.btn-gold-shimmer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(90, 24, 154, 0.45);
+}
+
+.btn-gold-shimmer:hover::after {
+  animation: goldShimmer 0.7s ease forwards;
   opacity: 1;
 }
 
-/* ─── Font utilities ────────────────────────────────────────────────────── */
+/* ─── Card: Product ─────────────────────────────────────────────────────────── */
 
-@utility font-playfair {
-  font-family: var(--font-serif);
-}
-@utility font-cormorant {
-  font-family: var(--font-serif);
-}
-@utility font-inter {
-  font-family: var(--font-sans);
-}
-@utility font-dm {
-  font-family: var(--font-sans);
+.card-product {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-/* ─── Scrollbar ─────────────────────────────────────────────────────────── */
+.card-product:hover {
+  border-color: rgba(90, 24, 154, 0.3);
+  box-shadow: 0 8px 32px rgba(90, 24, 154, 0.12);
+  transform: translateY(-3px);
+}
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #F7F3EE; }
-::-webkit-scrollbar-thumb { background: #C4B9A8; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: #1A1410; }
+/* ─── Section: Dark ─────────────────────────────────────────────────────────── */
 
-/* ─── Selection ─────────────────────────────────────────────────────────── */
+.section-dark {
+  background-color: #050507;
+}
 
-::selection { background: #C4992E; color: #fff; }
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4,
+.section-dark h5,
+.section-dark h6 {
+  color: #E7D3A8;
+}
+
+.section-dark p,
+.section-dark span {
+  color: rgba(248, 244, 238, 0.75);
+}
+
+/* ─── Gold Divider ──────────────────────────────────────────────────────────── */
+
+.gold-divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: rgba(231, 211, 168, 0.25);
+  border: none;
+}
+
+/* ─── Glow Text ─────────────────────────────────────────────────────────────── */
+
+.glow-text {
+  text-shadow: 0 0 20px rgba(90, 24, 154, 0.5);
+}

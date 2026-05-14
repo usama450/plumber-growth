@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -9,17 +9,17 @@ import { Providers } from "@/components/common/Providers";
 import { CookieBanner } from "@/components/common/CookieBanner";
 import { Analytics } from "@/components/common/Analytics";
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-cormorant",
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  variable: "--font-playfair-var",
+  weight: ["400", "700"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm",
+  variable: "--font-inter-var",
+  weight: ["300", "400", "500"],
   display: "swap",
 });
 
@@ -55,12 +55,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
-      <body>
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+      <body className="bg-[#F8F4EE]">
         <Providers>
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[100] bg-[#1A1410] text-white px-4 py-2 rounded-lg"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[100] bg-[#5A189A] text-[#F8F4EE] px-4 py-2 rounded-lg"
           >
             Skip to content
           </a>

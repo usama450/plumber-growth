@@ -9,31 +9,38 @@ import { SortDropdown } from "@/components/shop/SortDropdown";
 import type { ProductCardData } from "@/types";
 import type { Prisma } from "@prisma/client";
 
-const CATEGORY_META: Record<string, { title: string; description: string; image: string; heroTitle: string; heroSub: string }> = {
+const CATEGORY_META: Record<
+  string,
+  { title: string; description: string; image: string; heroTitle: string; heroSub: string }
+> = {
   bedsheets: {
     title: "Premium Bedsheets",
-    description: "Shop our collection of premium cotton bedsheets. Percale and sateen weaves in sizes from Twin to California King.",
+    description:
+      "Shop our collection of premium cotton bedsheets. Percale and sateen weaves in sizes from Twin to California King.",
     image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1400&q=85",
     heroTitle: "Bedsheets",
     heroSub: "Thread counts from 400–1000. Percale, sateen, and beyond.",
   },
   comforters: {
     title: "Comforter Sets",
-    description: "Complete comforter and duvet sets for a beautifully dressed bed. Premium fills and covers.",
+    description:
+      "Complete comforter and duvet sets for a beautifully dressed bed. Premium fills and covers.",
     image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1400&q=85",
     heroTitle: "Comforter Sets",
     heroSub: "Complete bed-in-a-bag sets that dress your room instantly.",
   },
   towels: {
     title: "Bath Towels",
-    description: "Plush, absorbent cotton bath towels and sets in a rich spectrum of colours.",
+    description:
+      "Plush, absorbent cotton bath towels and sets in a rich spectrum of colours.",
     image: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=1400&q=85",
     heroTitle: "Bath Towels",
     heroSub: "Plush and absorbent. Because you deserve the best after every shower.",
   },
   "gift-bundles": {
     title: "Gift Bundles",
-    description: "Curated home textile gift sets. Perfect for weddings, housewarmings, and special occasions.",
+    description:
+      "Curated home textile gift sets. Perfect for weddings, housewarmings, and special occasions.",
     image: "https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=1400&q=85",
     heroTitle: "Gift Bundles",
     heroSub: "The perfect gift for any home — beautifully packaged and ready to give.",
@@ -52,12 +59,23 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   return { title: meta.title, description: meta.description };
 }
 
-async function getProductsByCategory(category: string, searchParams: Record<string, string | string[] | undefined>): Promise<{ products: ProductCardData[]; total: number }> {
+async function getProductsByCategory(
+  category: string,
+  searchParams: Record<string, string | string[] | undefined>
+): Promise<{ products: ProductCardData[]; total: number }> {
   const sort = (searchParams.sort as string) ?? "newest";
   const maxPrice = parseFloat((searchParams.maxPrice as string) ?? "500");
   const sale = searchParams.sale === "true";
-  const colorFilter = searchParams.color ? (Array.isArray(searchParams.color) ? searchParams.color : [searchParams.color]) : [];
-  const sizeFilter = searchParams.size ? (Array.isArray(searchParams.size) ? searchParams.size : [searchParams.size]) : [];
+  const colorFilter = searchParams.color
+    ? Array.isArray(searchParams.color)
+      ? searchParams.color
+      : [searchParams.color]
+    : [];
+  const sizeFilter = searchParams.size
+    ? Array.isArray(searchParams.size)
+      ? searchParams.size
+      : [searchParams.size]
+    : [];
 
   const orderBy: Prisma.ProductOrderByWithRelationInput =
     sort === "price_asc" ? { price: "asc" }
@@ -77,7 +95,8 @@ async function getProductsByCategory(category: string, searchParams: Record<stri
   try {
     const [products, total] = await Promise.all([
       prisma.product.findMany({
-        where, orderBy,
+        where,
+        orderBy,
         include: {
           images: { orderBy: { displayOrder: "asc" }, take: 2 },
           variants: { select: { size: true, color: true, stockQuantity: true } },
@@ -92,7 +111,10 @@ async function getProductsByCategory(category: string, searchParams: Record<stri
     return {
       total,
       products: products.map((p) => {
-        const avgRating = p.reviews.length > 0 ? p.reviews.reduce((s, r) => s + r.rating, 0) / p.reviews.length : 0;
+        const avgRating =
+          p.reviews.length > 0
+            ? p.reviews.reduce((s, r) => s + r.rating, 0) / p.reviews.length
+            : 0;
         return {
           id: p.id, name: p.name, slug: p.slug,
           price: Number(p.price), comparePrice: p.comparePrice ? Number(p.comparePrice) : null,
@@ -116,17 +138,33 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const { products, total } = await getProductsByCategory(category, sp);
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2]">
+    <div className="min-h-screen bg-[#F8F4EE]">
       {/* Category hero */}
-      <div className="relative h-48 sm:h-64 overflow-hidden">
-        <Image src={meta.image} alt={meta.heroTitle} fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1a0a24]/70 to-[#1A1410]/30" />
-        <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-12 lg:px-20">
-          <h1 className="font-playfair font-semibold text-white text-3xl sm:text-4xl mb-2"
-            style={{ fontFamily: "var(--font-cormorant)" }}>
+      <div className="bg-[#050507] relative overflow-hidden min-h-[40vh] flex items-end">
+        <Image
+          src={meta.image}
+          alt={meta.heroTitle}
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/85 via-[#050507]/50 to-transparent" />
+        <div className="relative z-10 px-6 sm:px-12 lg:px-20 py-12">
+          <h1
+            className="font-bold text-[#E7D3A8] mb-3"
+            style={{
+              fontFamily: "var(--font-playfair)",
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            }}
+          >
             {meta.heroTitle}
           </h1>
-          <p className="text-sm font-inter font-light text-white/80 max-w-md">{meta.heroSub}</p>
+          <p
+            className="font-light text-[#F8F4EE]/65 text-lg max-w-md"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            {meta.heroSub}
+          </p>
         </div>
       </div>
 
@@ -134,26 +172,40 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         <div className="flex gap-8">
           <div className="hidden lg:block w-56 shrink-0">
             <div className="sticky top-[120px]">
-              <Suspense><FilterSidebar /></Suspense>
+              <Suspense>
+                <FilterSidebar />
+              </Suspense>
             </div>
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-6">
-              <p className="text-sm font-inter font-light text-[#8B8B8B]">
-                <span className="text-[#2A2A2A]">{total}</span> products
+              <p
+                className="text-sm font-light text-[#8B8B8B]"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                <span className="text-[#1A1A1A]">{total}</span> products
               </p>
-              <Suspense><SortDropdown /></Suspense>
+              <Suspense>
+                <SortDropdown />
+              </Suspense>
             </div>
             {products.length > 0 ? (
               <ProductGrid products={products} columns={4} />
             ) : (
               <div className="text-center py-20">
-                <p className="text-lg font-playfair text-[#1A1410] mb-2"
-                  style={{ fontFamily: "var(--font-cormorant)" }}>
+                <p
+                  className="text-lg text-[#1A1A1A] mb-2"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
                   No products found
                 </p>
-                <p className="text-sm font-inter font-light text-[#8B8B8B]">
-                  <a href={`/shop/${category}`} className="text-[#1A1410] underline">Clear filters</a>
+                <p
+                  className="text-sm font-light text-[#8B8B8B]"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  <a href={`/shop/${category}`} className="text-[#5A189A] underline">
+                    Clear filters
+                  </a>
                 </p>
               </div>
             )}

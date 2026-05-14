@@ -50,35 +50,37 @@ async function getProducts(searchParams: Record<string, string | string[] | unde
   };
 
   try {
-  const [products, total] = await Promise.all([
-    prisma.product.findMany({
-      where,
-      orderBy,
-      include: {
-        images: { orderBy: { displayOrder: "asc" }, take: 2 },
-        variants: { select: { size: true, color: true, stockQuantity: true } },
-        category: { select: { name: true, slug: true } },
-        _count: { select: { reviews: true } },
-        reviews: { select: { rating: true } },
-      },
-    }),
-    prisma.product.count({ where }),
-  ]);
+    const [products, total] = await Promise.all([
+      prisma.product.findMany({
+        where,
+        orderBy,
+        include: {
+          images: { orderBy: { displayOrder: "asc" }, take: 2 },
+          variants: { select: { size: true, color: true, stockQuantity: true } },
+          category: { select: { name: true, slug: true } },
+          _count: { select: { reviews: true } },
+          reviews: { select: { rating: true } },
+        },
+      }),
+      prisma.product.count({ where }),
+    ]);
 
-  return {
-    total,
-    products: products.map((p) => {
-      const avgRating = p.reviews.length > 0
-        ? p.reviews.reduce((s, r) => s + r.rating, 0) / p.reviews.length : 0;
-      return {
-        id: p.id, name: p.name, slug: p.slug,
-        price: Number(p.price), comparePrice: p.comparePrice ? Number(p.comparePrice) : null,
-        isOnSale: p.isOnSale, isFeatured: p.isFeatured,
-        images: p.images, category: p.category, variants: p.variants,
-        _count: p._count, avgRating: Math.round(avgRating * 10) / 10,
-      };
-    }),
-  };
+    return {
+      total,
+      products: products.map((p) => {
+        const avgRating =
+          p.reviews.length > 0
+            ? p.reviews.reduce((s, r) => s + r.rating, 0) / p.reviews.length
+            : 0;
+        return {
+          id: p.id, name: p.name, slug: p.slug,
+          price: Number(p.price), comparePrice: p.comparePrice ? Number(p.comparePrice) : null,
+          isOnSale: p.isOnSale, isFeatured: p.isFeatured,
+          images: p.images, category: p.category, variants: p.variants,
+          _count: p._count, avgRating: Math.round(avgRating * 10) / 10,
+        };
+      }),
+    };
   } catch {
     return { products: [], total: 0 };
   }
@@ -93,17 +95,20 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   const { products, total } = await getProducts(params);
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2]">
+    <div className="min-h-screen bg-[#F8F4EE]">
       {/* Page header */}
-      <div className="bg-[#F7F3EE]/30 border-b border-[#F7F3EE] py-10">
+      <div className="bg-[#F8F4EE] border-b border-[#E8DFF5] py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1
-            className="font-playfair font-semibold text-[#1A1410] text-3xl"
-            style={{ fontFamily: "var(--font-cormorant)" }}
+            className="text-[#5A189A] text-3xl font-bold"
+            style={{ fontFamily: "var(--font-playfair)" }}
           >
             Shop All Products
           </h1>
-          <p className="mt-2 text-sm font-inter font-light text-[#8B8B8B]">
+          <p
+            className="mt-2 text-sm font-light text-[#8B8B8B]"
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
             {total} {total === 1 ? "product" : "products"} available
           </p>
         </div>
@@ -124,9 +129,13 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
           <div className="flex-1 min-w-0">
             {/* Sort bar */}
             <div className="flex items-center justify-between mb-6">
-              <p className="text-sm font-inter font-light text-[#8B8B8B]">
-                Showing <span className="text-[#2A2A2A]">{products.length}</span> of{" "}
-                <span className="text-[#2A2A2A]">{total}</span> products
+              <p
+                className="text-sm font-light text-[#8B8B8B]"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                Showing{" "}
+                <span className="text-[#1A1A1A]">{products.length}</span> of{" "}
+                <span className="text-[#1A1A1A]">{total}</span> products
               </p>
               <Suspense>
                 <SortDropdown />
@@ -137,13 +146,20 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
               <ProductGrid products={products} columns={4} />
             ) : (
               <div className="text-center py-20">
-                <p className="text-lg font-playfair text-[#1A1410] mb-2"
-                  style={{ fontFamily: "var(--font-cormorant)" }}>
+                <p
+                  className="text-lg text-[#1A1A1A] mb-2"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
                   No products found
                 </p>
-                <p className="text-sm font-inter font-light text-[#8B8B8B]">
+                <p
+                  className="text-sm font-light text-[#8B8B8B]"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
                   Try adjusting your filters or{" "}
-                  <a href="/shop" className="text-[#1A1410] underline">clear all filters</a>
+                  <a href="/shop" className="text-[#5A189A] underline">
+                    clear all filters
+                  </a>
                 </p>
               </div>
             )}
