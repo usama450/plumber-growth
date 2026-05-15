@@ -37,60 +37,60 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050507]">
+    <div className="min-h-screen bg-[#F9F7F4]">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex items-center gap-4 mb-8">
-          <Link href="/account" className="text-sm font-inter font-light text-[#A8A4B0] hover:text-[#E7D3A8] transition-colors">
+          <Link href="/account" className="text-sm font-inter font-light text-[#7A746D] hover:text-[#1A1714] transition-colors">
             ← My Account
           </Link>
-          <span className="text-[#3A1A5C]">/</span>
-          <h1 className="font-semibold text-[#E7D3A8] text-3xl"
+          <span className="text-[#B5AFA8]">/</span>
+          <h1 className="font-semibold text-[#1A1714] text-3xl"
             style={{ fontFamily: "var(--font-playfair)" }}>Account Settings</h1>
         </div>
 
-        <div className="bg-[#150820] rounded-2xl p-6 border border-[#3A1A5C] mb-5">
-          <h2 className="font-semibold text-[#E7D3A8] text-xl mb-5"
+        <div className="bg-white border border-[#E2DDD7] p-6 lg:p-8 mb-5">
+          <h2 className="font-semibold text-[#1A1714] text-xl mb-5"
             style={{ fontFamily: "var(--font-playfair)" }}>Profile</h2>
 
           {error && (
-            <div className="mb-4 p-3 bg-[#B85450]/10 border border-[#B85450]/20 rounded-lg text-sm text-[#B85450] font-inter font-light">
+            <div className="mb-4 p-3 bg-[#C0392B]/5 border border-[#C0392B]/20 text-[12px] text-[#C0392B] font-inter font-light">
               {error}
             </div>
           )}
           {saved && (
-            <div className="mb-4 p-3 bg-[#6B8E4E]/10 border border-[#6B8E4E]/20 rounded-lg text-sm text-[#6B8E4E] font-inter font-light">
+            <div className="mb-4 p-3 bg-[#2C4A35]/5 border border-[#2C4A35]/20 text-[12px] text-[#2C4A35] font-inter font-light">
               Changes saved successfully.
             </div>
           )}
 
           <form onSubmit={handleSave} className="space-y-4">
             <div>
-              <label className="block text-sm font-inter font-light text-[#A8A4B0] mb-1.5">Full Name</label>
+              <label className="block text-[12px] tracking-[0.08em] uppercase text-[#5A554F] mb-1 font-inter">Full Name</label>
               <input value={name} onChange={(e) => setName(e.target.value)} required
-                className="w-full px-4 py-3 rounded-xl border border-[#3A1A5C] bg-[#0D0415] text-sm font-inter font-light text-[#F8F4EE] focus:outline-none focus:ring-1 focus:ring-[#5A189A] transition-all" />
+                className="w-full bg-white border border-[#E2DDD7] text-[#1A1714] placeholder-[#B5AFA8] focus:border-[#2C4A35] focus:outline-none rounded-none px-3 py-2.5 text-[14px]" />
             </div>
             <div>
-              <label className="block text-sm font-inter font-light text-[#A8A4B0] mb-1.5">Email</label>
+              <label className="block text-[12px] tracking-[0.08em] uppercase text-[#5A554F] mb-1 font-inter">Email</label>
               <input value={session?.user?.email ?? ""} disabled
-                className="w-full px-4 py-3 rounded-xl border border-[#3A1A5C] bg-[#3A1A5C]/20 text-sm font-inter font-light text-[#A8A4B0] cursor-not-allowed" />
-              <p className="text-xs text-[#A8A4B0] font-inter font-light mt-1">Email cannot be changed.</p>
+                className="w-full bg-[#F4F0EB] border border-[#E2DDD7] text-[#7A746D] rounded-none px-3 py-2.5 text-[14px] cursor-not-allowed" />
+              <p className="text-[12px] text-[#7A746D] font-inter font-light mt-1">Email cannot be changed.</p>
             </div>
             <button type="submit" disabled={saving}
-              className="px-6 py-2.5 bg-[#5A189A] text-white text-sm font-inter font-normal rounded-xl hover:bg-[#7B3DBF] transition-colors disabled:opacity-70 flex items-center gap-2">
+              className="btn-primary px-6 py-2.5 flex items-center gap-2 disabled:opacity-70">
               {saving && <Loader2 size={14} className="animate-spin" />}
               Save Changes
             </button>
           </form>
         </div>
 
-        <div className="bg-[#150820] rounded-2xl p-6 border border-[#3A1A5C]">
-          <h2 className="font-semibold text-[#E7D3A8] text-xl mb-2"
+        <div className="bg-white border border-[#E2DDD7] p-6 lg:p-8">
+          <h2 className="font-semibold text-[#1A1714] text-xl mb-2"
             style={{ fontFamily: "var(--font-playfair)" }}>Account</h2>
-          <p className="text-sm font-inter font-light text-[#A8A4B0] mb-5">
+          <p className="text-sm font-inter font-light text-[#5A554F] mb-5">
             Member since {session?.user ? new Date().toLocaleDateString("en-CA", { year: "numeric", month: "long" }) : "—"}
           </p>
           <Link href="/api/auth/signout"
-            className="inline-block px-5 py-2 border border-[#B85450]/40 text-[#B85450] text-sm font-inter font-light rounded-xl hover:bg-[#B85450]/5 transition-colors">
+            className="inline-block px-5 py-2 border border-[#C0392B]/30 text-[#C0392B] text-sm font-inter font-light hover:bg-[#C0392B]/5 transition-colors">
             Sign Out
           </Link>
         </div>

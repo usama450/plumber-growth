@@ -138,9 +138,9 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const { products, total } = await getProductsByCategory(category, sp);
 
   return (
-    <div className="min-h-screen bg-[#050507]">
+    <div className="min-h-screen bg-[#F9F7F4]">
       {/* Category hero */}
-      <div className="bg-[#050507] relative overflow-hidden min-h-[40vh] flex items-end">
+      <div className="bg-[#F9F7F4] relative overflow-hidden min-h-[40vh] flex items-end">
         <Image
           src={meta.image}
           alt={meta.heroTitle}
@@ -148,10 +148,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/85 via-[#050507]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1A2B20]/85 via-[#1A2B20]/40 to-transparent" />
         <div className="relative z-10 px-6 sm:px-12 lg:px-20 py-12">
           <h1
-            className="font-bold text-[#E7D3A8] mb-3"
+            className="font-bold text-white mb-3"
             style={{
               fontFamily: "var(--font-playfair)",
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
@@ -160,7 +160,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             {meta.heroTitle}
           </h1>
           <p
-            className="font-light text-[#F8F4EE]/65 text-lg max-w-md"
+            className="font-light text-white/75 text-lg max-w-md"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {meta.heroSub}
@@ -180,10 +180,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-6">
               <p
-                className="text-sm font-light text-[#A8A4B0]"
+                className="text-sm font-light text-[#7A746D]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
-                <span className="text-[#F8F4EE]">{total}</span> products
+                <span className="text-[#1A1714]">{total}</span> products
               </p>
               <Suspense>
                 <SortDropdown />
@@ -194,16 +194,16 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             ) : (
               <div className="text-center py-20">
                 <p
-                  className="text-lg text-[#E7D3A8] mb-2"
+                  className="text-lg text-[#1A1714] mb-2"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   No products found
                 </p>
                 <p
-                  className="text-sm font-light text-[#A8A4B0]"
+                  className="text-sm font-light text-[#7A746D]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  <a href={`/shop/${category}`} className="text-[#9D4EDD] underline hover:text-[#E7D3A8] transition-colors">
+                  <a href={`/shop/${category}`} className="text-[#2C4A35] underline hover:text-[#1A1714] transition-colors">
                     Clear filters
                   </a>
                 </p>

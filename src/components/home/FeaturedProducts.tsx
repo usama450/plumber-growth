@@ -50,12 +50,12 @@ async function getFeaturedProducts(): Promise<ProductCardData[]> {
 
 function SkeletonCard() {
   return (
-    <div className="bg-[#150820] rounded-[8px] overflow-hidden animate-pulse">
-      <div className="aspect-[4/5] bg-[#3A1A5C]/40" />
+    <div className="bg-[#EDE8E1] rounded-[2px] overflow-hidden animate-pulse">
+      <div className="aspect-[4/5] bg-[#DDD8D2]" />
       <div className="p-4 space-y-2.5">
-        <div className="h-2.5 bg-[#3A1A5C]/60 rounded w-1/3" />
-        <div className="h-4 bg-[#3A1A5C]/60 rounded w-3/4" />
-        <div className="h-3 bg-[#3A1A5C]/40 rounded w-1/4" />
+        <div className="h-2.5 bg-[#DDD8D2] rounded w-1/3" />
+        <div className="h-4 bg-[#DDD8D2] rounded w-3/4" />
+        <div className="h-3 bg-[#DDD8D2] rounded w-1/4" />
       </div>
     </div>
   );
@@ -65,7 +65,7 @@ export async function FeaturedProducts() {
   const products = await getFeaturedProducts();
 
   return (
-    <section className="py-20 lg:py-28 bg-[#050507]">
+    <section className="py-20 lg:py-28 bg-[#F4F0EB]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header */}
         <ScrollReveal
@@ -74,16 +74,16 @@ export async function FeaturedProducts() {
         >
           <div>
             <div className="flex items-center gap-4 mb-4">
-              <span className="block w-10 h-px bg-[#C9A961]" />
+              <span className="block w-10 h-px bg-[#A67C3C]" />
               <span
-                className="text-[11px] tracking-[0.35em] uppercase text-[#C9A961]"
+                className="text-[11px] tracking-[0.38em] uppercase text-[#A67C3C]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Handpicked Favourites
               </span>
             </div>
             <h2
-              className="text-white"
+              className="text-[#1A1714]"
               style={{ fontFamily: "var(--font-playfair)", fontWeight: 600 }}
             >
               Our Collection
@@ -91,7 +91,7 @@ export async function FeaturedProducts() {
           </div>
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 text-[13px] text-[#D4AF37] hover:text-white transition-colors border-b border-[#D4AF37]/40 hover:border-white pb-0.5 self-start sm:self-auto"
+            className="inline-flex items-center gap-2 text-[13px] text-[#2C4A35] hover:text-[#1A1714] transition-colors border-b border-[#2C4A35]/40 hover:border-[#1A1714] pb-0.5 self-start sm:self-auto"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             View all

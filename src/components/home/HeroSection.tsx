@@ -31,7 +31,7 @@ function FloatingParticles() {
       top: `${Math.random() * 95}%`,
       left: `${Math.random() * 95}%`,
       backgroundColor:
-        i % 2 === 0 ? "rgba(231,211,168,0.6)" : "rgba(201,169,97,0.4)",
+        i % 2 === 0 ? "rgba(44,74,53,0.15)" : "rgba(166,124,60,0.12)",
       animationDuration: `${8 + Math.random() * 12}s`,
       animationDelay: `${Math.random() * 8}s`,
     }));
@@ -91,7 +91,7 @@ const fadeUp = (delay: number) => ({
 // ---------------------------------------------------------------------------
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-[#050507] overflow-hidden">
+    <section className="relative min-h-screen bg-[#1A2B20] overflow-hidden">
       {/* Ken Burns background image */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="ken-burns absolute inset-0">
@@ -105,10 +105,10 @@ export function HeroSection() {
           />
         </div>
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#050507]/90 via-[#050507]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1A2B20]/85 via-[#1A2B20]/50 to-transparent" />
       </div>
 
-      {/* Floating gold particles */}
+      {/* Floating particles */}
       <div className="absolute inset-0 z-[1] pointer-events-none">
         <FloatingParticles />
       </div>
@@ -122,8 +122,8 @@ export function HeroSection() {
           {/* Eyebrow */}
           <motion.p
             {...fadeUp(0.1)}
-            className="mb-8 text-[11px] tracking-[0.45em] uppercase"
-            style={{ fontFamily: "var(--font-inter)", color: "#D4AF37", fontWeight: 500 }}
+            className="mb-8 text-[11px] tracking-[0.38em] uppercase"
+            style={{ fontFamily: "var(--font-inter)", color: "#A67C3C", fontWeight: 500 }}
           >
             Est. 2024 · Canadian Made
           </motion.p>
@@ -143,9 +143,8 @@ export function HeroSection() {
                   fontFamily: "var(--font-playfair)",
                   fontSize: "clamp(3rem, 7vw, 5.5rem)",
                   fontWeight: 700,
-                  color: "#FFFFFF",
+                  color: "#F9F7F4",
                   lineHeight: 1.05,
-                  textShadow: "0 2px 40px rgba(90,24,154,0.35)",
                 }}
               >
                 {word}
@@ -159,9 +158,9 @@ export function HeroSection() {
             className="max-w-lg mb-10"
             style={{
               fontFamily: "var(--font-inter)",
-              fontSize: "19px",
+              fontSize: "18px",
               fontWeight: 300,
-              color: "rgba(220,212,236,0.85)",
+              color: "rgba(249,247,244,0.7)",
               lineHeight: 1.7,
               letterSpacing: "0.01em",
             }}
@@ -174,7 +173,7 @@ export function HeroSection() {
             <Link href="/shop" className="btn-gold-shimmer">
               Shop Collection
             </Link>
-            <Link href="/about" className="btn-secondary">
+            <Link href="/about" className="btn-ghost">
               Our Story
             </Link>
           </motion.div>
@@ -188,20 +187,22 @@ export function HeroSection() {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.7, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="hidden md:block absolute bottom-16 right-8 z-20 bg-[#1A0826]/80 backdrop-blur-md border border-[#3A1A5C] rounded-xl px-4 py-3 min-w-[220px]"
+        className="hidden md:block absolute bottom-16 right-8 z-20 backdrop-blur-md rounded-none px-4 py-3 min-w-[220px]"
+        style={{
+          background: "rgba(249,247,244,0.1)",
+          border: "1px solid rgba(249,247,244,0.2)",
+        }}
       >
         {/* Row 1 */}
         <div className="flex items-center gap-1.5 mb-1">
           <span className="live-dot" />
           <span
-            style={{ fontFamily: "var(--font-inter)", fontSize: "12px" }}
-            className="text-[#E7D3A8]"
+            style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "#F9F7F4" }}
           >
             47 people viewing{" "}
           </span>
           <span
-            style={{ fontFamily: "var(--font-inter)", fontSize: "12px" }}
-            className="text-[#A8A4B0]"
+            style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "rgba(249,247,244,0.6)" }}
           >
             right now
           </span>
@@ -209,14 +210,12 @@ export function HeroSection() {
         {/* Row 2 */}
         <div className="flex items-center gap-1">
           <span
-            style={{ fontFamily: "var(--font-inter)", fontSize: "12px" }}
-            className="text-[#A8A4B0]"
+            style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "rgba(249,247,244,0.6)" }}
           >
             Last purchase:
           </span>
           <span
-            style={{ fontFamily: "var(--font-inter)", fontSize: "12px" }}
-            className="text-[#6B8E4E]"
+            style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "#C99B4D" }}
           >
             {" "}2 mins ago
           </span>
@@ -227,7 +226,7 @@ export function HeroSection() {
       {/* Bouncing ChevronDown                                               */}
       {/* ----------------------------------------------------------------- */}
       <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-        <ChevronDown size={22} className="text-[#E7D3A8]/50" />
+        <ChevronDown size={22} className="text-[#F9F7F4]/40" />
       </div>
 
       {/* ----------------------------------------------------------------- */}
@@ -237,29 +236,29 @@ export function HeroSection() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex items-center justify-center sm:justify-start gap-6 sm:gap-8">
             <div className="flex items-center gap-2">
-              <MapPin size={13} className="text-[#E7D3A8]/80 shrink-0" />
+              <MapPin size={13} className="text-[#A67C3C]/70 shrink-0" />
               <span
-                className="text-[11px] tracking-[0.1em] uppercase text-[#E7D3A8]/60"
+                className="text-[11px] tracking-[0.1em] uppercase text-[#F9F7F4]/50"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Canadian Made
               </span>
             </div>
-            <div className="w-px h-4 bg-[#E7D3A8]/30 hidden sm:block" />
+            <div className="w-px h-4 bg-[#F9F7F4]/20 hidden sm:block" />
             <div className="flex items-center gap-2">
-              <Package size={13} className="text-[#E7D3A8]/80 shrink-0" />
+              <Package size={13} className="text-[#A67C3C]/70 shrink-0" />
               <span
-                className="text-[11px] tracking-[0.1em] uppercase text-[#E7D3A8]/60"
+                className="text-[11px] tracking-[0.1em] uppercase text-[#F9F7F4]/50"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Free Shipping $125+
               </span>
             </div>
-            <div className="w-px h-4 bg-[#E7D3A8]/30 hidden sm:block" />
+            <div className="w-px h-4 bg-[#F9F7F4]/20 hidden sm:block" />
             <div className="flex items-center gap-2">
-              <Heart size={13} className="text-[#E7D3A8]/80 shrink-0" />
+              <Heart size={13} className="text-[#A67C3C]/70 shrink-0" />
               <span
-                className="text-[11px] tracking-[0.1em] uppercase text-[#E7D3A8]/60"
+                className="text-[11px] tracking-[0.1em] uppercase text-[#F9F7F4]/50"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Family Owned

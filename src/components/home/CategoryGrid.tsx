@@ -49,7 +49,7 @@ export async function CategoryGrid() {
     );
 
   return (
-    <section className="py-20 lg:py-28 bg-[#050507]">
+    <section className="py-20 lg:py-28 bg-[#F9F7F4]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Heading */}
         <ScrollReveal
@@ -57,13 +57,13 @@ export async function CategoryGrid() {
           className="text-center mb-14 lg:mb-18"
         >
           <p
-            className="text-[11px] tracking-[0.45em] uppercase mb-4"
-            style={{ fontFamily: "var(--font-inter)", color: "#D4AF37", fontWeight: 500 }}
+            className="text-[11px] tracking-[0.38em] uppercase mb-4 text-[#A67C3C]"
+            style={{ fontFamily: "var(--font-inter)", fontWeight: 500 }}
           >
             Collections
           </p>
           <h2
-            className="text-white"
+            className="text-[#1A1714]"
             style={{ fontFamily: "var(--font-playfair)", fontWeight: 600 }}
           >
             Shop by Category
@@ -92,13 +92,13 @@ export async function CategoryGrid() {
                 />
 
                 {/* Dark gradient bottom overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/85 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1A2B20]/80 via-transparent to-transparent" />
 
                 {/* Bottom content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h3
-                    className="text-2xl text-white mb-1 group-hover:text-[#E7D3A8] transition-colors duration-300"
-                    style={{ fontFamily: "var(--font-playfair)", fontWeight: 600, textShadow: "0 2px 16px rgba(5,0,7,0.6)" }}
+                    className="text-2xl text-white mb-1 group-hover:text-[#E8D0A0] transition-colors duration-300"
+                    style={{ fontFamily: "var(--font-playfair)", fontWeight: 500 }}
                   >
                     {meta.label}
                   </h3>
@@ -106,7 +106,7 @@ export async function CategoryGrid() {
                   {count > 0 && (
                     <p
                       className="text-[11px] mb-3"
-                      style={{ fontFamily: "var(--font-inter)", color: "rgba(212,175,55,0.7)" }}
+                      style={{ fontFamily: "var(--font-inter)", color: "rgba(232,208,160,0.65)" }}
                     >
                       {count} {cat.slug === "towels" ? "colours" : "styles"}
                     </p>
@@ -115,11 +115,11 @@ export async function CategoryGrid() {
                   {/* Explore link with underline */}
                   <span
                     className="inline-flex items-center gap-1.5 text-[12px] tracking-[0.18em] uppercase font-medium"
-                    style={{ fontFamily: "var(--font-inter)", color: "#D4AF37" }}
+                    style={{ fontFamily: "var(--font-inter)", color: "#C99B4D" }}
                   >
                     <span className="relative">
                       Explore →
-                      <span className="absolute bottom-0 left-0 h-px w-0 bg-[#D4AF37] group-hover:w-full transition-all duration-300" />
+                      <span className="absolute bottom-0 left-0 h-px w-0 bg-[#C99B4D] group-hover:w-full transition-all duration-300" />
                     </span>
                   </span>
                 </div>

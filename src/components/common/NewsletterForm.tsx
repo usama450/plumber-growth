@@ -7,9 +7,10 @@ import { cn } from "@/lib/utils";
 interface NewsletterFormProps {
   compact?: boolean;
   className?: string;
+  darkMode?: boolean;
 }
 
-export function NewsletterForm({ compact = false, className }: NewsletterFormProps) {
+export function NewsletterForm({ compact = false, className, darkMode = false }: NewsletterFormProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -41,7 +42,7 @@ export function NewsletterForm({ compact = false, className }: NewsletterFormPro
 
   if (status === "success") {
     return (
-      <p className="text-sm text-[#6B8E4E] font-inter font-light">
+      <p className={cn("text-sm font-inter font-light", darkMode ? "text-[#C99B4D]" : "text-[#2C4A35]")}>
         ✓ {message}
       </p>
     );
@@ -57,10 +58,10 @@ export function NewsletterForm({ compact = false, className }: NewsletterFormPro
           placeholder="Enter your email"
           required
           className={cn(
-            "flex-1 px-4 py-2.5 rounded-lg border border-[#D4C5B0] bg-white",
-            "text-sm font-inter font-light text-[#2A2A2A] placeholder-[#8B8B8B]",
-            "focus:outline-none focus:ring-2 focus:ring-[#C4992E] focus:border-transparent",
-            "transition-all"
+            "flex-1 px-4 py-2.5 border text-sm font-inter font-light transition-all focus:outline-none rounded-none",
+            darkMode
+              ? "bg-[#F9F7F4]/10 border-[#F9F7F4]/25 text-[#F9F7F4] placeholder-[#F9F7F4]/40 focus:ring-2 focus:ring-[#A67C3C] focus:border-transparent"
+              : "border-[#D4C5B0] bg-white text-[#2A2A2A] placeholder-[#8B8B8B] focus:ring-2 focus:ring-[#A67C3C] focus:border-transparent"
           )}
           aria-label="Email address"
         />
@@ -68,10 +69,11 @@ export function NewsletterForm({ compact = false, className }: NewsletterFormPro
           type="submit"
           disabled={status === "loading"}
           className={cn(
-            "flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg",
-            "bg-[#1A1410] text-white font-inter font-normal text-sm",
-            "hover:bg-[#5B3A6B] transition-colors disabled:opacity-60",
-            compact ? "w-full" : "shrink-0"
+            "flex items-center justify-center gap-2 px-5 py-2.5 font-inter font-normal text-sm transition-colors disabled:opacity-60",
+            darkMode
+              ? "btn-gold-shimmer shrink-0"
+              : "bg-[#2C4A35] text-[#F9F7F4] hover:bg-[#1A2B20] rounded-none",
+            !darkMode && (compact ? "w-full" : "shrink-0")
           )}
         >
           {status === "loading" ? (
@@ -82,7 +84,7 @@ export function NewsletterForm({ compact = false, className }: NewsletterFormPro
         </button>
       </div>
       {status === "error" && (
-        <p className="mt-2 text-xs text-[#B85450] font-inter">{message}</p>
+        <p className={cn("mt-2 text-xs font-inter", darkMode ? "text-[#E8A0A0]" : "text-[#B85450]")}>{message}</p>
       )}
     </form>
   );

@@ -30,7 +30,7 @@ export function CartDrawer() {
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 z-50 bg-[#050507]/60 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-[#1A1714]/30"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -40,7 +40,7 @@ export function CartDrawer() {
 
           {/* Drawer panel */}
           <motion.div
-            className="fixed top-0 right-0 bottom-0 z-50 w-full sm:w-[420px] bg-[#050507] shadow-2xl flex flex-col"
+            className="fixed top-0 right-0 bottom-0 z-50 w-full sm:w-[420px] bg-white shadow-2xl flex flex-col"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -50,18 +50,18 @@ export function CartDrawer() {
             aria-label="Shopping cart"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-[#E7D3A8]/20">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-[#E2DDD7]">
               <div className="flex items-center gap-2">
-                <ShoppingBag size={20} className="text-[#E7D3A8]" />
+                <ShoppingBag size={20} className="text-[#1A1714]" />
                 <h2
-                  className="text-lg text-[#E7D3A8]"
+                  className="text-lg text-[#1A1714]"
                   style={{ fontFamily: "var(--font-playfair)", fontWeight: 400 }}
                 >
                   Your Cart
                 </h2>
                 {items.length > 0 && (
                   <span
-                    className="text-sm text-[#8B8B8B]"
+                    className="text-sm text-[#7A746D]"
                     style={{ fontFamily: "var(--font-inter)", fontWeight: 300 }}
                   >
                     ({items.length} {items.length === 1 ? "item" : "items"})
@@ -70,7 +70,7 @@ export function CartDrawer() {
               </div>
               <button
                 onClick={closeCart}
-                className="p-2 text-[#8B8B8B] hover:text-[#F8F4EE] rounded-full hover:bg-[#1A0826]/60 transition-colors"
+                className="p-2 text-[#5A554F] hover:text-[#1A1714] rounded-full hover:bg-[#F4F0EB] transition-colors"
                 aria-label="Close cart"
               >
                 <X size={20} />
@@ -79,30 +79,28 @@ export function CartDrawer() {
 
             {/* Free shipping progress */}
             {items.length > 0 && (
-              <div className="px-5 py-3 bg-[#1A0826]/60 border-b border-[#E7D3A8]/10">
+              <div className="px-5 py-3 border-b border-[#E2DDD7]">
                 {remaining > 0 ? (
                   <p
-                    className="text-xs text-[#F8F4EE]/60 mb-2"
+                    className="text-xs text-[#5A554F] mb-2"
                     style={{ fontFamily: "var(--font-inter)", fontWeight: 300 }}
                   >
                     Add{" "}
-                    <strong className="text-[#E7D3A8]">{formatPrice(remaining)}</strong>{" "}
+                    <strong className="text-[#1A1714]">{formatPrice(remaining)}</strong>{" "}
                     more for free shipping!
                   </p>
                 ) : (
                   <p
-                    className="text-xs text-[#6B8E4E] mb-2"
+                    className="text-xs text-[#2C4A35] mb-2"
                     style={{ fontFamily: "var(--font-inter)", fontWeight: 300 }}
                   >
                     You qualify for free shipping!
                   </p>
                 )}
-                <div className="h-1.5 bg-[#0D0415] rounded-full overflow-hidden border border-[#3A1A5C]">
+                <div className="h-1.5 bg-[#F4F0EB] rounded-full overflow-hidden">
                   <div
                     className={`h-full rounded-full transition-all duration-500 ${
-                      remaining === 0
-                        ? "bg-gradient-to-r from-[#C9A961] to-[#E7D3A8]"
-                        : "bg-gradient-to-r from-[#5A189A] to-[#9D4EDD]"
+                      remaining === 0 ? "bg-[#A67C3C]" : "bg-[#2C4A35]"
                     }`}
                     style={{ width: `${shippingProgress}%` }}
                   />
@@ -116,17 +114,16 @@ export function CartDrawer() {
                 <div className="flex flex-col items-center justify-center h-full text-center py-12">
                   <ShoppingBag
                     size={48}
-                    className="mb-4"
-                    style={{ color: "rgba(90,24,154,0.3)" }}
+                    className="mb-4 text-[#B5AFA8]"
                   />
                   <h3
-                    className="text-lg text-[#F8F4EE]/60 mb-2"
+                    className="text-lg text-[#7A746D] mb-2"
                     style={{ fontFamily: "var(--font-playfair)", fontWeight: 400 }}
                   >
                     Your cart is empty
                   </h3>
                   <p
-                    className="text-sm text-[#8B8B8B] mb-6"
+                    className="text-sm text-[#7A746D] mb-6"
                     style={{ fontFamily: "var(--font-inter)", fontWeight: 300 }}
                   >
                     Discover our premium home textiles
@@ -140,13 +137,13 @@ export function CartDrawer() {
                   </Link>
                 </div>
               ) : (
-                <div className="space-y-4">
-                  {items.map((item) => (
+                <div className="space-y-0">
+                  {items.map((item, idx) => (
                     <div
                       key={item.variantId}
-                      className="flex gap-4 p-3 bg-[#1A0826]/60 rounded-lg border border-[#E7D3A8]/10"
+                      className={`flex gap-4 py-4 ${idx > 0 ? "border-t border-[#F4F0EB]" : ""}`}
                     >
-                      <div className="w-20 h-20 rounded-xl overflow-hidden bg-[#1A0826] shrink-0">
+                      <div className="w-20 h-20 overflow-hidden bg-[#F4F0EB] shrink-0">
                         <Image
                           src={item.image}
                           alt={item.name}
@@ -159,26 +156,26 @@ export function CartDrawer() {
                         <Link
                           href={`/product/${item.slug}`}
                           onClick={closeCart}
-                          className="text-sm text-[#F8F4EE]/80 hover:text-[#F8F4EE] transition-colors line-clamp-1"
-                          style={{ fontFamily: "var(--font-inter)", fontWeight: 300 }}
+                          className="text-sm text-[#1A1714] hover:text-[#2C4A35] transition-colors line-clamp-1"
+                          style={{ fontFamily: "var(--font-inter)", fontWeight: 400 }}
                         >
                           {item.name}
                         </Link>
                         <div className="flex items-center gap-2 mt-1 flex-wrap">
                           {item.size && (
                             <span
-                              className="text-xs text-[#8B8B8B]"
+                              className="text-xs text-[#7A746D]"
                               style={{ fontFamily: "var(--font-inter)" }}
                             >
                               {item.size}
                             </span>
                           )}
                           {item.size && item.color && (
-                            <span className="text-[#E7D3A8]/20">&middot;</span>
+                            <span className="text-[#B5AFA8]">&middot;</span>
                           )}
                           {item.color && (
                             <span
-                              className="text-xs text-[#8B8B8B]"
+                              className="text-xs text-[#7A746D]"
                               style={{ fontFamily: "var(--font-inter)" }}
                             >
                               {item.color}
@@ -186,19 +183,19 @@ export function CartDrawer() {
                           )}
                         </div>
                         <div className="flex items-center justify-between mt-2.5">
-                          <div className="flex items-center gap-1 border border-[#E7D3A8]/15 rounded-lg overflow-hidden">
+                          <div className="flex items-center gap-1 border border-[#E2DDD7] overflow-hidden">
                             <button
                               onClick={() =>
                                 updateQuantity(item.variantId, item.quantity - 1)
                               }
-                              className="w-7 h-7 flex items-center justify-center text-[#F8F4EE]/60 hover:text-[#F8F4EE] hover:bg-[#5A189A]/30 transition-colors"
+                              className="w-7 h-7 flex items-center justify-center text-[#1A1714] hover:bg-[#F4F0EB] transition-colors"
                               aria-label="Decrease quantity"
                             >
                               <Minus size={13} />
                             </button>
                             <span
-                              className="w-7 text-center text-sm text-[#F8F4EE]/80"
-                              style={{ fontFamily: "var(--font-inter)", fontWeight: 300 }}
+                              className="w-7 text-center text-sm text-[#1A1714]"
+                              style={{ fontFamily: "var(--font-inter)", fontWeight: 400 }}
                             >
                               {item.quantity}
                             </span>
@@ -207,7 +204,7 @@ export function CartDrawer() {
                                 updateQuantity(item.variantId, item.quantity + 1)
                               }
                               disabled={item.quantity >= item.maxStock}
-                              className="w-7 h-7 flex items-center justify-center text-[#F8F4EE]/60 hover:text-[#F8F4EE] hover:bg-[#5A189A]/30 transition-colors disabled:opacity-40"
+                              className="w-7 h-7 flex items-center justify-center text-[#1A1714] hover:bg-[#F4F0EB] transition-colors disabled:opacity-40"
                               aria-label="Increase quantity"
                             >
                               <Plus size={13} />
@@ -215,14 +212,14 @@ export function CartDrawer() {
                           </div>
                           <div className="flex items-center gap-2">
                             <span
-                              className="text-sm text-[#E7D3A8]"
+                              className="text-sm text-[#1A1714]"
                               style={{ fontFamily: "var(--font-inter)", fontWeight: 400 }}
                             >
                               {formatPrice(item.price * item.quantity)}
                             </span>
                             <button
                               onClick={() => removeItem(item.variantId)}
-                              className="text-[#8B8B8B] hover:text-[#B85450] transition-colors"
+                              className="text-[#B5AFA8] hover:text-[#1A1714] transition-colors"
                               aria-label={`Remove ${item.name}`}
                             >
                               <Trash2 size={14} />
@@ -238,23 +235,23 @@ export function CartDrawer() {
 
             {/* Footer */}
             {items.length > 0 && (
-              <div className="border-t border-[#E7D3A8]/20 px-5 py-4 bg-[#050507]">
+              <div className="border-t border-[#E2DDD7] px-5 py-4 bg-white">
                 <div className="flex items-center justify-between mb-2">
                   <span
-                    className="text-[#F8F4EE]/60"
-                    style={{ fontFamily: "var(--font-inter)", fontWeight: 300 }}
+                    className="text-[#1A1714]"
+                    style={{ fontFamily: "var(--font-inter)", fontWeight: 400 }}
                   >
                     Subtotal
                   </span>
                   <span
-                    className="text-[#E7D3A8] text-xl"
-                    style={{ fontFamily: "var(--font-inter)", fontWeight: 400 }}
+                    className="text-[#1A1714] text-xl"
+                    style={{ fontFamily: "var(--font-playfair)", fontWeight: 600 }}
                   >
                     {formatPrice(subtotal)}
                   </span>
                 </div>
                 <p
-                  className="text-xs text-[#8B8B8B] mb-4"
+                  className="text-xs text-[#7A746D] mb-4"
                   style={{ fontFamily: "var(--font-inter)", fontWeight: 300 }}
                 >
                   Taxes and shipping calculated at checkout
@@ -262,17 +259,13 @@ export function CartDrawer() {
                 <Link
                   href="/cart"
                   onClick={closeCart}
-                  className="flex items-center justify-center w-full py-3.5 text-[#F8F4EE] text-[13px] font-medium tracking-wider uppercase rounded border border-[#E7D3A8]/25 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(90,24,154,0.45)] transition-all duration-200 mb-2"
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    background: "linear-gradient(to right, #5A189A, #7B3DBF)",
-                  }}
+                  className="btn-primary flex items-center justify-center w-full mb-2"
                 >
                   View Cart &amp; Checkout
                 </Link>
                 <button
                   onClick={closeCart}
-                  className="block w-full text-center py-2 text-sm text-[#8B8B8B] hover:text-[#F8F4EE] transition-colors"
+                  className="block w-full text-center py-2 text-sm text-[#5A554F] hover:text-[#1A1714] transition-colors"
                   style={{ fontFamily: "var(--font-inter)", fontWeight: 300 }}
                 >
                   Continue Shopping

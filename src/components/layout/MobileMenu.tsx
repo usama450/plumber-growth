@@ -34,7 +34,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     <>
       {/* Overlay */}
       <div
-        className={`fixed inset-0 z-50 bg-[#050507]/80 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 z-50 bg-[#1A1714]/40 backdrop-blur-sm transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={onClose}
@@ -43,7 +43,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
       {/* Panel */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-50 w-[85vw] max-w-[340px] bg-[#1A0826] shadow-2xl flex flex-col transition-transform duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`fixed top-0 right-0 bottom-0 z-50 w-[85vw] max-w-[340px] bg-white shadow-2xl flex flex-col transition-transform duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         role="dialog"
@@ -51,16 +51,16 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         aria-label="Navigation menu"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-[#E7D3A8]/10">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-[#E2DDD7]">
           <div>
             <span
-              className="text-xl font-light text-[#E7D3A8] tracking-wide block"
-              style={{ fontFamily: "var(--font-playfair)" }}
+              className="text-xl text-[#2C4A35] tracking-wide block"
+              style={{ fontFamily: "var(--font-playfair)", fontWeight: 700 }}
             >
               Khwab
             </span>
             <div
-              className="text-[9px] tracking-[0.3em] uppercase text-[#E7D3A8]/60 mt-0.5"
+              className="text-[9px] tracking-[0.3em] uppercase text-[#A67C3C] mt-0.5"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               Home Textiles
@@ -68,7 +68,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-[#E7D3A8]/50 hover:text-[#E7D3A8] transition-colors"
+            className="p-2 text-[#1A1714] hover:text-[#2C4A35] transition-colors"
             aria-label="Close menu"
           >
             <X size={20} />
@@ -82,30 +82,36 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               key={link.href}
               href={link.href}
               onClick={onClose}
-              className="flex items-center justify-between px-6 py-4 text-[15px] text-[#F8F4EE]/60 hover:text-[#F8F4EE] hover:bg-[#5A189A]/20 transition-colors border-b border-[#E7D3A8]/10"
+              className="flex items-center justify-between px-6 py-4 text-[15px] text-[#1A1714] hover:text-[#2C4A35] hover:bg-[#F4F0EB] transition-colors border-b border-[#E2DDD7]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {link.label}
-              <ChevronRight size={14} className="text-[#E7D3A8]/40" />
+              <ChevronRight size={14} className="text-[#B5AFA8]" />
             </Link>
           ))}
         </nav>
 
         {/* Account section */}
-        <div className="border-t border-[#E7D3A8]/20 p-6 space-y-3 bg-[#050507]/40">
+        <div className="border-t border-[#E2DDD7] p-6 space-y-3 bg-[#F4F0EB]">
+          <p
+            className="text-[10px] tracking-[0.25em] uppercase text-[#A67C3C] mb-4"
+            style={{ fontFamily: "var(--font-inter)", fontWeight: 600 }}
+          >
+            Account
+          </p>
           {session ? (
             <>
               <Link
                 href="/account"
                 onClick={onClose}
-                className="block w-full text-center py-3 px-4 bg-[#5A189A] text-[#F8F4EE] text-[13px] tracking-wide rounded hover:bg-[#7B3DBF] transition-colors duration-300"
-                style={{ fontFamily: "var(--font-inter)" }}
+                className="block w-full text-center py-3 px-4 bg-[#2C4A35] text-[#F9F7F4] text-[12px] tracking-[0.14em] uppercase transition-colors duration-300 hover:bg-[#3D6147]"
+                style={{ fontFamily: "var(--font-inter)", borderRadius: "2px" }}
               >
                 My Account
               </Link>
               <button
                 onClick={() => { signOut(); onClose(); }}
-                className="block w-full text-center py-3 px-4 text-[13px] text-[#E7D3A8]/60 hover:text-[#E7D3A8] transition-colors"
+                className="block w-full text-center py-3 px-4 text-[12px] tracking-[0.14em] uppercase text-[#5A554F] hover:text-[#1A1714] transition-colors"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Sign Out
@@ -116,16 +122,16 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               <Link
                 href="/login"
                 onClick={onClose}
-                className="block w-full text-center py-3 px-4 bg-[#5A189A] text-[#F8F4EE] text-[13px] tracking-wide rounded hover:bg-[#7B3DBF] transition-colors duration-300"
-                style={{ fontFamily: "var(--font-inter)" }}
+                className="block w-full text-center py-3 px-4 bg-[#2C4A35] text-[#F9F7F4] text-[12px] tracking-[0.14em] uppercase transition-colors duration-300 hover:bg-[#3D6147]"
+                style={{ fontFamily: "var(--font-inter)", borderRadius: "2px" }}
               >
                 Sign In
               </Link>
               <Link
                 href="/register"
                 onClick={onClose}
-                className="block w-full text-center py-3 px-4 border border-[#E7D3A8]/55 text-[#E7D3A8] text-[13px] tracking-wide rounded hover:bg-[#E7D3A8]/10 transition-colors duration-300"
-                style={{ fontFamily: "var(--font-inter)" }}
+                className="block w-full text-center py-3 px-4 border border-[#1A1714] text-[#1A1714] text-[12px] tracking-[0.14em] uppercase hover:bg-[#1A1714] hover:text-[#F9F7F4] transition-colors duration-300"
+                style={{ fontFamily: "var(--font-inter)", borderRadius: "2px" }}
               >
                 Create Account
               </Link>

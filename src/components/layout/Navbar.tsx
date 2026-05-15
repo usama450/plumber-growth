@@ -68,27 +68,27 @@ export function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const transparent = !isScrolled;
+  const transparent = isHeroPage && !isScrolled;
 
   const iconColor = transparent
-    ? "text-white/80 hover:text-white"
-    : "text-white/60 hover:text-white";
+    ? "text-white/70 hover:text-white"
+    : "text-[#1A1714]/60 hover:text-[#1A1714]";
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-[#0D0415]/95 backdrop-blur-xl shadow-[0_1px_0_rgba(58,26,92,0.5)]"
+            ? "bg-white/95 backdrop-blur-md shadow-[0_1px_0_#E2DDD7]"
             : "bg-transparent"
         }`}
       >
         {/* Announcement bar */}
         <div
-          className="text-center py-2 text-[11px] tracking-[0.2em] uppercase bg-[#1A0826] text-white/80"
+          className="text-center py-2 text-[11px] tracking-[0.2em] uppercase bg-[#1A2B20] text-[#F9F7F4]/70"
           style={{ fontFamily: "var(--font-inter)", fontWeight: 400 }}
         >
-          ✦ Free shipping on orders over $125 across Canada ✦
+          Free shipping on orders over $125 across Canada
         </div>
 
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -98,16 +98,14 @@ export function Navbar() {
             <Link href="/" className="flex flex-col leading-none group shrink-0">
               <span
                 className={`text-2xl tracking-wide transition-colors duration-300 ${
-                  transparent ? "text-white" : "text-[#E7D3A8]"
+                  transparent ? "text-white" : "text-[#2C4A35]"
                 }`}
                 style={{ fontFamily: "var(--font-playfair)", fontWeight: 700 }}
               >
                 Khwab
               </span>
               <span
-                className={`text-[9px] tracking-[0.25em] uppercase transition-colors duration-300 ${
-                  transparent ? "text-[#D4AF37]" : "text-[#C9A961]"
-                }`}
+                className="text-[9px] tracking-[0.25em] uppercase text-[#A67C3C]"
                 style={{ fontFamily: "var(--font-inter)", fontWeight: 500 }}
               >
                 Home Textiles
@@ -128,7 +126,7 @@ export function Navbar() {
                     className={`flex items-center gap-1 px-3.5 py-2 text-[13px] tracking-wide transition-colors duration-200 ${
                       transparent
                         ? "text-white/70 hover:text-white"
-                        : "text-white/65 hover:text-white"
+                        : "text-[#1A1714]/70 hover:text-[#1A1714]"
                     }`}
                     style={{ fontFamily: "var(--font-inter)", fontWeight: 400 }}
                   >
@@ -145,14 +143,14 @@ export function Navbar() {
 
                   {link.sub && activeDropdown === link.label && (
                     <div
-                      className="absolute top-full left-0 mt-0 w-52 bg-[#150820] shadow-[0_8px_40px_rgba(5,0,7,0.6)] border border-[#3A1A5C] border-t-2 border-t-[#9D4EDD] py-3 rounded-b-xl"
+                      className="absolute top-full left-0 mt-0 w-52 bg-white border border-[#E2DDD7] shadow-[0_8px_32px_rgba(0,0,0,0.08)] rounded-none py-3"
                       style={{ animation: "floatDown 0.18s ease forwards" }}
                     >
                       {link.sub.map((sub) => (
                         <Link
                           key={sub.label}
                           href={sub.href}
-                          className="block px-5 py-2.5 text-[13px] text-white/60 hover:text-[#E7D3A8] hover:bg-[#2A0F3D]/60 transition-colors"
+                          className="block px-5 py-2.5 text-[13px] text-[#5A554F] hover:text-[#1A1714] hover:bg-[#F4F0EB] transition-colors"
                           style={{ fontFamily: "var(--font-inter)" }}
                         >
                           {sub.label}
@@ -169,7 +167,7 @@ export function Navbar() {
               {/* Search */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className={`p-2.5 rounded-full transition-colors duration-200 ${iconColor}`}
+                className={`p-2.5 transition-colors duration-200 ${iconColor}`}
                 aria-label="Search"
               >
                 <Search size={20} />
@@ -179,7 +177,7 @@ export function Navbar() {
               <div className="relative" ref={userMenuRef}>
                 <button
                   onClick={() => setIsUserMenuOpen((v) => !v)}
-                  className={`p-2.5 rounded-full transition-colors duration-200 ${iconColor}`}
+                  className={`p-2.5 transition-colors duration-200 ${iconColor}`}
                   aria-label="Account"
                   aria-expanded={isUserMenuOpen}
                   aria-haspopup="menu"
@@ -189,7 +187,7 @@ export function Navbar() {
 
                 {isUserMenuOpen && (
                   <div
-                    className="absolute top-full right-0 mt-2 w-48 bg-[#150820] border border-[#3A1A5C] shadow-[0_8px_32px_rgba(5,0,7,0.6)] rounded-xl py-2 z-50"
+                    className="absolute top-full right-0 mt-2 w-48 bg-white border border-[#E2DDD7] shadow-[0_8px_24px_rgba(0,0,0,0.08)] rounded-none py-2 z-50"
                     role="menu"
                     style={{ animation: "floatDown 0.18s ease forwards" }}
                   >
@@ -198,7 +196,7 @@ export function Navbar() {
                         <Link
                           href="/account"
                           onClick={() => setIsUserMenuOpen(false)}
-                          className="block px-4 py-2.5 text-[13px] text-white/70 hover:text-[#E7D3A8] hover:bg-[#2A0F3D]/60 transition-colors"
+                          className="block px-4 py-2.5 text-[13px] text-[#5A554F] hover:text-[#1A1714] hover:bg-[#F4F0EB] transition-colors"
                           style={{ fontFamily: "var(--font-inter)" }}
                           role="menuitem"
                         >
@@ -206,7 +204,7 @@ export function Navbar() {
                         </Link>
                         <button
                           onClick={() => { signOut(); setIsUserMenuOpen(false); }}
-                          className="block w-full text-left px-4 py-2.5 text-[13px] text-white/70 hover:text-[#E7D3A8] hover:bg-[#2A0F3D]/60 transition-colors"
+                          className="block w-full text-left px-4 py-2.5 text-[13px] text-[#5A554F] hover:text-[#1A1714] hover:bg-[#F4F0EB] transition-colors"
                           style={{ fontFamily: "var(--font-inter)" }}
                           role="menuitem"
                         >
@@ -218,7 +216,7 @@ export function Navbar() {
                         <Link
                           href="/login"
                           onClick={() => setIsUserMenuOpen(false)}
-                          className="block px-4 py-2.5 text-[13px] text-white/70 hover:text-[#E7D3A8] hover:bg-[#2A0F3D]/60 transition-colors"
+                          className="block px-4 py-2.5 text-[13px] text-[#5A554F] hover:text-[#1A1714] hover:bg-[#F4F0EB] transition-colors"
                           style={{ fontFamily: "var(--font-inter)" }}
                           role="menuitem"
                         >
@@ -227,7 +225,7 @@ export function Navbar() {
                         <Link
                           href="/register"
                           onClick={() => setIsUserMenuOpen(false)}
-                          className="block px-4 py-2.5 text-[13px] text-white/70 hover:text-[#E7D3A8] hover:bg-[#2A0F3D]/60 transition-colors"
+                          className="block px-4 py-2.5 text-[13px] text-[#5A554F] hover:text-[#1A1714] hover:bg-[#F4F0EB] transition-colors"
                           style={{ fontFamily: "var(--font-inter)" }}
                           role="menuitem"
                         >
@@ -242,13 +240,13 @@ export function Navbar() {
               {/* Cart */}
               <button
                 onClick={openCart}
-                className={`relative p-2.5 rounded-full transition-colors duration-200 ${iconColor}`}
+                className={`relative p-2.5 transition-colors duration-200 ${iconColor}`}
                 aria-label={`Cart (${itemCount} items)`}
               >
                 <ShoppingBag size={20} />
                 {itemCount > 0 && (
                   <span
-                    className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 bg-[#5A189A] text-[#F8F4EE] text-[9px] font-medium rounded-full flex items-center justify-center px-1 leading-none"
+                    className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 bg-[#2C4A35] text-white text-[9px] font-medium rounded-full flex items-center justify-center px-1 leading-none"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {itemCount > 99 ? "99+" : itemCount}
@@ -259,7 +257,7 @@ export function Navbar() {
               {/* Hamburger (mobile only) */}
               <button
                 onClick={() => setIsMobileOpen(true)}
-                className={`lg:hidden p-2.5 rounded-full ml-1 transition-colors ${iconColor}`}
+                className={`lg:hidden p-2.5 ml-1 transition-colors ${iconColor}`}
                 aria-label="Open menu"
               >
                 <Menu size={20} />
@@ -270,7 +268,7 @@ export function Navbar() {
       </header>
 
       {/* Spacer for non-hero pages */}
-      {!isHeroPage && <div className="h-[96px]" aria-hidden="true" />}
+      {!isHeroPage && <div className="h-[90px]" aria-hidden="true" />}
 
       <MobileMenu isOpen={isMobileOpen} onClose={() => setIsMobileOpen(false)} />
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />

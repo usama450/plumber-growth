@@ -164,7 +164,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
   };
 
   return (
-    <div className="bg-[#050507] py-8 lg:py-12">
+    <div className="bg-[#F9F7F4] py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav
@@ -172,28 +172,28 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
           style={{ fontFamily: "var(--font-inter)" }}
           aria-label="Breadcrumb"
         >
-          <Link href="/" className="text-[#5A189A] hover:underline transition-colors">
+          <Link href="/" className="text-[#7A746D] hover:text-[#1A1714] transition-colors">
             Home
           </Link>
-          <ChevronRight size={12} className="text-[#6B6475]" />
-          <Link href="/shop" className="text-[#5A189A] hover:underline transition-colors">
+          <ChevronRight size={12} className="text-[#B5AFA8]" />
+          <Link href="/shop" className="text-[#7A746D] hover:text-[#1A1714] transition-colors">
             Shop
           </Link>
-          <ChevronRight size={12} className="text-[#6B6475]" />
+          <ChevronRight size={12} className="text-[#B5AFA8]" />
           <Link
             href={`/shop/${product.category.slug}`}
-            className="text-[#5A189A] hover:underline transition-colors capitalize"
+            className="text-[#7A746D] hover:text-[#1A1714] transition-colors capitalize"
           >
             {product.category.name}
           </Link>
-          <ChevronRight size={12} className="text-[#6B6475]" />
-          <span className="text-[#6B6475] line-clamp-1">{product.name}</span>
+          <ChevronRight size={12} className="text-[#B5AFA8]" />
+          <span className="text-[#1A1714] line-clamp-1">{product.name}</span>
         </nav>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Gallery */}
           <div className="space-y-3">
-            <div className="relative aspect-square rounded-[12px] overflow-hidden bg-[#150820] shadow-[0_8px_40px_rgba(5,0,7,0.4)]">
+            <div className="relative aspect-square rounded-[8px] overflow-hidden bg-[#EDE8E1]">
               {product.images[selectedImage] && (
                 <Image
                   src={product.images[selectedImage].imageUrl}
@@ -204,10 +204,23 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                   priority
                 />
               )}
+              {/* Badges */}
+              <div className="absolute top-3 left-3 flex flex-col gap-1.5">
+                {product.isOnSale && (
+                  <span
+                    className="px-2.5 py-1 bg-[#2C4A35] text-[#F9F7F4] text-[10px] tracking-[0.15em] uppercase rounded-sm"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    Sale
+                  </span>
+                )}
+              </div>
               {isOutOfStock && (
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  <span className="px-4 py-2 bg-[#050507]/90 rounded-full text-sm text-[#A8A4B0]"
-                    style={{ fontFamily: "var(--font-inter)" }}>
+                <div className="absolute inset-0 bg-[#F9F7F4]/60 flex items-center justify-center">
+                  <span
+                    className="px-4 py-2 bg-[#1A1714]/80 rounded-sm text-sm text-[#F9F7F4]"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
                     Out of Stock
                   </span>
                 </div>
@@ -220,10 +233,10 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                     key={img.id}
                     onClick={() => setSelectedImage(i)}
                     className={cn(
-                      "aspect-square rounded-[8px] overflow-hidden transition-all ring-offset-[#050507]",
+                      "aspect-square rounded-[4px] overflow-hidden border-2 transition-all",
                       i === selectedImage
-                        ? "ring-2 ring-[#E7D3A8]"
-                        : "hover:ring-1 hover:ring-[#C9A961]"
+                        ? "border-[#2C4A35]"
+                        : "border-transparent hover:border-[#B5AFA8]"
                     )}
                     aria-label={`View image ${i + 1}`}
                   >
@@ -232,7 +245,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                       alt={img.altText ?? `${product.name} ${i + 1}`}
                       width={120}
                       height={120}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover bg-[#EDE8E1]"
                     />
                   </button>
                 ))}
@@ -243,13 +256,13 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
           {/* Product info */}
           <motion.div
             className="lg:pt-2"
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Category */}
             <p
-              className="text-[10px] tracking-[0.35em] uppercase text-[#9D4EDD] mb-2"
+              className="text-[10px] tracking-[0.25em] uppercase text-[#A67C3C] mb-2"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               {product.category.name}
@@ -257,7 +270,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
 
             {/* Product name */}
             <h1
-              className="text-[#E7D3A8] text-2xl sm:text-3xl font-bold mb-3"
+              className="text-[#1A1714] text-2xl sm:text-3xl font-semibold mb-3"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               {product.name}
@@ -272,14 +285,14 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                     size={14}
                     className={cn(
                       i <= Math.round(product.avgRating)
-                        ? "fill-[#C9A961] text-[#C9A961]"
-                        : "text-[#C9A961]/30 fill-[#C9A961]/10"
+                        ? "fill-[#A67C3C] text-[#A67C3C]"
+                        : "text-[#A67C3C]/25 fill-[#A67C3C]/10"
                     )}
                   />
                 ))}
               </div>
               <span
-                className="text-sm text-[#A8A4B0]"
+                className="text-sm text-[#7A746D]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {product._count.reviews > 0
@@ -291,7 +304,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
             {/* Price */}
             <div className="flex items-center gap-3 mb-6">
               <span
-                className="text-2xl text-[#E7D3A8] font-medium"
+                className="text-2xl text-[#1A1714] font-medium"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {formatPrice(product.price)}
@@ -299,13 +312,13 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
               {product.comparePrice && product.comparePrice > product.price && (
                 <>
                   <span
-                    className="text-lg text-[#6B6475] line-through"
+                    className="text-lg text-[#B5AFA8] line-through"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {formatPrice(product.comparePrice)}
                   </span>
                   <span
-                    className="bg-gradient-to-r from-[#5A189A] to-[#7B3DBF] text-[#F8F4EE] text-xs px-2 py-0.5 rounded"
+                    className="bg-[#1A1714] text-[#F9F7F4] text-[10px] tracking-[0.1em] px-2 py-0.5 rounded-sm uppercase"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Save {discount}%
@@ -318,11 +331,17 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
             {colors.length > 0 && (
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-[11px] tracking-[0.25em] uppercase text-[#A8A4B0]" style={{ fontFamily: "var(--font-inter)" }}>
+                  <span
+                    className="text-[11px] tracking-[0.12em] uppercase text-[#5A554F]"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
                     Color
                   </span>
                   {selectedColor && (
-                    <span className="text-[13px] text-[#E7D3A8] capitalize" style={{ fontFamily: "var(--font-inter)" }}>
+                    <span
+                      className="text-[13px] text-[#1A1714] capitalize"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
                       {selectedColor}
                     </span>
                   )}
@@ -339,12 +358,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                           title={color}
                           aria-label={`Select color ${color}`}
                           aria-pressed={isSelected}
-                          className={cn(
-                            "w-10 h-10 rounded-full border-2 transition-all ring-offset-2 ring-offset-[#050507]",
-                            isSelected
-                              ? "border-transparent ring-2 ring-[#E7D3A8]"
-                              : "border-transparent hover:border-[#C9A961]"
-                          )}
+                          className={cn("color-swatch", isSelected && "selected")}
                           style={{ backgroundColor: hex }}
                         />
                       );
@@ -355,10 +369,10 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                         onClick={() => setSelectedColor(color)}
                         aria-pressed={isSelected}
                         className={cn(
-                          "px-4 py-2 rounded-full text-[12px] tracking-wide capitalize transition-all border",
+                          "px-4 py-2 rounded-sm text-[12px] tracking-wide capitalize transition-all border",
                           isSelected
-                            ? "bg-[#5A189A] text-[#F8F4EE] border-[#5A189A] shadow-[0_0_16px_rgba(90,24,154,0.4)]"
-                            : "bg-[#150820] text-[#A8A4B0] border-[#3A1A5C] hover:border-[#5A189A] hover:text-[#F8F4EE]"
+                            ? "bg-[#1A1714] text-[#F9F7F4] border-[#1A1714]"
+                            : "bg-white text-[#5A554F] border-[#E2DDD7] hover:border-[#1A1714] hover:text-[#1A1714]"
                         )}
                         style={{ fontFamily: "var(--font-inter)" }}
                       >
@@ -367,14 +381,9 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                     );
                   })}
                 </div>
-                {/* 12px color bar showing selected color */}
+                {/* Color bar */}
                 {selectedColor && getColorHex(selectedColor) && (
-                  <div className="h-3 rounded-full overflow-hidden bg-[#150820] border border-[#3A1A5C]">
-                    <div
-                      className="h-full rounded-full"
-                      style={{ backgroundColor: getColorHex(selectedColor)!, width: "100%" }}
-                    />
-                  </div>
+                  <div className="color-bar" style={{ backgroundColor: getColorHex(selectedColor)! }} />
                 )}
               </div>
             )}
@@ -384,14 +393,14 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
               <div className="mb-5">
                 <div className="flex items-center justify-between mb-2.5">
                   <span
-                    className="text-[11px] tracking-[0.25em] uppercase text-[#A8A4B0]"
+                    className="text-[11px] tracking-[0.12em] uppercase text-[#5A554F]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Size
                   </span>
                   {selectedSize && (
                     <span
-                      className="text-[13px] text-[#E7D3A8]"
+                      className="text-[13px] text-[#1A1714]"
                       style={{ fontFamily: "var(--font-inter)" }}
                     >
                       {selectedSize}
@@ -410,12 +419,12 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                         disabled={!hasStock}
                         aria-pressed={selectedSize === size}
                         className={cn(
-                          "px-5 py-2.5 rounded-full text-[12px] tracking-wide transition-all border",
+                          "px-5 py-2.5 rounded-sm text-[12px] tracking-wide transition-all border",
                           selectedSize === size
-                            ? "bg-gradient-to-r from-[#5A189A] to-[#7B3DBF] text-[#F8F4EE] border-transparent shadow-[0_0_20px_rgba(90,24,154,0.4)]"
+                            ? "bg-[#1A1714] text-[#F9F7F4] border-[#1A1714]"
                             : hasStock
-                            ? "bg-[#150820] text-[#A8A4B0] border-[#3A1A5C] hover:border-[#5A189A] hover:text-[#F8F4EE]"
-                            : "bg-[#0D0415] text-[#6B6475] border-[#1A0826] cursor-not-allowed line-through"
+                            ? "bg-white text-[#1A1714] border-[#E2DDD7] hover:border-[#1A1714]"
+                            : "bg-[#F4F0EB] text-[#B5AFA8] border-[#E2DDD7] cursor-not-allowed line-through"
                         )}
                         style={{ fontFamily: "var(--font-inter)" }}
                       >
@@ -430,21 +439,21 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
             {/* Quantity */}
             <div className="mb-6">
               <span
-                className="text-[11px] tracking-[0.25em] uppercase text-[#A8A4B0] block mb-2.5"
+                className="text-[11px] tracking-[0.12em] uppercase text-[#5A554F] block mb-2.5"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Quantity
               </span>
-              <div className="inline-flex items-center bg-[#150820] border border-[#3A1A5C] rounded-full overflow-hidden">
+              <div className="inline-flex items-center border border-[#E2DDD7] rounded-sm overflow-hidden bg-white">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-11 h-11 flex items-center justify-center text-[#A8A4B0] hover:text-[#E7D3A8] hover:bg-[#2A0F3D] transition-colors rounded-full"
+                  className="w-10 h-10 flex items-center justify-center text-[#7A746D] hover:text-[#1A1714] hover:bg-[#F4F0EB] transition-colors"
                   aria-label="Decrease quantity"
                 >
-                  <Minus size={14} />
+                  <Minus size={13} />
                 </button>
                 <span
-                  className="w-12 text-center text-sm text-[#F8F4EE]"
+                  className="w-10 text-center text-sm text-[#1A1714]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
                   {quantity}
@@ -454,17 +463,17 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                     setQuantity(Math.min(selectedVariant?.stockQuantity ?? 99, quantity + 1))
                   }
                   disabled={!!selectedVariant && quantity >= selectedVariant.stockQuantity}
-                  className="w-11 h-11 flex items-center justify-center text-[#A8A4B0] hover:text-[#E7D3A8] hover:bg-[#2A0F3D] transition-colors rounded-full disabled:opacity-40"
+                  className="w-10 h-10 flex items-center justify-center text-[#7A746D] hover:text-[#1A1714] hover:bg-[#F4F0EB] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                   aria-label="Increase quantity"
                 >
-                  <Plus size={14} />
+                  <Plus size={13} />
                 </button>
               </div>
               {selectedVariant &&
                 selectedVariant.stockQuantity <= 5 &&
                 selectedVariant.stockQuantity > 0 && (
                   <p
-                    className="text-xs text-[#B85450] mt-2"
+                    className="text-xs text-[#C0392B] mt-2"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Only {selectedVariant.stockQuantity} left in stock!
@@ -479,39 +488,40 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                 onClick={handleAddToCart}
                 disabled={addingToCart || isOutOfStock}
                 className={cn(
-                  "flex-1 flex items-center justify-center gap-2 py-4 text-sm tracking-[0.12em] uppercase transition-all rounded-[6px] border border-[#E7D3A8]/25 disabled:opacity-60 disabled:cursor-not-allowed",
-                  isOutOfStock
-                    ? "bg-[#2A0F3D]/40 text-[#A8A4B0] cursor-not-allowed"
-                    : "bg-gradient-to-r from-[#5A189A] to-[#7B3DBF] text-[#F8F4EE] hover:brightness-110 hover:shadow-[0_8px_32px_rgba(90,24,154,0.5)]"
+                  "btn-primary flex-1 flex items-center justify-center gap-2 py-4 text-sm tracking-[0.12em] uppercase transition-all disabled:opacity-60 disabled:cursor-not-allowed",
+                  isOutOfStock && "opacity-60 cursor-not-allowed"
                 )}
                 style={{ fontFamily: "var(--font-inter)", fontWeight: 500 }}
               >
-                <ShoppingBag size={17} />
+                <ShoppingBag size={16} />
                 {isOutOfStock ? "Out of Stock" : addingToCart ? "Adding..." : "Add to Cart"}
               </button>
               <button
                 onClick={() => setIsWishlisted(!isWishlisted)}
                 className={cn(
                   "btn-icon",
-                  isWishlisted && "!bg-[#5A189A]/30 !border-[#C9A961]"
+                  isWishlisted && "!bg-[#F4F0EB] !border-[#A67C3C]"
                 )}
                 aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
               >
-                <Heart size={18} className={cn(isWishlisted ? "fill-[#C9A961] text-[#C9A961]" : "text-[#A8A4B0]")} />
+                <Heart
+                  size={18}
+                  className={cn(isWishlisted ? "fill-[#A67C3C] text-[#A67C3C]" : "text-[#7A746D]")}
+                />
               </button>
             </div>
 
             {/* Trust badges */}
-            <div className="space-y-3 py-5 border-y border-[#3A1A5C]">
+            <div className="space-y-3 py-5 border-y border-[#E2DDD7]">
               {[
                 { Icon: Truck, text: "Free Shipping over $125" },
                 { Icon: RotateCcw, text: "Free 30-Day Returns" },
                 { Icon: MapPin, text: "Canadian Made" },
               ].map(({ Icon, text }) => (
                 <div key={text} className="flex items-center gap-3">
-                  <Icon size={16} className="text-[#9D4EDD] shrink-0" />
+                  <Icon size={15} className="text-[#2C4A35] shrink-0" />
                   <span
-                    className="text-[13px] font-light text-[#A8A4B0]"
+                    className="text-[13px] text-[#5A554F]"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {text}
@@ -524,7 +534,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
 
         {/* Tabs */}
         <div className="mt-12 lg:mt-16">
-          <div className="flex border-b border-[#3A1A5C]">
+          <div className="flex border-b border-[#E2DDD7]">
             {(
               [
                 { key: "description", label: "Description" },
@@ -546,19 +556,19 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
           <div className="py-6 max-w-2xl">
             {activeTab === "description" && (
               <div
-                className="text-sm text-[#A8A4B0] leading-relaxed space-y-3 font-light"
+                className="text-sm text-[#5A554F] leading-relaxed space-y-3"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <p>{product.description}</p>
                 {product.threadCount && (
                   <p>
-                    <strong className="font-medium text-[#E7D3A8]">Thread Count:</strong>{" "}
+                    <strong className="font-medium text-[#1A1714]">Thread Count:</strong>{" "}
                     {product.threadCount} TC
                   </p>
                 )}
                 {product.material && (
                   <p>
-                    <strong className="font-medium text-[#E7D3A8]">Material:</strong>{" "}
+                    <strong className="font-medium text-[#1A1714]">Material:</strong>{" "}
                     {product.material}
                   </p>
                 )}
@@ -566,7 +576,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
             )}
             {activeTab === "care" && (
               <div
-                className="text-sm text-[#A8A4B0] leading-relaxed font-light space-y-2"
+                className="text-sm text-[#5A554F] leading-relaxed space-y-2"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 {product.careInstructions ? (
@@ -581,7 +591,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                       "Do not dry clean",
                     ].map((item) => (
                       <li key={item} className="flex items-center gap-2">
-                        <span className="text-[#C9A961]">✦</span>
+                        <span className="text-[#A67C3C]">✦</span>
                         {item}
                       </li>
                     ))}
@@ -591,22 +601,22 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
             )}
             {activeTab === "shipping" && (
               <div
-                className="text-sm text-[#A8A4B0] leading-relaxed font-light space-y-3"
+                className="text-sm text-[#5A554F] leading-relaxed space-y-3"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <p>
-                  <strong className="font-medium text-[#E7D3A8]">Free shipping</strong> on all orders over $125
+                  <strong className="font-medium text-[#1A1714]">Free shipping</strong> on all orders over $125
                   CAD across Canada.
                 </p>
                 <p>
-                  Orders under $125 ship for a flat <strong className="font-medium text-[#E7D3A8]">$15 CAD</strong>.
+                  Orders under $125 ship for a flat <strong className="font-medium text-[#1A1714]">$15 CAD</strong>.
                 </p>
                 <p>
                   Most orders ship within 1–2 business days. Delivery takes 3–7 business days
                   depending on your location.
                 </p>
                 <p>
-                  We offer <strong className="font-medium text-[#E7D3A8]">free 30-day returns</strong> on all
+                  We offer <strong className="font-medium text-[#1A1714]">free 30-day returns</strong> on all
                   unwashed, unused items in original packaging.
                 </p>
               </div>
@@ -615,9 +625,9 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
         </div>
 
         {/* Reviews */}
-        <div className="mt-8 pt-8 border-t border-[#3A1A5C]">
+        <div className="mt-8 pt-8 border-t border-[#E2DDD7]">
           <h2
-            className="text-[#E7D3A8] text-xl font-bold mb-6"
+            className="text-[#1A1714] text-xl font-semibold mb-6"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Customer Reviews
@@ -627,24 +637,24 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
           {product.reviews.length === 0 ? (
             <div className="text-center py-12">
               <p
-                className="text-[#A8A4B0] mb-4"
+                className="text-[#7A746D] mb-4"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Be the first to review this product
               </p>
               <button
-                className="px-6 py-3 border border-[#5A189A] text-[#5A189A] text-sm tracking-[0.1em] uppercase rounded-[4px] hover:bg-[#5A189A]/10 transition-all"
+                className="px-6 py-3 border border-[#2C4A35] text-[#2C4A35] text-sm tracking-[0.1em] uppercase rounded-sm hover:bg-[#2C4A35]/5 transition-all"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Write a Review
               </button>
             </div>
           ) : (
-            <div className="space-y-5">
+            <div className="space-y-4">
               {product.reviews.slice(0, 5).map((review) => (
                 <div
                   key={review.id}
-                  className="bg-[#150820] rounded-xl p-5 border border-[#3A1A5C]"
+                  className="bg-white rounded-lg p-5 border border-[#E2DDD7]"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div>
@@ -655,15 +665,15 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                             size={13}
                             className={cn(
                               i <= review.rating
-                                ? "fill-[#C9A961] text-[#C9A961]"
-                                : "text-[#C9A961]/30 fill-[#C9A961]/10"
+                                ? "fill-[#A67C3C] text-[#A67C3C]"
+                                : "text-[#A67C3C]/25 fill-[#A67C3C]/10"
                             )}
                           />
                         ))}
                       </div>
                       {review.title && (
                         <h4
-                          className="text-sm font-medium text-[#E7D3A8]"
+                          className="text-sm font-medium text-[#1A1714]"
                           style={{ fontFamily: "var(--font-inter)" }}
                         >
                           {review.title}
@@ -672,14 +682,14 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                     </div>
                     <div className="text-right">
                       <p
-                        className="text-sm font-light text-[#A8A4B0]"
+                        className="text-sm text-[#5A554F]"
                         style={{ fontFamily: "var(--font-inter)" }}
                       >
                         {review.user.name}
                       </p>
                       {review.isVerifiedPurchase && (
                         <span
-                          className="text-[11px] text-[#6B8E4E]"
+                          className="text-[11px] text-[#2C4A35]"
                           style={{ fontFamily: "var(--font-inter)" }}
                         >
                           ✓ Verified Purchase
@@ -688,7 +698,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
                     </div>
                   </div>
                   <p
-                    className="text-sm font-light text-[#A8A4B0] leading-relaxed"
+                    className="text-sm text-[#5A554F] leading-relaxed"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     {review.comment}
@@ -703,19 +713,19 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
       {/* Mobile sticky CTA */}
       <div
         className={cn(
-          "fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-[#050507]/95 backdrop-blur-xl border-t border-[#3A1A5C] px-4 py-3 flex gap-3 transition-transform duration-200",
+          "fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-[#F9F7F4]/95 backdrop-blur-sm border-t border-[#E2DDD7] px-4 py-3 flex gap-3 transition-transform duration-200",
           stickyVisible ? "translate-y-0" : "translate-y-full"
         )}
       >
         <div className="flex-1 min-w-0">
           <p
-            className="text-xs text-[#A8A4B0] line-clamp-1"
+            className="text-xs text-[#7A746D] line-clamp-1"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {product.name}
           </p>
           <p
-            className="text-sm font-medium text-[#E7D3A8]"
+            className="text-sm font-medium text-[#1A1714]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {formatPrice(product.price)}
@@ -724,7 +734,7 @@ export function ProductDetailClient({ product }: ProductDetailProps) {
         <button
           onClick={handleAddToCart}
           disabled={addingToCart || isOutOfStock}
-          className="px-5 py-2.5 bg-gradient-to-r from-[#5A189A] to-[#7B3DBF] text-[#F8F4EE] text-sm tracking-[0.05em] uppercase rounded-[4px] border border-[#E7D3A8]/25 hover:brightness-110 transition-all disabled:opacity-60"
+          className="btn-primary px-5 py-2.5 text-sm tracking-[0.05em] uppercase disabled:opacity-60 disabled:cursor-not-allowed"
           style={{ fontFamily: "var(--font-inter)" }}
         >
           {isOutOfStock ? "Sold Out" : "Add to Cart"}

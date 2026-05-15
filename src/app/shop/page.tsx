@@ -95,18 +95,18 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   const { products, total } = await getProducts(params);
 
   return (
-    <div className="min-h-screen bg-[#050507]">
+    <div className="min-h-screen bg-[#F9F7F4]">
       {/* Page header */}
-      <div className="bg-[#0D0415] border-b border-[#3A1A5C] py-10">
+      <div className="bg-white border-b border-[#E2DDD7] py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1
-            className="text-[#E7D3A8] text-3xl font-bold"
+            className="text-[#1A1714] text-3xl font-bold"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Shop All Products
           </h1>
           <p
-            className="mt-2 text-sm font-light text-[#A8A4B0]"
+            className="mt-2 text-sm font-light text-[#7A746D]"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             {total} {total === 1 ? "product" : "products"} available
@@ -130,12 +130,12 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
             {/* Sort bar */}
             <div className="flex items-center justify-between mb-6">
               <p
-                className="text-sm font-light text-[#A8A4B0]"
+                className="text-sm font-light text-[#7A746D]"
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 Showing{" "}
-                <span className="text-[#F8F4EE]">{products.length}</span> of{" "}
-                <span className="text-[#F8F4EE]">{total}</span> products
+                <span className="text-[#1A1714]">{products.length}</span> of{" "}
+                <span className="text-[#1A1714]">{total}</span> products
               </p>
               <Suspense>
                 <SortDropdown />
@@ -147,17 +147,17 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
             ) : (
               <div className="text-center py-20">
                 <p
-                  className="text-lg text-[#E7D3A8] mb-2"
+                  className="text-lg text-[#1A1714] mb-2"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   No products found
                 </p>
                 <p
-                  className="text-sm font-light text-[#A8A4B0]"
+                  className="text-sm font-light text-[#7A746D]"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
                   Try adjusting your filters or{" "}
-                  <a href="/shop" className="text-[#9D4EDD] underline hover:text-[#E7D3A8] transition-colors">
+                  <a href="/shop" className="text-[#2C4A35] underline hover:text-[#1A1714] transition-colors">
                     clear all filters
                   </a>
                 </p>

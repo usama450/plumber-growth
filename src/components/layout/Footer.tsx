@@ -23,8 +23,8 @@ export function Footer() {
   return (
     <footer
       role="contentinfo"
-      style={{ background: "linear-gradient(180deg, #1A0826 0%, #050507 100%)" }}
-      className="border-t border-[#E7D3A8]/25"
+      className="border-t border-[#E2DDD7]"
+      style={{ backgroundColor: "#1A2B20" }}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
@@ -33,14 +33,14 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-5">
               <span
-                className="text-2xl text-white tracking-wide block"
-                style={{ fontFamily: "var(--font-playfair)", fontWeight: 700 }}
+                className="text-2xl tracking-wide block"
+                style={{ fontFamily: "var(--font-playfair)", fontWeight: 700, color: "#F9F7F4" }}
               >
                 Khwab
               </span>
               <div
-                className="text-[9px] tracking-[0.28em] uppercase mt-0.5"
-                style={{ fontFamily: "var(--font-inter)", color: "#D4AF37", fontWeight: 500 }}
+                className="text-[9px] uppercase mt-0.5"
+                style={{ fontFamily: "var(--font-inter)", color: "#A67C3C", letterSpacing: "0.28em", fontWeight: 500 }}
               >
                 Home Textiles
               </div>
@@ -48,7 +48,7 @@ export function Footer() {
 
             <p
               className="text-[13px] leading-relaxed mb-6 max-w-[200px]"
-              style={{ fontFamily: "var(--font-inter)", color: "rgba(220,212,236,0.6)", fontWeight: 300 }}
+              style={{ fontFamily: "var(--font-inter)", color: "rgba(249,247,244,0.55)", fontWeight: 300 }}
             >
               Premium Pakistani-inspired home textiles for the modern Canadian home.
             </p>
@@ -58,7 +58,7 @@ export function Footer() {
               <a
                 href="#"
                 aria-label="Instagram"
-                className="w-8 h-8 border border-[#E7D3A8]/20 text-[#E7D3A8] hover:text-[#C9A961] hover:border-[#C9A961]/40 flex items-center justify-center transition-colors duration-300"
+                className="w-8 h-8 border border-[#F9F7F4]/15 text-[#F9F7F4]/50 hover:text-[#F9F7F4] hover:border-[#F9F7F4]/40 flex items-center justify-center transition-colors duration-300"
               >
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -69,7 +69,7 @@ export function Footer() {
               <a
                 href="#"
                 aria-label="Facebook"
-                className="w-8 h-8 border border-[#E7D3A8]/20 text-[#E7D3A8] hover:text-[#C9A961] hover:border-[#C9A961]/40 flex items-center justify-center transition-colors duration-300"
+                className="w-8 h-8 border border-[#F9F7F4]/15 text-[#F9F7F4]/50 hover:text-[#F9F7F4] hover:border-[#F9F7F4]/40 flex items-center justify-center transition-colors duration-300"
               >
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
@@ -78,7 +78,7 @@ export function Footer() {
               <a
                 href="#"
                 aria-label="Email"
-                className="w-8 h-8 border border-[#E7D3A8]/20 text-[#E7D3A8] hover:text-[#C9A961] hover:border-[#C9A961]/40 flex items-center justify-center transition-colors duration-300"
+                className="w-8 h-8 border border-[#F9F7F4]/15 text-[#F9F7F4]/50 hover:text-[#F9F7F4] hover:border-[#F9F7F4]/40 flex items-center justify-center transition-colors duration-300"
               >
                 <Mail size={14} />
               </a>
@@ -88,9 +88,8 @@ export function Footer() {
           {/* Shop Column */}
           <div>
             <h3
-              className="text-[10px] tracking-[0.32em] uppercase mb-5"
-              style={{ color: "#D4AF37", fontWeight: 600 }}
-              style={{ fontFamily: "var(--font-inter)" }}
+              className="mb-5"
+              style={{ fontFamily: "var(--font-inter)", fontSize: "11px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#A67C3C", fontWeight: 600 }}
             >
               Shop
             </h3>
@@ -99,8 +98,8 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] hover:text-white transition-colors duration-200" style={{ color: "rgba(220,212,236,0.65)", fontWeight: 300 }}
-                    style={{ fontFamily: "var(--font-inter)" }}
+                    className="text-[13px] hover:text-[#F9F7F4] transition-colors duration-200"
+                    style={{ fontFamily: "var(--font-inter)", color: "rgba(249,247,244,0.5)", fontWeight: 300 }}
                   >
                     {link.label}
                   </Link>
@@ -112,9 +111,8 @@ export function Footer() {
           {/* Support Column */}
           <div>
             <h3
-              className="text-[10px] tracking-[0.32em] uppercase mb-5"
-              style={{ color: "#D4AF37", fontWeight: 600 }}
-              style={{ fontFamily: "var(--font-inter)" }}
+              className="mb-5"
+              style={{ fontFamily: "var(--font-inter)", fontSize: "11px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#A67C3C", fontWeight: 600 }}
             >
               Support
             </h3>
@@ -123,8 +121,8 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] hover:text-white transition-colors duration-200" style={{ color: "rgba(220,212,236,0.65)", fontWeight: 300 }}
-                    style={{ fontFamily: "var(--font-inter)" }}
+                    className="text-[13px] hover:text-[#F9F7F4] transition-colors duration-200"
+                    style={{ fontFamily: "var(--font-inter)", color: "rgba(249,247,244,0.5)", fontWeight: 300 }}
                   >
                     {link.label}
                   </Link>
@@ -136,15 +134,14 @@ export function Footer() {
           {/* Newsletter Column */}
           <div>
             <h3
-              className="text-[10px] tracking-[0.32em] uppercase mb-5"
-              style={{ color: "#D4AF37", fontWeight: 600 }}
-              style={{ fontFamily: "var(--font-inter)" }}
+              className="mb-5"
+              style={{ fontFamily: "var(--font-inter)", fontSize: "11px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#A67C3C", fontWeight: 600 }}
             >
               Newsletter
             </h3>
             <p
-              className="text-[13px] mb-4 leading-relaxed" style={{ color: "rgba(220,212,236,0.6)", fontWeight: 300 }}
-              style={{ fontFamily: "var(--font-inter)" }}
+              className="text-[13px] mb-4 leading-relaxed"
+              style={{ fontFamily: "var(--font-inter)", color: "rgba(249,247,244,0.5)", fontWeight: 300 }}
             >
               New arrivals and exclusive offers — right to your inbox.
             </p>
@@ -155,16 +152,16 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[#E7D3A8]/10">
+      <div className="border-t border-[#F9F7F4]/10">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p
-            className="text-[11px] text-[#F8F4EE]/20"
+            className="text-[11px] text-[#F9F7F4]/25"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             &copy; {new Date().getFullYear()} Khwab Home Textiles. All rights reserved.
           </p>
           <p
-            className="text-[11px] text-[#F8F4EE]/20"
+            className="text-[11px] text-[#F9F7F4]/25"
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Canadian Owned &amp; Operated
