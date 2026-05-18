@@ -56,6 +56,9 @@
   }
   </script>
 
+  <!-- Calendly popup widget -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -519,7 +522,7 @@
 <!-- NAV -->
 <nav>
   <div class="brand">Plumber<span>Growth</span></div>
-  <a href="https://calendly.com/malikusama2525/best-plumbing-growth-call" target="_blank" class="nav-btn">Book a Call</a>
+  <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/malikusama2525/best-plumbing-growth-call'});return false;" class="nav-btn">Book a Call</a>
 </nav>
 
 <!-- HERO -->
@@ -536,7 +539,7 @@
     <span class="label">For US Residential Plumbing Companies</span>
     <h1>Get 10 to 15 Booked Plumbing Jobs in Your First 30 Days. <em>Guaranteed.</em></h1>
     <p class="hero-sub">We handle everything between the ad and the appointment so your team just shows up and works.</p>
-    <a href="https://calendly.com/malikusama2525/best-plumbing-growth-call" target="_blank" class="hero-cta">Book a Free Call</a>
+    <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/malikusama2525/best-plumbing-growth-call'});return false;" class="hero-cta">Book a Free Call</a>
     <p class="hero-note">Only 2 spots available this month &nbsp;·&nbsp; No pitch. No pressure.</p>
 
     <div class="stats-bar">
@@ -666,7 +669,7 @@
     <div class="cta-box">
       <h3>Ready to Fill Your Pipeline?</h3>
       <p>Pick a time that works for you. The call is 30 minutes and completely free. We will come prepared with a real audit of your current setup.</p>
-      <a href="https://calendly.com/malikusama2525/best-plumbing-growth-call" target="_blank" class="cta-book">Book a Call</a>
+      <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/malikusama2525/best-plumbing-growth-call'});return false;" class="cta-book">Book a Call</a>
       <p class="cta-note">No pressure. No contracts. Just an honest conversation.</p>
     </div>
   </div>
@@ -689,7 +692,7 @@
       </div>
     </div>
     <div class="footer-right">
-      <a href="https://calendly.com/malikusama2525/best-plumbing-growth-call" target="_blank" class="footer-cta">Book a Free Call</a>
+      <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/malikusama2525/best-plumbing-growth-call'});return false;" class="footer-cta">Book a Free Call</a>
       <div class="footer-contact">
         <a href="mailto:malikusama2525@gmail.com">malikusama2525@gmail.com</a><br>
         United States · Remote
@@ -699,7 +702,7 @@
   <div class="footer-bottom">© 2026 PlumberGrowth. All rights reserved.</div>
 </footer>
 
-<a href="https://calendly.com/malikusama2525/best-plumbing-growth-call" target="_blank" class="floating-btn" id="floatingBtn">Book a Call</a>
+<a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/malikusama2525/best-plumbing-growth-call'});return false;" class="floating-btn" id="floatingBtn">Book a Call</a>
 
 <script>
   const heroVideo    = document.getElementById('heroVideo');
@@ -748,5 +751,6 @@
       entries[0].isIntersecting ? 'none' : 'block';
   }, { threshold: 0.1 }).observe(document.getElementById('contact'));
 </script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
