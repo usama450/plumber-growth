@@ -15,14 +15,14 @@
   <meta property="og:url" content="https://usamaazharr.com/" />
   <meta property="og:title" content="Get More Booked Appointments in 30 Days | Usama Azhar" />
   <meta property="og:description" content="I help local service businesses in Canada and the US get more booked appointments in 30 days using Meta Ads and automation. No contracts. Pay for results only. Guaranteed." />
-  <meta property="og:image" content="https://usamaazharr.com/hero-bg.png" />
+  <meta property="og:image" content="https://usamaazharr.com/og-image.png" />
   <meta property="og:site_name" content="Usama Azhar" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Get More Booked Appointments in 30 Days | Usama Azhar" />
   <meta name="twitter:description" content="I help local service businesses in Canada and the US get more booked appointments in 30 days using Meta Ads and automation. Guaranteed." />
-  <meta name="twitter:image" content="https://usamaazharr.com/hero-bg.png" />
+  <meta name="twitter:image" content="https://usamaazharr.com/og-image.png" />
 
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
@@ -152,20 +152,17 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      background: url('hero-bg.png') center/cover no-repeat;
-    }
-    .hero-bg video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
+      background:
+        radial-gradient(ellipse 65% 55% at 50% 0%, rgba(0,217,255,.13), transparent 70%),
+        radial-gradient(ellipse 45% 40% at 85% 100%, rgba(57,255,20,.06), transparent 70%),
+        radial-gradient(ellipse 40% 45% at 10% 90%, rgba(0,155,181,.08), transparent 70%),
+        linear-gradient(180deg, #12161a 0%, #0f0f0f 100%);
     }
     .hero-overlay {
       position: absolute;
       inset: 0;
       z-index: 1;
-      background: rgba(15,15,15,.55);
+      background: transparent;
     }
     .hero-bg::after {
       content: '';
@@ -228,6 +225,7 @@
       border: 1px solid var(--border);
     }
     .who-img img, .who-img video { width: 100%; display: block; object-fit: cover; max-height: 380px; }
+    .who-img svg { width: 100%; display: block; height: auto; }
     .who-right .sub { margin-top: 0; margin-bottom: 1.5rem; }
     .tag-list { display: flex; flex-direction: column; gap: .7rem; }
     .tag {
@@ -511,7 +509,6 @@
         padding: .65rem 1.4rem;
         width: auto;
       }
-      .who-img video { max-height: 240px; }
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
       .footer-right { text-align: left; }
     }
@@ -527,11 +524,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg" id="heroBg">
-    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline x5-playsinline preload="auto" poster="hero-bg.png" style="pointer-events:none">
-      <source src="hero.mp4?v=2" type="video/mp4" />
-    </video>
-  </div>
+  <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
@@ -565,10 +558,47 @@
   <div class="inner">
     <div class="who-grid">
       <div class="who-img">
-        <video id="sectionVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="plumber.png" style="pointer-events:none" aria-label="Plumber fixing pipes under sink">
-          <source src="section.mp4?v=2" type="video/mp4" />
-          <img src="plumber.png" alt="Professional plumber with service van ready for a job" />
-        </video>
+        <svg viewBox="0 0 600 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Booking calendar filling up with appointments">
+          <rect width="600" height="460" fill="#161616"/>
+          <text x="40" y="62" font-family="DM Sans, sans-serif" font-size="21" font-weight="700" fill="#f5f5f5">This Week</text>
+          <text x="40" y="88" font-family="DM Sans, sans-serif" font-size="13.5" fill="#999999">12 booked appointments</text>
+          <circle cx="530" cy="70" r="5" fill="#39ff14">
+            <animate attributeName="opacity" values="1;.3;1" dur="1.6s" repeatCount="indefinite"/>
+          </circle>
+          <text x="518" y="75" font-family="DM Sans, sans-serif" font-size="12.5" fill="#8aff6a" text-anchor="end">Live</text>
+
+          <g>
+            <rect x="40" y="112" width="520" height="66" rx="8" fill="#1d1d1d" stroke="#2a2a2a"/>
+            <text x="64" y="140" font-family="DM Sans, sans-serif" font-size="14.5" font-weight="600" fill="#f5f5f5">9:00 AM · Consultation</text>
+            <text x="64" y="162" font-family="DM Sans, sans-serif" font-size="12.5" fill="#999999">Sarah M. · Responded in 38 seconds</text>
+            <rect x="462" y="130" width="74" height="26" rx="13" fill="rgba(57,255,20,.08)" stroke="rgba(57,255,20,.35)"/>
+            <text x="499" y="147" font-family="DM Sans, sans-serif" font-size="11.5" font-weight="600" fill="#8aff6a" text-anchor="middle">Booked</text>
+          </g>
+
+          <g>
+            <rect x="40" y="190" width="520" height="66" rx="8" fill="#1d1d1d" stroke="#2a2a2a"/>
+            <text x="64" y="218" font-family="DM Sans, sans-serif" font-size="14.5" font-weight="600" fill="#f5f5f5">11:30 AM · Estimate Visit</text>
+            <text x="64" y="240" font-family="DM Sans, sans-serif" font-size="12.5" fill="#999999">David R. · Followed up automatically</text>
+            <rect x="462" y="208" width="74" height="26" rx="13" fill="rgba(57,255,20,.08)" stroke="rgba(57,255,20,.35)"/>
+            <text x="499" y="225" font-family="DM Sans, sans-serif" font-size="11.5" font-weight="600" fill="#8aff6a" text-anchor="middle">Booked</text>
+          </g>
+
+          <g>
+            <rect x="40" y="268" width="520" height="66" rx="8" fill="#1d1d1d" stroke="#2a2a2a"/>
+            <text x="64" y="296" font-family="DM Sans, sans-serif" font-size="14.5" font-weight="600" fill="#f5f5f5">2:00 PM · Service Call</text>
+            <text x="64" y="318" font-family="DM Sans, sans-serif" font-size="12.5" fill="#999999">Jennifer K. · Missed call recovered</text>
+            <rect x="462" y="286" width="74" height="26" rx="13" fill="rgba(57,255,20,.08)" stroke="rgba(57,255,20,.35)"/>
+            <text x="499" y="303" font-family="DM Sans, sans-serif" font-size="11.5" font-weight="600" fill="#8aff6a" text-anchor="middle">Booked</text>
+          </g>
+
+          <g>
+            <rect x="40" y="346" width="520" height="66" rx="8" fill="#1d1d1d" stroke="rgba(0,217,255,.4)"/>
+            <text x="64" y="374" font-family="DM Sans, sans-serif" font-size="14.5" font-weight="600" fill="#f5f5f5">4:30 PM · New Lead</text>
+            <text x="64" y="396" font-family="DM Sans, sans-serif" font-size="12.5" fill="#999999">Just came in · Auto reply sent</text>
+            <rect x="442" y="364" width="94" height="26" rx="13" fill="rgba(0,217,255,.08)" stroke="rgba(0,217,255,.35)"/>
+            <text x="489" y="381" font-family="DM Sans, sans-serif" font-size="11.5" font-weight="600" fill="#00d9ff" text-anchor="middle">Confirming</text>
+          </g>
+        </svg>
       </div>
       <div>
         <span class="label">Who This Is For</span>
@@ -705,47 +735,6 @@
 <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/malikusama2525/best-plumbing-growth-call'});return false;" class="floating-btn" id="floatingBtn">Book a Call</a>
 
 <script>
-  const heroVideo    = document.getElementById('heroVideo');
-  const sectionVideo = document.getElementById('sectionVideo');
-  const heroBg       = document.getElementById('heroBg');
-
-  const FALLBACK = 'linear-gradient(135deg, #0b1628 0%, #0f1e3a 60%, #0b1628 100%)';
-
-  function tryPlay() {
-    if (heroVideo) {
-      heroVideo.muted = true;
-      heroVideo.play().catch(() => {
-        heroVideo.style.display = 'none';
-        heroBg.style.background = FALLBACK;
-      });
-    }
-    if (sectionVideo) {
-      sectionVideo.muted = true;
-      sectionVideo.play().catch(() => {});
-    }
-  }
-
-  tryPlay();
-
-  // Re-try both videos on first user interaction (mobile autoplay restriction)
-  ['touchstart', 'touchend', 'click', 'scroll'].forEach(evt => {
-    document.addEventListener(evt, function handler() {
-      if (heroVideo)    heroVideo.play().catch(() => {});
-      if (sectionVideo) sectionVideo.play().catch(() => {});
-      document.removeEventListener(evt, handler);
-    }, { once: true });
-  });
-
-  // Also trigger section video when it scrolls into view
-  if (sectionVideo) {
-    new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        sectionVideo.muted = true;
-        sectionVideo.play().catch(() => {});
-      }
-    }, { threshold: 0.1 }).observe(sectionVideo);
-  }
-
   new IntersectionObserver(entries => {
     document.getElementById('floatingBtn').style.display =
       entries[0].isIntersecting ? 'none' : 'block';
