@@ -232,36 +232,23 @@
     .hs-spark { width: 100%; height: 30px; display: block; }
     .hero-stats-wrap { display: contents; }
     @media (max-width: 1200px) {
-      .hero { display: flex; flex-direction: column; }
-      .hero-content { order: 1; }
-      .hero-stats-wrap {
-        order: 2;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: .8rem;
-        width: 100%;
-        max-width: 500px;
-        margin: 2.5rem auto 0;
-        position: relative;
-        z-index: 2;
-      }
+      .hero { padding: 14rem 1.5rem 11.5rem; }
       .hero-stat {
-        position: static;
-        width: auto;
-        min-width: 0;
-        animation: none;
+        width: 45%;
+        max-width: 190px;
+        padding: .7rem .8rem .55rem;
       }
-    }
-    @media (max-width: 500px) {
-      .hero-stats-wrap { gap: .6rem; }
-      .hero-stat { padding: .7rem .75rem .6rem; }
       .hs-top { gap: .4rem; margin-bottom: .4rem; }
       .hs-icon { width: 22px; height: 22px; border-radius: 6px; }
       .hs-icon svg { width: 11px; height: 11px; }
-      .hs-label { font-size: .6rem; }
-      .hs-num { font-size: 1.15rem; }
-      .hs-delta { font-size: .58rem; margin: .25rem 0 .4rem; }
-      .hs-spark { height: 22px; }
+      .hs-label { font-size: .58rem; white-space: nowrap; }
+      .hs-num { font-size: 1.1rem; }
+      .hs-delta { font-size: .56rem; margin: .2rem 0 .35rem; }
+      .hs-spark { height: 20px; }
+      .hero-stat-tl { top: 5rem; left: 3.5%; }
+      .hero-stat-tr { top: 5rem; right: 3.5%; }
+      .hero-stat-bl { top: auto; bottom: 2rem; left: 3.5%; }
+      .hero-stat-br { top: auto; bottom: 2rem; right: 3.5%; }
     }
 
     /* OUR WORK */
@@ -604,7 +591,7 @@
     .floating-btn:hover { background: var(--gold); color: var(--black); }
 
     @media (max-width: 700px) {
-      .hero { padding: 7rem 1.5rem 5rem; }
+      .hero { padding: 13.5rem 1.25rem 11rem; }
       section { padding: 4rem 1.5rem; }
       .who-grid { grid-template-columns: 1fr; gap: 2rem; }
       .how-grid { grid-template-columns: 1fr; }
@@ -641,7 +628,7 @@
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
 
-  <svg class="hero-net" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <svg class="hero-net" viewBox="0 0 1440 720" preserveAspectRatio="none" aria-hidden="true">
     <g stroke="rgba(0,217,255,.10)" stroke-width="1">
       <line x1="120" y1="140" x2="330" y2="90"/>
       <line x1="330" y1="90" x2="520" y2="200"/>
